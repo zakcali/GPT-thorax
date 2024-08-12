@@ -1,0 +1,10 @@
+bt-report-002-output.html 2 mm'lik => <span class="OBS-P">2 mm</span> 'lik
+bt-report-011-output.html büyümüş lenf nodlarında => <span class="IMP">büyümüş</span> <span class="OBS-P">lenf nodlarında</span>
+bt-report-013-output.html ait görünüm izlendi(GERD?) => izlendi (<span class="OBS-U">GERD?</span>)
+bt-report-020-output.html in SONUÇ section, <br> before each "-" / dash
+bt-report-024-output.html Takipte ortotopik karaciğer transplantasyonu- => <span class="IMP">Takipte ortotopik karaciğer transplantasyonu</span> - <br>
+bt-report-042-output.html kalsifiye- nonkalsifiye => <span class="OBS-P">kalsifiye</span> - <span class="OBS-P">nonkalsifiye</span>
+bt-report-054-output.html end plate- subsegmenter => <span class="ANAT">end plate</span> - <span class="ANAT">subsegmenter</span
+bt-report-060-output.html end plate- lineer tarzda => <span class="ANAT">end plate</span> - <span class="OBS-P">lineer</span>
+bt-report-072-output.html Mediastinal ve hiler kalsifiye- nonkalsifiye => <span class="OBS-P">kalsifiye</span> - <span class="OBS-P">nonkalsifiye</span>
+bt-report-072-output.html stabil yapıda kalsifiye- nonkalsifiye => <span class="OBS-P">kalsifiye</span> - <span class="OBS-P">nonkalsifiye</span>
