@@ -1,0 +1,19 @@
+thorax ct train-002-output.html bu tetkiktede => <span class="IMP">Bu tetkikte</span> de
+thorax ct train-005-output.html fibrotik sekel değişikliklerde => <span class="OBS-P">fibrotik sekel değişikliklerde</span>
+thorax ct train-009-output.html parankimalfibrozis alanı => <span class="ANAT">medialindeki parankimal</span> <span class="OBS-P">fibrozis</span> <span class="ANAT">alanı</span> da
+thorax ct train-014-output.html atelektazi- infarkt => <span class="OBS-P">atelektazi</span> - <span class="OBS-P">infarkt</span>
+thorax ct train-014-output.html Akciğer bazallerinde atelektazi- infrakt => <span class="ANAT">Akciğer bazallerinde</span> <span class="OBS-P">atelektazi</span> - <span class="OBS-P">infarkt</span>
+thorax ct train-025-output.html buzlu cam dansite artımları- => <span class="OBS-P">buzlu cam dansite artımları</span> - <span class="OBS-P">konsolidasyonlar</span>
+thorax ct train-025-output.html lehine buzlu cam dansiteleri- => <span class="OBS-P">buzlu cam dansiteleri</span> - <span class="OBS-P">konsolidasyonlar</span>
+thorax ct train-042-output.html Dalak hilusu- => <span class="ANAT">Dalak hilusu</span> - <span class="ANAT">pankreas kuyruğu</span>
+thorax ct train-054-output.html Hemotoraks- pnömotoraks => class="OBS-A">Hemotoraks</span> - <span class="OBS-A">pnömotoraks</span>
+thorax ct train-054-output.html izlenmedi(opere?) => <span class="OBS-P">izlenmedi</span> (<span class="OBS-U">opere?</span>).
+thorax ct train-054-output.html .Lojunda yaklaşık => . <span class="ANAT">Lojunda</span> yaklaşık 
+thorax ct train-058-output.html kalın yerinde 3 cm'ye => <span class="OBS-P">3 cm</span> 'ye
+thorax ct train-058-output.html uzanım gösteren lezyonun(15x12 mm) => <span class="OBS-P">lezyonun</span> (<span class="OBS-P">15x12 mm</span>) 
+thorax ct train-065-output.html subdiyafragmatik- => <span class="ANAT">subdiyafragmatik</span> - <span class="ANAT">perihepatik alanda</span>
+thorax ct train-065-output.html Her iki akciğer alt lobda dependan- subsegmenter- => <span class="OBS-P">dependan</span> - <span class="ANAT">subsegmenter</span> - <span class="OBS-P">
+thorax ct train-095-output.html posterior segmenttede => <span class="ANAT">posterior segmentte</span> de
+thorax ct train-099-output.html dikkati çekmiştir(timik) => dikkati çekmiştir (<span class="ANAT">timik</span>)
+thorax ct train-099-output.html nodül(PET BT önerilir) => <span class="OBS-P">nodül</span> (<span class="IMP">PET BT önerilir</span>).
+
