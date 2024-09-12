@@ -1,0 +1,85 @@
+class	text	filename
+O	IVKM verilmeden aksiyel planda 5 mm kalınlıkta kesitler elde olunmuştur.	bt-report-071
+O	İnceleme 2011 tarihli tetkik ile karşılaştırılarak değerlendirildi.	bt-report-071
+IMP	Opere	bt-report-071
+IMP	pankreas karsinomu	bt-report-071
+IMP	akciğer karsinomu tanılarıyla	bt-report-071
+O	takip edilen hastada	bt-report-071
+IMP	önceki incelemede tanımlanan	bt-report-071
+ANAT	sağ akciğerde	bt-report-071
+ANAT	alt lob	bt-report-071
+ANAT	süperior segmentte	bt-report-071
+OBS-P	subsolid	bt-report-071
+OBS-P	formundaki	bt-report-071
+OBS-P	10x7 mm	bt-report-071
+ANAT	üst lob	bt-report-071
+ANAT	bazalinde	bt-report-071
+OBS-P	5 mm	bt-report-071
+OBS-P	çapında	bt-report-071
+O	ve yine	bt-report-071
+ANAT	sağ üst lobda	bt-report-071
+ANAT	subplevral	bt-report-071
+OBS-P	2 mm	bt-report-071
+OBS-P	çapında	bt-report-071
+OBS-P	kalsifiye	bt-report-071
+O	olarak izlenen	bt-report-071
+OBS-P	nodüllerde	bt-report-071
+OBS-A	farklılık	bt-report-071
+O	saptanmadı.	bt-report-071
+ANAT	Akciğerler	bt-report-071
+OBS-P	belirgin	bt-report-071
+OBS-P	amfizamatöz	bt-report-071
+OBS-P	paterndedir	bt-report-071
+IMP	Yeni incelemede	bt-report-071
+ANAT	sol akciğerde	bt-report-071
+ANAT	alt lobda	bt-report-071
+ANAT	lateral bazal segmentte	bt-report-071
+OBS-P	3 adet	bt-report-071
+OBS-P	9 mm	bt-report-071
+OBS-P	8 mm	bt-report-071
+OBS-P	3.5 mm	bt-report-071
+OBS-P	çaplarında	bt-report-071
+OBS-P	çevrelerinde buzlu cam alanlarının gözlendiği	bt-report-071
+OBS-P	düzensiz konturlu	bt-report-071
+OBS-P	nodüler	bt-report-071
+OBS-P	infiltrasyonlar	bt-report-071
+IMP	geliştiği	bt-report-071
+O	dikkati çekti.	bt-report-071
+OBS-U	Öncelikle enfektif süreci düşündürmekle beraber	bt-report-071
+IMP	bu aşamada	bt-report-071
+OBS-U	yeni gelişmiş metastatik nodüller ekarte edilemez	bt-report-071
+IMP	Klinik korelasyon ve takibi önerilir	bt-report-071
+ANAT	Mediastinal	bt-report-071
+OBS-P	lenf nodları	bt-report-071
+IMP	stabil	bt-report-071
+OBS-P	yapıdadır	bt-report-071
+ANAT	Plevral	bt-report-071
+OBS-A	effüzyon	bt-report-071
+O	gözlenmedi.	bt-report-071
+OBS-A	Diğer bulgularda farklılık	bt-report-071
+O	saptanmadı.	bt-report-071
+O	SONUÇ:	bt-report-071
+IMP	Takipte	bt-report-071
+IMP	opere	bt-report-071
+IMP	pankreas karsinomu	bt-report-071
+IMP	akciğer karsinomu	bt-report-071
+ANAT	Sağ akciğerde	bt-report-071
+IMP	stabil	bt-report-071
+OBS-P	boyutlu	bt-report-071
+OBS-P	nodüller	bt-report-071
+ANAT	sol alt lobda	bt-report-071
+IMP	yeni gelişmiş	bt-report-071
+OBS-P	çevrelerinde buzlu cam tarzında halo oluşumlarının izlendiği	bt-report-071
+OBS-P	düzensiz	bt-report-071
+OBS-P	nodüller	bt-report-071
+OBS-U	öncelikle enfekte süreci düşündürmekle beraber	bt-report-071
+OBS-U	metastatik nodül ekarte edilemedi	bt-report-071
+ANAT	Mediastinal	bt-report-071
+IMP	stabil	bt-report-071
+OBS-P	lenf nodları	bt-report-071
+OBS-P	Aterom plakları	bt-report-071
+ANAT	Asendan aortada	bt-report-071
+OBS-P	minimal	bt-report-071
+OBS-P	anevrizmatik dilatasyon	bt-report-071
+ANAT	Vertebra korpuslarında	bt-report-071
+OBS-P	dejeneratif değişiklikler	bt-report-071

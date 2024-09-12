@@ -1,0 +1,117 @@
+class	text	filename
+O	IVKM sonrası aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur.	bt-report-033
+O	Tetkik hastanın 2021 tarihli hastanemizdeki toraks BT tetkiki ve 2022 tarihli dış merkez toraks BT ile kıyaslamalı değerlendirilmiştir.	bt-report-033
+IMP	SLE tanısı	bt-report-033
+O	ile takip edilen hastada;	bt-report-033
+ANAT	Trakea	bt-report-033
+ANAT	her iki ana bronş	bt-report-033
+OBS-P	açıktır	bt-report-033
+ANAT	Mediasten	bt-report-033
+ANAT	her iki hilusta	bt-report-033
+OBS-A	patolojik görünümlü lenf nodu	bt-report-033
+O	saptanmadı.	bt-report-033
+ANAT	Pulmoner arterler	bt-report-033
+OBS-P	ektazik	bt-report-033
+O	görünümde olup	bt-report-033
+ANAT	pulmoner turunkus	bt-report-033
+OBS-P	çapı 32 mm	bt-report-033
+ANAT	sağ ana pulmoner arter	bt-report-033
+OBS-P	çapı 26 mm	bt-report-033
+ANAT	sol ana pulmoner arter	bt-report-033
+OBS-P	çapı	bt-report-033
+O	ise	bt-report-033
+OBS-P	26 mm	bt-report-033
+O	ölçülmüş olup	bt-report-033
+ANAT	pulmoner turunkus	bt-report-033
+ANAT	sol ana pulmoner arter	bt-report-033
+OBS-P	ektazik	bt-report-033
+O	görünümdedir.	bt-report-033
+ANAT	Her iki hemitoraksta	bt-report-033
+ANAT	plevral	bt-report-033
+OBS-A	effüzyon	bt-report-033
+OBS-A	kalınlaşma	bt-report-033
+O	bulgusu izlenmedi.	bt-report-033
+ANAT	Kemik yapılarda	bt-report-033
+OBS-P	yaygın	bt-report-033
+OBS-P	dejeneratif değişiklikler	bt-report-033
+O	izlenmiş olup	bt-report-033
+OBS-A	litik, destrüktif	bt-report-033
+OBS-A	kitle lezyonu	bt-report-033
+O	saptanmamıştır.	bt-report-033
+ANAT	Her iki akciğer parankim alanlarının	bt-report-033
+O	değerlendirilmesinde,	bt-report-033
+ANAT	her iki akciğer parankiminde	bt-report-033
+ANAT	sağ akciğerde	bt-report-033
+O	ve özellikle	bt-report-033
+ANAT	alt lobda	bt-report-033
+OBS-P	daha belirgin	bt-report-033
+O	olmak üzerer	bt-report-033
+ANAT	peribronşial	bt-report-033
+ANAT	interstisyumda	bt-report-033
+OBS-P	kalınlaşmalar	bt-report-033
+OBS-P	retiküler	bt-report-033
+OBS-P	dansite artımları	bt-report-033
+OBS-P	yamasal	bt-report-033
+OBS-P	buzlu cam dansitesinde	bt-report-033
+OBS-P	görünümler	bt-report-033
+O	dikkati çekmiş olupda bulguların tümü	bt-report-033
+OBS-U	interstisyel parankimal fibrozis	bt-report-033
+OBS-U	lehine	bt-report-033
+O	değerlendirilmiştir.	bt-report-033
+IMP	Eski tetkikler ile kıyaslandığında	bt-report-033
+O	tanımlanan	bt-report-033
+OBS-P	parankimal fibrozis	bt-report-033
+OBS-P	bulgularında	bt-report-033
+OBS-A	anlamlı farklılık	bt-report-033
+O	saptanmamıştır.	bt-report-033
+ANAT	Sağ akciğer	bt-report-033
+ANAT	alt lobda	bt-report-033
+IMP	eski tetkikte de izlenen	bt-report-033
+ANAT	intraparankimal	bt-report-033
+OBS-P	bül	bt-report-033
+IMP	güncel incelemede	bt-report-033
+OBS-P	74x68 mm	bt-report-033
+O	(2022 tarihli tetkikte	bt-report-033
+OBS-P	53x51 mm	bt-report-033
+OBS-P	boyutta	bt-report-033
+O	ölçülmüş olup	bt-report-033
+OBS-P	belirgin boyut artışı	bt-report-033
+O	dikkati çekmiştir.	bt-report-033
+O	Tanımlanan diğer BT bulgularında anlamlı farklılık saptanmadı.	bt-report-033
+O	SONUÇ:	bt-report-033
+IMP	Takipte SLE	bt-report-033
+ANAT	Her iki akciğer parankiminde	bt-report-033
+IMP	SLE'nin akciğer parankim tutulumuna ait olduğu düşünülen	bt-report-033
+ANAT	sağ akciğerde	bt-report-033
+O	özellikle	bt-report-033
+ANAT	alt lobda	bt-report-033
+OBS-P	daha belirgin	bt-report-033
+O	olmak üzere,	bt-report-033
+ANAT	her iki akciğeri	bt-report-033
+O	etkileyen	bt-report-033
+ANAT	periferal	bt-report-033
+OBS-P	ağırlıklı	bt-report-033
+ANAT	interstisyumda	bt-report-033
+OBS-P	kalınlaşmalar	bt-report-033
+OBS-P	retiküler	bt-report-033
+OBS-P	dansite artımları	bt-report-033
+OBS-P	buzlu cam dansitelerinin	bt-report-033
+O	izlendiği	bt-report-033
+OBS-P	parankimal fibrozis	bt-report-033
+OBS-P	bulgularında	bt-report-033
+OBS-A	anlamlı farklılık	bt-report-033
+O	saptanmamıştır.	bt-report-033
+ANAT	Sağ akciğer	bt-report-033
+ANAT	alt lobda	bt-report-033
+OBS-P	geniş boyutlu	bt-report-033
+ANAT	parankimal	bt-report-033
+OBS-P	bül	bt-report-033
+OBS-P	Kardiyomegali	bt-report-033
+ANAT	Pulmoner arterlerde	bt-report-033
+OBS-P	ektazi	bt-report-033
+OBS-U	Parankimal fibrozise bağlı pulmoner hipertansiyona sekonder	bt-report-033
+ANAT	Mediastende	bt-report-033
+OBS-P	milimetrik boyutlu	bt-report-033
+OBS-P	lenf nodları	bt-report-033
+IMP	stabildir	bt-report-033
+O	NOT: Hastaya tetkik esnasında BIEMEXOL 350/200 Flakon (IOHEKSOL) IV 100 ml noniyonik kontrast madde kullanılmıştır.	bt-report-033

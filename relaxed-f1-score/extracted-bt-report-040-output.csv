@@ -1,0 +1,43 @@
+class	text	filename
+O	IVKM verilmesini takiben aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur.	bt-report-040
+O	Tetkik 2023 tarihli Toraks BT ile karşılaştırılarak değerlendirilmiştir.	bt-report-040
+IMP	Opere	bt-report-040
+IMP	endometrium karsinomu tanısıyla	bt-report-040
+O	izlenen hastada;	bt-report-040
+ANAT	mediastinal	bt-report-040
+ANAT	hiler	bt-report-040
+OBS-A	patolojik boyutta	bt-report-040
+OBS-A	lenf nodu	bt-report-040
+O	izlenmedi.	bt-report-040
+ANAT	Perikardiyal	bt-report-040
+ANAT	plevral	bt-report-040
+OBS-A	efüzyon	bt-report-040
+O	saptanmadı.	bt-report-040
+ANAT	Her iki akciğerde	bt-report-040
+ANAT	sol akciğer	bt-report-040
+ANAT	lingular segmentte	bt-report-040
+ANAT	sağ akciğer	bt-report-040
+ANAT	orta lob	bt-report-040
+ANAT	düzeyinde	bt-report-040
+O	izlenen	bt-report-040
+OBS-P	fibroatelektatik değişiklikler	bt-report-040
+IMP	stabil	bt-report-040
+O	olarak değerlendirildi.	bt-report-040
+OBS-A	Belirgin	bt-report-040
+OBS-A	pnömonik infiltrasyon	bt-report-040
+OBS-A	yer kaplayan lezyon	bt-report-040
+O	izlenmedi.	bt-report-040
+ANAT	Kemik yapılarda	bt-report-040
+OBS-A	litik, destrüktif	bt-report-040
+OBS-A	lezyon	bt-report-040
+O	saptanmadı.	bt-report-040
+O	Diğer sistem bulgularında farklılık izlenmedi.	bt-report-040
+O	SONUÇ:	bt-report-040
+IMP	Takipte	bt-report-040
+IMP	opere	bt-report-040
+IMP	endometrium karsinomu	bt-report-040
+ANAT	Her iki akciğerde	bt-report-040
+IMP	stabil	bt-report-040
+OBS-P	fibroatelektatik değişiklikler	bt-report-040
+ANAT	Kemik yapılarda	bt-report-040
+OBS-P	dejeneratif değişiklikler	bt-report-040

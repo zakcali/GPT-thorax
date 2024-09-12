@@ -1,0 +1,24 @@
+class	text	filename
+O	IVKM verilmeden aksiyel planda  3 mm kalınlıkta kesitler elde olunmuştur.	bt-report-090
+O	Tetkik 2022 tarihli toraks BT tetkiki ile karşılaştırılmıştır.	bt-report-090
+OBS-U	Kontratsız kesitlerde mediasten lenf nodları ve hiler bölgeler detaylı olarak değerlendirilemedi	bt-report-090
+O	. İzlenebildiği kadarıyla	bt-report-090
+OBS-A	patolojik lenf nodu	bt-report-090
+O	saptanmadı.	bt-report-090
+ANAT	Asendan aorta	bt-report-090
+OBS-P	en geniş yerinde	bt-report-090
+OBS-P	41 mm	bt-report-090
+O	ölçüldü.	bt-report-090
+ANAT	Kalp	bt-report-090
+OBS-P	boyutları	bt-report-090
+OBS-P	normalin üst sınırındadır	bt-report-090
+OBS-A	İnfiltrasyon	bt-report-090
+O	saptanmamıştır.	bt-report-090
+OBS-A	Nodül	bt-report-090
+O	izlenmemiştir.	bt-report-090
+ANAT	Kemik yapılar	bt-report-090
+OBS-P	normaldir	bt-report-090
+O	SONUÇ:	bt-report-090
+ANAT	Asendan aortada	bt-report-090
+OBS-P	fuziform	bt-report-090
+IMP	anevrizmatik dilatasyon	bt-report-090

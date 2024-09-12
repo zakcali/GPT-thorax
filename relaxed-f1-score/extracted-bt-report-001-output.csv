@@ -1,0 +1,34 @@
+class	text	filename
+O	IVKM verilmeden aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur.	bt-report-001
+O	2023 tarihli son toraks BT tetkiki;	bt-report-001
+ANAT	Trakea	bt-report-001
+ANAT	ana bronşlar	bt-report-001
+OBS-P	normal	bt-report-001
+OBS-P	konfigürasyonda	bt-report-001
+O	değerlendirilmiştir.	bt-report-001
+ANAT	Mediastinal	bt-report-001
+ANAT	ana vasküler yapılar	bt-report-001
+OBS-P	normal	bt-report-001
+OBS-P	kalibrasyonda	bt-report-001
+OBS-P	patenttir	bt-report-001
+ANAT	Kalp	bt-report-001
+OBS-P	boyutları	bt-report-001
+OBS-P	konturları	bt-report-001
+OBS-P	normaldir	bt-report-001
+ANAT	Kalp	bt-report-001
+ANAT	boşlukları	bt-report-001
+OBS-P	tabi	bt-report-001
+O	değerlendirildi.	bt-report-001
+ANAT	Parankim alanlarının	bt-report-001
+O	değerlendirilmesinde	bt-report-001
+ANAT	her iki	bt-report-001
+ANAT	akciğerde	bt-report-001
+OBS-A	belirgin nodül	bt-report-001
+OBS-A	kitle	bt-report-001
+OBS-A	infiltrasyon	bt-report-001
+O	bulgusu saptanmamıştır.	bt-report-001
+ANAT	Kemik yapılar	bt-report-001
+OBS-P	doğaldır	bt-report-001
+O	SONUÇ:	bt-report-001
+IMP	Normal sınırlarda	bt-report-001
+O	toraks BT tetkiki.	bt-report-001

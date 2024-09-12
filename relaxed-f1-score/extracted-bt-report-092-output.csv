@@ -1,0 +1,110 @@
+class	text	filename
+O	IVKM verilmeden aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur.	bt-report-092
+O	2021 tarihli	bt-report-092
+ANAT	toraks BT	bt-report-092
+O	tetkiki ile karşılaştırılarak değerlendirilmiştir.	bt-report-092
+ANAT	Trakea	bt-report-092
+ANAT	her iki ana bronş	bt-report-092
+OBS-P	çaıktır	bt-report-092
+ANAT	Kalp	bt-report-092
+OBS-P	büyüklüğü	bt-report-092
+OBS-P	normaldir	bt-report-092
+ANAT	Aortada	bt-report-092
+OBS-P	aterosklertoik değişiklikler	bt-report-092
+O	mevcuttur.	bt-report-092
+ANAT	Mediastinal	bt-report-092
+OBS-A	patolojik lenf nodu	bt-report-092
+O	saptanmamıştır.	bt-report-092
+ANAT	Perikardiyal	bt-report-092
+OBS-A	effüzyon	bt-report-092
+O	izlenmemiştir.	bt-report-092
+ANAT	Her iki hemitoraksta	bt-report-092
+ANAT	plevral	bt-report-092
+OBS-A	effüzyon	bt-report-092
+OBS-A	kalınlaşma	bt-report-092
+O	saptanmamıştır.	bt-report-092
+ANAT	Sol akciğer	bt-report-092
+ANAT	alt lob	bt-report-092
+ANAT	bazal	bt-report-092
+ANAT	anteromedial	bt-report-092
+ANAT	lateralde	bt-report-092
+OBS-P	sekel	bt-report-092
+OBS-P	fibrotik değişiklikler	bt-report-092
+O	ve eşlik eden	bt-report-092
+OBS-P	minimal	bt-report-092
+OBS-P	bronşektazi	bt-report-092
+OBS-P	görünümleri	bt-report-092
+IMP	sebat etmektedir	bt-report-092
+ANAT	Sağ akciğer	bt-report-092
+ANAT	alt lob	bt-report-092
+ANAT	bazal	bt-report-092
+ANAT	anteriorda	bt-report-092
+O	yaklaşık	bt-report-092
+OBS-P	24 mm	bt-report-092
+OBS-P	çaplı	bt-report-092
+OBS-P	lobüle konturlu	bt-report-092
+O	bir önceki	bt-report-092
+ANAT	BT	bt-report-092
+O	tetkiki ile karşılaştırıldığında	bt-report-092
+OBS-A	farklılık	bt-report-092
+O	saptanmayan	bt-report-092
+OBS-P	nodüler lezyon	bt-report-092
+IMP	sebat etmektedir	bt-report-092
+ANAT	Sağ akciğer	bt-report-092
+ANAT	orta lobda	bt-report-092
+OBS-P	7 mm	bt-report-092
+OBS-P	çaplı	bt-report-092
+ANAT	sol akciğer	bt-report-092
+ANAT	alt lob	bt-report-092
+ANAT	bazal	bt-report-092
+ANAT	anteromedialde	bt-report-092
+ANAT	fissür	bt-report-092
+ANAT	komşuluğunda	bt-report-092
+OBS-P	6.5 mm	bt-report-092
+OBS-P	çaplı	bt-report-092
+OBS-P	nodülelr	bt-report-092
+IMP	sebat etmektedir	bt-report-092
+OBS-A	Yeni ortaya çıkan nodül	bt-report-092
+O	saptanmamıştır. Ayrıca	bt-report-092
+ANAT	sağ akciğer	bt-report-092
+ANAT	alt lob	bt-report-092
+ANAT	posterobazalde	bt-report-092
+OBS-P	3 mm	bt-report-092
+OBS-P	çaplı	bt-report-092
+ANAT	subplevral	bt-report-092
+OBS-P	nodülde	bt-report-092
+IMP	sebat etmektedir	bt-report-092
+OBS-A	Farklılık	bt-report-092
+O	saptanmamıştır. Ayrıca	bt-report-092
+ANAT	sağ akciğer	bt-report-092
+ANAT	orta lob	bt-report-092
+ANAT	medialde	bt-report-092
+OBS-P	3 mm	bt-report-092
+OBS-P	çaplı	bt-report-092
+OBS-P	nonspesifikte	bt-report-092
+IMP	sebat etmekte	bt-report-092
+O	olup	bt-report-092
+OBS-A	farklılık	bt-report-092
+O	izlenmedi.	bt-report-092
+OBS-A	Yeni ortaya çıkan nodül	bt-report-092
+O	saptanmadı.	bt-report-092
+ANAT	Kemik yapılarda	bt-report-092
+OBS-A	litik, destrüktif lezyon	bt-report-092
+O	izlenmedi.	bt-report-092
+O	SONUÇ:	bt-report-092
+ANAT	Sol akciğerde	bt-report-092
+OBS-P	sekel değişiklikler	bt-report-092
+ANAT	Aortada	bt-report-092
+OBS-P	aterosklerotik değişiklikler	bt-report-092
+ANAT	Sağ akciğerde	bt-report-092
+O	bir önceki	bt-report-092
+ANAT	BT	bt-report-092
+O	tetkiki ile karşılaştırılarak	bt-report-092
+OBS-A	farklılık	bt-report-092
+O	saptanmayan	bt-report-092
+OBS-P	lobüle konturlu	bt-report-092
+OBS-P	nodüler lezyon	bt-report-092
+OBS-U	Sekel değişkliklere sekonder olduğu düşünüldü	bt-report-092
+ANAT	Her iki akciğerde	bt-report-092
+IMP	stabil	bt-report-092
+OBS-P	nodüller	bt-report-092
