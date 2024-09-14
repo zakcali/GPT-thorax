@@ -7415,29 +7415,137 @@ ANAT	Sağ akciğer	bt-report-089
 ANAT	orta lob	bt-report-089
 ANAT	medial segmentte	bt-report-089
 OBS-P	fibrotik sekel değişiklik	bt-report-089
-O	IVKM verilmeden aksiyel planda  3 mm kalınlıkta kesitler elde olunmuştur.	bt-report-090
-O	Tetkik 2022 tarihli toraks BT tetkiki ile karşılaştırılmıştır.	bt-report-090
-OBS-U	Kontratsız kesitlerde mediasten lenf nodları ve hiler bölgeler detaylı olarak değerlendirilemedi	bt-report-090
-O	. İzlenebildiği kadarıyla	bt-report-090
-OBS-A	patolojik lenf nodu	bt-report-090
-O	saptanmadı.	bt-report-090
-ANAT	Asendan aorta	bt-report-090
-OBS-P	en geniş yerinde	bt-report-090
-OBS-P	41 mm	bt-report-090
-O	ölçüldü.	bt-report-090
-ANAT	Kalp	bt-report-090
-OBS-P	boyutları	bt-report-090
-OBS-P	normalin üst sınırındadır	bt-report-090
-OBS-A	İnfiltrasyon	bt-report-090
-O	saptanmamıştır.	bt-report-090
-OBS-A	Nodül	bt-report-090
-O	izlenmemiştir.	bt-report-090
-ANAT	Kemik yapılar	bt-report-090
-OBS-P	normaldir	bt-report-090
+O	IVKM sonrası aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur.	bt-report-090
+ANAT	Trakea	bt-report-090
+ANAT	ana bronşlar	bt-report-090
+OBS-P	normal konfigürasyonda	bt-report-090
+O	değerlendirilmiştir.	bt-report-090
+ANAT	Tiroid glandı	bt-report-090
+OBS-P	boyutları artmış	bt-report-090
+ANAT	gland	bt-report-090
+ANAT	retrosternal	bt-report-090
+OBS-P	uzanım	bt-report-090
+O	göstermektedir.	bt-report-090
+ANAT	Her iki tiroid	bt-report-090
+ANAT	glandında	bt-report-090
+OBS-P	hipoekoik nodüller	bt-report-090
+O	izlenmiştir.	bt-report-090
+IMP	Tiroid USG ile değerlendirilmesi önerilir	bt-report-090
+OBS-P	Kardiyak pace kateterine	bt-report-090
+OBS-P	ait görünüm	bt-report-090
+O	izlenmiştir.	bt-report-090
+ANAT	Aort kapağı	bt-report-090
+ANAT	düzeyinde	bt-report-090
+OBS-P	kalsifikasyonlar	bt-report-090
+O	izlenmiştir.	bt-report-090
+ANAT	Arkus aortada	bt-report-090
+ANAT	koroner arterlerde	bt-report-090
+OBS-P	aterosklerotik	bt-report-090
+ANAT	çeper	bt-report-090
+OBS-P	kalsifikasyonları	bt-report-090
+O	izlenmiştir.	bt-report-090
+ANAT	Pulmoner trunkus	bt-report-090
+OBS-P	çapı	bt-report-090
+OBS-P	34 mm	bt-report-090
+ANAT	sağ	bt-report-090
+ANAT	ana pulmoner arter	bt-report-090
+OBS-P	çapı	bt-report-090
+OBS-P	29 mm	bt-report-090
+ANAT	sol	bt-report-090
+ANAT	ana pulmoner arter	bt-report-090
+OBS-P	çapı	bt-report-090
+OBS-P	32 mm	bt-report-090
+O	olarak ölçülmüş olup	bt-report-090
+ANAT	pulmoner vasküler yapılar	bt-report-090
+OBS-P	normalden geniştir	bt-report-090
+ANAT	Kalp boşluk	bt-report-090
+OBS-P	boyutları artmıştır	bt-report-090
+ANAT	Her iki	bt-report-090
+ANAT	hemitoraksda	bt-report-090
+ANAT	posteriorda	bt-report-090
+OBS-P	minimal	bt-report-090
+ANAT	plevral	bt-report-090
+OBS-P	kalınlaşma	bt-report-090
+O	izlenmiştir.	bt-report-090
+ANAT	Sol akciğerde	bt-report-090
+ANAT	alt lob	bt-report-090
+ANAT	posterior bazal, mediobazal segmentlerde	bt-report-090
+OBS-P	fibrotik	bt-report-090
+ANAT	parenkimal	bt-report-090
+OBS-P	bant oluşumları	bt-report-090
+O	izlenmiştir.	bt-report-090
+ANAT	Sol akciğerde	bt-report-090
+ANAT	inferior lingular segmentte	bt-report-090
+ANAT	subsegmenter	bt-report-090
+OBS-P	atelektazi	bt-report-090
+ANAT	alanı	bt-report-090
+O	mevcuttur.	bt-report-090
+ANAT	Sağ akciğer	bt-report-090
+ANAT	alt lob	bt-report-090
+ANAT	süperior segmentte	bt-report-090
+ANAT	fissür	bt-report-090
+OBS-P	tabanlı	bt-report-090
+OBS-P	4 mm	bt-report-090
+OBS-P	çapında	bt-report-090
+OBS-P	fibrotik	bt-report-090
+OBS-P	görünümde	bt-report-090
+OBS-P	nodül	bt-report-090
+O	izlenmiştir.	bt-report-090
+O	İnceleme düzlemine giren	bt-report-090
+ANAT	kemik yapılar	bt-report-090
+OBS-P	osteoporotiktir	bt-report-090
+ANAT	Torakal	bt-report-090
+ANAT	vertebralarda	bt-report-090
+OBS-P	rotoskolyoz	bt-report-090
+O	izlenmiştir.	bt-report-090
+ANAT	Torakal vertebra korpuslarında	bt-report-090
+OBS-P	yaygın	bt-report-090
+OBS-P	dejeneratif değişiklikler	bt-report-090
+O	mevcuttur.	bt-report-090
 O	SONUÇ:	bt-report-090
-ANAT	Asendan aortada	bt-report-090
-OBS-P	fuziform	bt-report-090
-IMP	anevrizmatik dilatasyon	bt-report-090
+IMP	Opere takipte vajen Ca	bt-report-090
+ANAT	Tiroid	bt-report-090
+ANAT	glandında	bt-report-090
+OBS-P	hiperplazik	bt-report-090
+OBS-P	görünüm	bt-report-090
+OBS-P	hipoekoik nodüller	bt-report-090
+IMP	USG önerilir	bt-report-090
+ANAT	Kalp boşluk	bt-report-090
+OBS-P	boyutlarında artış	bt-report-090
+OBS-P	Kardiyak pace kateteri	bt-report-090
+ANAT	Pulmoner vasküler yapılarda	bt-report-090
+OBS-P	dilatasyon	bt-report-090
+ANAT	Sol akciğer	bt-report-090
+ANAT	alt lobda	bt-report-090
+ANAT	sol	bt-report-090
+ANAT	inferior lingular segmentte	bt-report-090
+ANAT	subsegmenter	bt-report-090
+OBS-P	atelektaziler	bt-report-090
+OBS-P	fibrotik	bt-report-090
+ANAT	parenkimal	bt-report-090
+OBS-P	bantlar	bt-report-090
+ANAT	Sağ akciğer	bt-report-090
+ANAT	alt lob	bt-report-090
+ANAT	süperior segmentte	bt-report-090
+ANAT	fissür	bt-report-090
+OBS-P	tabanlı	bt-report-090
+OBS-P	fibrotik	bt-report-090
+OBS-P	görünümde	bt-report-090
+OBS-P	nodül	bt-report-090
+ANAT	Koroner arterlerde	bt-report-090
+ANAT	arkus aortada	bt-report-090
+OBS-P	ateroskleroz	bt-report-090
+OBS-P	bulguları	bt-report-090
+OBS-P	Kardiyomegali bulguları	bt-report-090
+ANAT	Dorsal vertebralarda	bt-report-090
+OBS-P	açıklığı sağa bakan	bt-report-090
+OBS-P	skolyoz	bt-report-090
+ANAT	Her iki	bt-report-090
+ANAT	hemitoraksda	bt-report-090
+ANAT	posteriorda	bt-report-090
+ANAT	plevral	bt-report-090
+OBS-P	kalınlaşma	bt-report-090
+
 O	IVKM sonrası aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur.	bt-report-091
 ANAT	Trakea	bt-report-091
 ANAT	her iki	bt-report-091

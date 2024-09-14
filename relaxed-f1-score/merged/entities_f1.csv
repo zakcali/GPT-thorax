@@ -7446,29 +7446,138 @@ TRUE;ANAT;ANAT;Sağ akciğer;bt-report-089
 TRUE;ANAT;ANAT;orta lob;bt-report-089
 TRUE;ANAT;ANAT;medial segmentte;bt-report-089
 TRUE;OBS-P;OBS-P;fibrotik sekel değişiklik;bt-report-089
-TRUE;O;O;IVKM verilmeden aksiyel planda  3 mm kalınlıkta kesitler elde olunmuştur.;bt-report-090
-TRUE;O;O;Tetkik 2022 tarihli toraks BT tetkiki ile karşılaştırılmıştır.;bt-report-090
-TRUE;OBS-U;OBS-U;Kontratsız kesitlerde mediasten lenf nodları ve hiler bölgeler detaylı olarak değerlendirilemedi;bt-report-090
-TRUE;O;O;. İzlenebildiği kadarıyla;bt-report-090
-TRUE;OBS-A;OBS-A;patolojik lenf nodu;bt-report-090
-TRUE;O;O;saptanmadı.;bt-report-090
-TRUE;ANAT;ANAT;Asendan aorta;bt-report-090
-TRUE;OBS-P;OBS-P;en geniş yerinde;bt-report-090
-TRUE;OBS-P;OBS-P;41 mm;bt-report-090
-TRUE;O;O;ölçüldü.;bt-report-090
-TRUE;ANAT;ANAT;Kalp;bt-report-090
-TRUE;OBS-P;OBS-P;boyutları;bt-report-090
-TRUE;OBS-P;OBS-P;normalin üst sınırındadır;bt-report-090
-TRUE;OBS-A;OBS-A;İnfiltrasyon;bt-report-090
-TRUE;O;O;saptanmamıştır.;bt-report-090
-TRUE;OBS-A;OBS-A;Nodül;bt-report-090
-TRUE;O;O;izlenmemiştir.;bt-report-090
-TRUE;ANAT;ANAT;Kemik yapılar;bt-report-090
-TRUE;OBS-P;OBS-P;normaldir;bt-report-090
+TRUE;O;O;IVKM sonrası aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur.;bt-report-090
+TRUE;ANAT;ANAT;Trakea;bt-report-090
+TRUE;ANAT;ANAT;ana bronşlar;bt-report-090
+TRUE;OBS-P;OBS-P;normal konfigürasyonda;bt-report-090
+TRUE;O;O;değerlendirilmiştir.;bt-report-090
+TRUE;ANAT;ANAT;Tiroid glandı;bt-report-090
+TRUE;OBS-P;OBS-P;boyutları artmış;bt-report-090
+TRUE;ANAT;ANAT;gland;bt-report-090
+TRUE;ANAT;ANAT;retrosternal;bt-report-090
+TRUE;OBS-P;OBS-P;uzanım;bt-report-090
+TRUE;O;O;göstermektedir.;bt-report-090
+TRUE;ANAT;ANAT;Her iki tiroid;bt-report-090
+TRUE;ANAT;ANAT;glandında;bt-report-090
+TRUE;OBS-P;OBS-P;hipoekoik nodüller;bt-report-090
+TRUE;O;O;izlenmiştir.;bt-report-090
+TRUE;IMP;IMP;Tiroid USG ile değerlendirilmesi önerilir;bt-report-090
+FALSE;ANAT;OBS-P;Kardiyak;bt-report-090
+TRUE;OBS-P;OBS-P;pace kateterine;bt-report-090
+TRUE;OBS-P;OBS-P;ait görünüm;bt-report-090
+TRUE;O;O;izlenmiştir.;bt-report-090
+TRUE;ANAT;ANAT;Aort kapağı;bt-report-090
+TRUE;ANAT;ANAT;düzeyinde;bt-report-090
+TRUE;OBS-P;OBS-P;kalsifikasyonlar;bt-report-090
+TRUE;O;O;izlenmiştir.;bt-report-090
+TRUE;ANAT;ANAT;Arkus aortada;bt-report-090
+TRUE;ANAT;ANAT;koroner arterlerde;bt-report-090
+TRUE;OBS-P;OBS-P;aterosklerotik;bt-report-090
+TRUE;ANAT;ANAT;çeper;bt-report-090
+TRUE;OBS-P;OBS-P;kalsifikasyonları;bt-report-090
+TRUE;O;O;izlenmiştir.;bt-report-090
+TRUE;ANAT;ANAT;Pulmoner trunkus;bt-report-090
+TRUE;OBS-P;OBS-P;çapı;bt-report-090
+TRUE;OBS-P;OBS-P;34 mm;bt-report-090
+TRUE;ANAT;ANAT;sağ;bt-report-090
+TRUE;ANAT;ANAT;ana pulmoner arter;bt-report-090
+TRUE;OBS-P;OBS-P;çapı;bt-report-090
+TRUE;OBS-P;OBS-P;29 mm;bt-report-090
+TRUE;ANAT;ANAT;sol;bt-report-090
+TRUE;ANAT;ANAT;ana pulmoner arter;bt-report-090
+TRUE;OBS-P;OBS-P;çapı;bt-report-090
+TRUE;OBS-P;OBS-P;32 mm;bt-report-090
+TRUE;O;O;olarak ölçülmüş olup;bt-report-090
+TRUE;ANAT;ANAT;pulmoner vasküler yapılar;bt-report-090
+TRUE;OBS-P;OBS-P;normalden geniştir;bt-report-090
+TRUE;ANAT;ANAT;Kalp boşluk;bt-report-090
+TRUE;OBS-P;OBS-P;boyutları artmıştır;bt-report-090
+TRUE;ANAT;ANAT;Her iki;bt-report-090
+TRUE;ANAT;ANAT;hemitoraksda;bt-report-090
+TRUE;ANAT;ANAT;posteriorda;bt-report-090
+TRUE;OBS-P;OBS-P;minimal;bt-report-090
+TRUE;ANAT;ANAT;plevral;bt-report-090
+TRUE;OBS-P;OBS-P;kalınlaşma;bt-report-090
+TRUE;O;O;izlenmiştir.;bt-report-090
+TRUE;ANAT;ANAT;Sol akciğerde;bt-report-090
+TRUE;ANAT;ANAT;alt lob;bt-report-090
+TRUE;ANAT;ANAT;posterior bazal, mediobazal segmentlerde;bt-report-090
+TRUE;OBS-P;OBS-P;fibrotik;bt-report-090
+TRUE;ANAT;ANAT;parenkimal;bt-report-090
+TRUE;OBS-P;OBS-P;bant oluşumları;bt-report-090
+TRUE;O;O;izlenmiştir.;bt-report-090
+TRUE;ANAT;ANAT;Sol akciğerde;bt-report-090
+TRUE;ANAT;ANAT;inferior lingular segmentte;bt-report-090
+TRUE;ANAT;ANAT;subsegmenter;bt-report-090
+TRUE;OBS-P;OBS-P;atelektazi;bt-report-090
+TRUE;ANAT;ANAT;alanı;bt-report-090
+TRUE;O;O;mevcuttur.;bt-report-090
+TRUE;ANAT;ANAT;Sağ akciğer;bt-report-090
+TRUE;ANAT;ANAT;alt lob;bt-report-090
+TRUE;ANAT;ANAT;süperior segmentte;bt-report-090
+TRUE;ANAT;ANAT;fissür;bt-report-090
+TRUE;OBS-P;OBS-P;tabanlı;bt-report-090
+TRUE;OBS-P;OBS-P;4 mm;bt-report-090
+TRUE;OBS-P;OBS-P;çapında;bt-report-090
+TRUE;OBS-P;OBS-P;fibrotik;bt-report-090
+TRUE;OBS-P;OBS-P;görünümde;bt-report-090
+TRUE;OBS-P;OBS-P;nodül;bt-report-090
+TRUE;O;O;izlenmiştir.;bt-report-090
+TRUE;O;O;İnceleme düzlemine giren;bt-report-090
+TRUE;ANAT;ANAT;kemik yapılar;bt-report-090
+TRUE;OBS-P;OBS-P;osteoporotiktir;bt-report-090
+TRUE;ANAT;ANAT;Torakal;bt-report-090
+TRUE;ANAT;ANAT;vertebralarda;bt-report-090
+TRUE;OBS-P;OBS-P;rotoskolyoz;bt-report-090
+TRUE;O;O;izlenmiştir.;bt-report-090
+TRUE;ANAT;ANAT;Torakal vertebra korpuslarında;bt-report-090
+TRUE;OBS-P;OBS-P;yaygın;bt-report-090
+TRUE;OBS-P;OBS-P;dejeneratif değişiklikler;bt-report-090
+TRUE;O;O;mevcuttur.;bt-report-090
 TRUE;O;O;SONUÇ:;bt-report-090
-TRUE;ANAT;ANAT;Asendan aortada;bt-report-090
-TRUE;OBS-P;OBS-P;fuziform;bt-report-090
-FALSE;OBS-P;IMP;anevrizmatik dilatasyon;bt-report-090
+TRUE;IMP;IMP;Opere takipte vajen Ca;bt-report-090
+TRUE;ANAT;ANAT;Tiroid;bt-report-090
+TRUE;ANAT;ANAT;glandında;bt-report-090
+TRUE;OBS-P;OBS-P;hiperplazik;bt-report-090
+TRUE;OBS-P;OBS-P;görünüm;bt-report-090
+TRUE;OBS-P;OBS-P;hipoekoik nodüller;bt-report-090
+TRUE;IMP;IMP;USG önerilir;bt-report-090
+TRUE;ANAT;ANAT;Kalp boşluk;bt-report-090
+TRUE;OBS-P;OBS-P;boyutlarında artış;bt-report-090
+FALSE;ANAT;OBS-P;Kardiyak;bt-report-090
+TRUE;OBS-P;OBS-P;pace kateteri;bt-report-090
+TRUE;ANAT;ANAT;Pulmoner vasküler yapılarda;bt-report-090
+TRUE;OBS-P;OBS-P;dilatasyon;bt-report-090
+TRUE;ANAT;ANAT;Sol akciğer;bt-report-090
+TRUE;ANAT;ANAT;alt lobda;bt-report-090
+TRUE;ANAT;ANAT;sol;bt-report-090
+TRUE;ANAT;ANAT;inferior lingular segmentte;bt-report-090
+TRUE;ANAT;ANAT;subsegmenter;bt-report-090
+TRUE;OBS-P;OBS-P;atelektaziler;bt-report-090
+TRUE;OBS-P;OBS-P;fibrotik;bt-report-090
+TRUE;ANAT;ANAT;parenkimal;bt-report-090
+TRUE;OBS-P;OBS-P;bantlar;bt-report-090
+TRUE;ANAT;ANAT;Sağ akciğer;bt-report-090
+TRUE;ANAT;ANAT;alt lob;bt-report-090
+TRUE;ANAT;ANAT;süperior segmentte;bt-report-090
+TRUE;ANAT;ANAT;fissür;bt-report-090
+TRUE;OBS-P;OBS-P;tabanlı;bt-report-090
+TRUE;OBS-P;OBS-P;fibrotik;bt-report-090
+TRUE;OBS-P;OBS-P;görünümde;bt-report-090
+TRUE;OBS-P;OBS-P;nodül;bt-report-090
+TRUE;ANAT;ANAT;Koroner arterlerde;bt-report-090
+TRUE;ANAT;ANAT;arkus aortada;bt-report-090
+TRUE;OBS-P;OBS-P;ateroskleroz;bt-report-090
+TRUE;OBS-P;OBS-P;bulguları;bt-report-090
+TRUE;OBS-P;OBS-P;Kardiyomegali bulguları;bt-report-090
+TRUE;ANAT;ANAT;Dorsal vertebralarda;bt-report-090
+TRUE;OBS-P;OBS-P;açıklığı sağa bakan;bt-report-090
+TRUE;OBS-P;OBS-P;skolyoz;bt-report-090
+TRUE;ANAT;ANAT;Her iki;bt-report-090
+TRUE;ANAT;ANAT;hemitoraksda;bt-report-090
+TRUE;ANAT;ANAT;posteriorda;bt-report-090
+TRUE;ANAT;ANAT;plevral;bt-report-090
+TRUE;OBS-P;OBS-P;kalınlaşma;bt-report-090
 TRUE;O;O;IVKM sonrası aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur.;bt-report-091
 TRUE;ANAT;ANAT;Trakea;bt-report-091
 TRUE;ANAT;ANAT;her iki;bt-report-091
