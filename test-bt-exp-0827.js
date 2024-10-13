@@ -118,7 +118,7 @@ async function run() {
 		}
         // Construct output file name
         const outputFileName = path.basename(reportFile, '.txt') + '-output.html';
-        const outputPath = path.join('tesp-output', outputFileName);
+        const outputPath = path.join('test-output', outputFileName);
 
         // Write output
         await fs.writeFile(outputPath, output, { encoding: 'utf8' }, err => {
