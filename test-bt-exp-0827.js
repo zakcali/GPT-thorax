@@ -71,14 +71,14 @@ async function run() {
     // read prompt
     let prompt;
     try {
-        prompt = await fs.readFile('prompt.html', { encoding: 'utf8' });
+        prompt = await fs.readFile('bt prompt.html', { encoding: 'utf8' });
     } catch (err) {
         console.error(err);
         return; // Exit if prompt reading fails
     }
 
     // Get list of report files
-    const reportsDir = 'reports';
+    const reportsDir = 'test-input';
     const files = await fs.readdir(reportsDir);
     const reportFiles = files.filter(file => path.extname(file) === '.txt');
 
@@ -118,7 +118,7 @@ async function run() {
 		}
         // Construct output file name
         const outputFileName = path.basename(reportFile, '.txt') + '-output.html';
-        const outputPath = path.join('outputs', outputFileName);
+        const outputPath = path.join('tesp-output', outputFileName);
 
         // Write output
         await fs.writeFile(outputPath, output, { encoding: 'utf8' }, err => {
