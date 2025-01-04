@@ -23,7 +23,7 @@ const safetySettings = [
   },
 ];
 const apiVersion = 'v1beta';
-const modelName = 'gemini-1.5-pro-exp-0827'; // https://ai.google.dev/gemini-api/docs/models/gemini
+const modelName = 'gemini-exp-1206'; // https://ai.google.dev/gemini-api/docs/models/gemini
 const promptFileName= 'bt prompt.html';
 const reportsDir = 'test-input';
 const outputDir = 'test-output';
