@@ -26,7 +26,7 @@ const apiVersion = 'v1beta';
 const modelName = 'gemini-exp-1206'; // https://ai.google.dev/gemini-api/docs/models/gemini
 const promptFileName= 'bt prompt.html';
 const reportsDir = 'test-input';
-const outputDir = 'test-output';
+const outputDir = 'outputs';
 
 const mistakes = [
 	'<span class="ANAT">aksiyel planda</span> <span class="OBS-P">5 mm kalınlıkta kesitler</span>','aksiyel planda 5 mm kalınlıkta kesitler',
