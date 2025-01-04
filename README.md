@@ -10,17 +10,15 @@ Install the libraries by entering the following command in the keyboard:
 ```
 npm install @google/generative-ai
 ```
-make empty folders named "reports" and "ouputs"
-
-copy contents of the "test-reports" folder to the "reports"
+make an empty folder "ouputs"
 
 Run the program by typing:
 ```
-node test-mmg-1206.js
+node test-bt-exp-1206.js
 ```
 find the tagged html reports in "outputs" folder
 
-js (nodejs) program reads the file named "mmg prompt.html", appends one report to the end of prompt, sends promt to gemini-api, receives and outputs the responses
+js (nodejs) program reads the file named "bt prompt.html", appends one report to the end of prompt, sends promt to gemini-api, receives and outputs the responses
 
 note: you can use experimental models without paying for them, look for the url: https://ai.google.dev/gemini-api/docs/models/experimental-models
 
