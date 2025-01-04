@@ -18,7 +18,7 @@ node test-bt-exp-1206.js
 ```
 find the tagged html reports in "outputs" folder
 
-js (nodejs) program reads the file named "bt prompt.html", appends one report to the end of prompt, sends promt to gemini-api, receives and outputs the responses
+js (nodejs) program reads the file named "bt prompt.html", appends one report to the end of prompt, sends prompt to gemini-api, receives and outputs the responses
 
 note: you can use experimental models without paying for them, look for the url: https://ai.google.dev/gemini-api/docs/models/experimental-models
 
