@@ -2,7 +2,7 @@
 
 GPT-NER for Thorax-CT reports
 
-nodejs program to send mmg-reports and receive tagged outputs
+nodejs program to send "Thorax CT" reports and receive tagged outputs
 
 you must define enviromental variable GEMINI_API_KEY, which you obtain from google-ai-studio
 
