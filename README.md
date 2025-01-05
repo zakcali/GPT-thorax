@@ -20,16 +20,23 @@ find the tagged html reports in "outputs" folder
 
 js (nodejs) program reads the file named "bt prompt.html", appends one report to the end of prompt, sends prompt to gemini-api, receives and outputs the responses
 
-note: you can use experimental models without paying for them, look for the url: https://ai.google.dev/gemini-api/docs/models/experimental-models
-
-current experimental model is: gemini-exp-1206
-
-look for limits of experimental models: https://discuss.ai.google.dev/t/whats-the-rate-limit-for-the-experimental-models/38226
-
 you may need to edit delay routine to not to throttle the api but it may still throttle (stops responding after outputting a few files)
 ```
 await new Promise(resolve => setTimeout(resolve, 60 * 1000)); // Delay
 ```
 you can directly paste contents of the "ai-studio prompt.txt" file to the https://aistudio.google.com/prompts/new_chat and see the tagged output one report at a time. Note: you must save the output as an html file, by adding ".html" extension, and see the result in a browser.
 you can directly paste contents of the "ai-studio prompt.txt" file to the and see the tagged output one report at a time. Note: you must save the output as a html file, by adding ".html" extension, and see the result by opening that file in a web browser. Please edit safety setting in google ai studio, and set "block none" for all of them.
+
+note: you can use experimental models without paying for them, look for the url: https://ai.google.dev/gemini-api/docs/models/experimental-models
+
+current experimental model is: gemini-exp-1206
+
+look for limits of experimental models: https://discuss.ai.google.dev/t/whats-the-rate-limit-for-the-experimental-models/38226
+
+you can list the usable models for you with your api key. type this to your address bar of the browser https://generativelanguage.googleapis.com/v1beta/models?key=$GEMINI_API_KEY
+
+if your GEMINI_API_KEY is "lFrWertd-tUyhGhpWwWwsD", then you must type this
+```
+https://generativelanguage.googleapis.com/v1beta/models?key=lFrWertd-tUyhGhpWwWwsD
+```
 
