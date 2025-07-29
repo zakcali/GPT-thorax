@@ -1,0 +1,22 @@
+python -m spacy benchmark accuracy .\output\model-best\ .\data\train.spacy --output metrics-spacy.json --gpu-id 0
+ℹ Using GPU: 0
+
+================================== Results ==================================
+
+TOK     100.00
+NER P   83.93
+NER R   85.20
+NER F   84.56
+SPEED   5442
+
+
+=============================== NER (per type) ===============================
+
+            P       R       F
+IMP     72.08   70.82   71.44
+ANAT    86.46   88.14   87.29
+OBS-P   86.33   87.69   87.01
+OBS-A   81.44   85.23   83.29
+OBS-U   44.70   46.09   45.38
+
+✔ Saved results to metrics-spacy.json
