@@ -1,0 +1,14 @@
+              precision    recall  f1-score   support
+
+       _ANAT       0.99      0.99      0.99      3078
+        _IMP       0.89      0.90      0.89       457
+      _OBS_A       0.96      0.96      0.96       560
+      _OBS_P       0.96      0.96      0.96      2681
+      _OBS_U       0.84      0.66      0.74       124
+
+   micro avg       0.96      0.96      0.96      6900
+   macro avg       0.93      0.89      0.91      6900
+weighted avg       0.96      0.96      0.96      6900
+
+F1 score: 0.9644978988552384
+Accuracy score: 0.9695043656908063

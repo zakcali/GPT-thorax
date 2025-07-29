@@ -1,0 +1,32 @@
+Output Report
+========================
+              precision    recall  f1-score   support
+
+        ANAT       0.99      0.99      0.99      3144
+         IMP       0.87      0.87      0.87       485
+           O       0.97      0.97      0.97      1580
+       OBS-A       0.98      0.96      0.97       562
+       OBS-P       0.96      0.98      0.97      2727
+       OBS-U       0.78      0.55      0.65       145
+
+    accuracy                           0.97      8643
+   macro avg       0.93      0.89      0.90      8643
+weighted avg       0.97      0.97      0.97      8643
+
+Overall Cohen's Kappa: 0.9563
+
+Per-Label Cohen's Kappa:
+  ANAT: 0.9867
+  IMP: 0.8609
+  O: 0.9637
+  OBS-A: 0.9692
+  OBS-P: 0.9590
+  OBS-U: 0.6401
+
+Tr\Pr	ANAT	IMP	O	OBS-A	OBS-P	OBS-U	TP	FP	FN	TN	Kappa
+ANAT	3116	0	1	2	21	4	3116	25	28	5474	0.9867
+IMP	5	420	18	3	32	7	420	62	65	8096	0.8609
+O	1	23	1537	5	10	4	1537	51	43	7012	0.9637
+OBS-A	2	5	3	540	10	2	540	10	22	8071	0.9692
+OBS-P	11	14	20	0	2676	6	2676	103	51	5813	0.9590
+OBS-U	6	20	9	0	30	80	80	23	65	8475	0.6401
