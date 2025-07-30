@@ -23,6 +23,12 @@ find the tagged html reports in "outputs" folder
 
 js (nodejs) program reads the file named "bt prompt.html", appends one report to the end of prompt, sends prompt to gemini-api, receives and outputs the responses
 
+
+```
+node test-bt5shot.js to prompt 100 test reports from reports folder for Gemini 2.5 pro with five-shot prompt (bt prompt-5shot.html)
+node test-btnshot.js to prompt 100 test reports from reports folder for Gemini 2.5 pro with many-shot prompt (bt prompt-nshot.html) 
+```
+
 you may need to edit delay routine to not to throttle the api but it may still throttle (stops responding after outputting a few files)
 ```
 await new Promise(resolve => setTimeout(resolve, 60 * 1000)); // Delay
