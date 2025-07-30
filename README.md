@@ -14,6 +14,7 @@ Install the libraries by entering the following command in the keyboard:
 npm install @google/generative-ai
 ```
 100 test reports are in folder "test-input"
+
 make an empty folder "ouputs"
 
 Run the program by typing:
@@ -24,7 +25,7 @@ find the tagged html reports in "outputs" folder
 
 js (nodejs) program reads the file named "bt prompt.html", appends one report to the end of prompt, sends prompt to gemini-api, receives and outputs the responses
 
-
+Google Gemini 1.5 Pro model is / will be deprecated
 ```
 node test-bt5shot.js to prompt 100 test reports from reports folder for Gemini 2.5 pro with five-shot prompt (bt prompt-5shot.html)
 node test-btnshot.js to prompt 100 test reports from reports folder for Gemini 2.5 pro with many-shot prompt (bt prompt-nshot.html) 
