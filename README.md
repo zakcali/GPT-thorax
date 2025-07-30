@@ -27,8 +27,8 @@ js (nodejs) program reads the file named "bt prompt.html", appends one report to
 
 Google Gemini 1.5 Pro model is / will be deprecated
 ```
-node test-bt5shot.js to prompt 100 test reports from reports folder for Gemini 2.5 pro with five-shot prompt (bt prompt-5shot.html)
-node test-btnshot.js to prompt 100 test reports from reports folder for Gemini 2.5 pro with many-shot prompt (bt prompt-nshot.html) 
+node test-bt5shot.js to prompt 100 test reports from reports folder with Gemini 2.5 pro and five-shot prompt (bt prompt-5shot.html)
+node test-btnshot.js to prompt 100 test reports from reports folder with Gemini 2.5 pro and many-shot prompt (bt prompt-nshot.html) 
 ```
 
 you may need to edit delay routine to not to throttle the api but it may still throttle (stops responding after outputting a few files)
