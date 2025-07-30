@@ -40,7 +40,7 @@ you can directly paste contents of the "ai-studio prompt.txt" file to the and se
 
 note: you can use experimental models without paying for them, look for the url: https://ai.google.dev/gemini-api/docs/models/experimental-models
 
-current experimental model is: gemini-exp-1206
+gemini-exp-1206 was an 1.5 pro experimental model
 
 look for limits of experimental models: https://discuss.ai.google.dev/t/whats-the-rate-limit-for-the-experimental-models/38226
 
