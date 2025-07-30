@@ -75,7 +75,7 @@ async function run() {
     }
 
     // Get list of report files
-    const reportsDir = 'reports';
+    const reportsDir = 'test-input';
     const files = await fs.readdir(reportsDir);
     const reportFiles = files.filter(file => path.extname(file) === '.txt');
 
