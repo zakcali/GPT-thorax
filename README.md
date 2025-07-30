@@ -13,6 +13,7 @@ Install the libraries by entering the following command in the keyboard:
 ```
 npm install @google/generative-ai
 ```
+100 test reports are in folder "test-input"
 make an empty folder "ouputs"
 
 Run the program by typing:
