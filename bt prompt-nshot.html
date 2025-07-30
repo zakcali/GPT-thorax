@@ -1,0 +1,2116 @@
+### Task
+Your task is to generate an HTML version of a radiology report, marking up specific healthcare-related entities. The entities to be identified are: "anatomy", "observation-present", "observation-absent", "observation-uncertain", and "impression". Use HTML <span></span> tags to highlight these entities, each with a class attribute indicating the type of the entity.
+Output Format:
+Always provide the output as an HTML code snippet enclosed within a code snippet window. Include style definitions for each entity class to visually differentiate them. Do not output as plain text.
+
+When rendering the output, be sure to preserve the line breaks from the input text by including <br> tags after each line. This ensures the original formatting is maintained in the output.
+Example:
+Input:
+This is line 1.
+This is line 2.
+Output:
+This is line 1.<br>
+This is line 2.<br>
+Exclude lines starting with "IVKM" or "NOT" from task: Do not mark up anything inside lines that begin with the term "IVKM" or "NOT", as they typically describe technical aspects of the imaging procedure and are not relevant to the clinical findings or impressions. Do not evaluate them, just let them unformatted text and skip to the next line.
+### Entity Definitions
+1- Anatomy (ANAT): This category denotes regions of the human body, specifically referencing anatomical areas or organs. Examples include, but are not limited to:
+* C1 (Cervikal first vertebra)
+* L1 (Lumbar first vertebra)
+* S1 (Sacral first vertebra)
+* T1 (Thoracal 1st vertebra)
+* akciğer (lung)
+* aksiyel düzlemde (in the axial plane)
+* alan (area)
+* alanda (in the ... area)
+* alveoler (alveolar)
+* ana iliak arter (main iliac artery)
+* aortopulmoner lokalizasyon (aortopulmonary location)
+* apikal (apex)
+* arasındaki (between)
+* asinüs (acinus)
+* baş-boyun (head and neck)
+* bazalinde (at the base of)
+* bezinde (in the gland)
+* bilateral (bilateral)
+* bileşke (junction)
+* bir alanda (in an area)
+* birleşkesi düzeyinde (at the level of the junction)
+* bölgesi (region of)
+* bronşiel (bronchial )
+* bu düzeyde (at this level)
+* cidar (wall)
+* çeper (wall)
+* cilt (skin)
+* cilt altı (subcutaneous)
+* cilt-cilt altı doku (skin-subcutaneous tissue)
+* çıkan torasik aorta (ascending thoracic aorta)
+* çöliak trunkus (celiac trunk)
+* dalak hilusu (splenic hilum)
+* dalları (branches)
+* distal (distal)
+* distalinde (distally)
+* doğru (towards)
+* duvar (wall)
+* düzeyinde (at the level of)
+* düzeyine uyan konumda (in a position corresponding to the level of)
+* dış kesimde (in the outer region)
+* ekstratorasik (extrathoracic)
+* end plate (endplate of a vertebra)
+* fissür (fissure in the lung)
+* fold (fold)
+* foldda (in the fold)
+* grafiye dahil olan kesimi (within the included section of the image)
+* hemen distalinde (just distal to)
+* her iki (both, referring to paired organs or structures)
+* hiler düzeyler (hilar levels)
+* hilus (hilum of the lung)
+* humerus (humerus)
+* humerus başı (head of the humerus)
+* humerus başları (humerus heads)
+* humerus şaftı (shaft of the humerus)
+* ile arasındaki planlar (the planes between)
+* iliak arter (iliac artery)
+* inen torasik aorta (descending thoracic aorta)
+* infrahiler (infra-hilar) 
+* interlobuler (interlobular)
+* intersisyel (interstitial)
+* intertisiyel (interstitial)
+* interstisyel (interstitial)
+* intralober (intralobar)
+* intramural (intramural)
+* intramusküler (intramuscular)
+* iç kesimde (in the inner region)
+* içerisinde (winthin the, inside of)
+* infrarenal (infrarenal)
+* infrarenal düzey (infrarenal level)
+* kalp (heart)
+* kalp boşlukları (heart chambers)
+* kas-iskelet sistemi (musculoskeletal system)
+* kemik iliği (bone marrow)
+* kemik yapılarda (in bone structures)
+* kesiminde (section)
+* kıkırdak (cartilage)
+* kolon (colon)
+* komşuluğunda (in the vicinity of)
+* korakoid proçes (coracoid process)
+* koronal düzlem (coronal plane)
+* koroner arter (coronary artery)
+* korteks (cortical area)
+* kortikal (cortical)
+* LAD dalı (left anterior descending branch)
+* lümen (lumen)
+* lümen içi (in the lumen of)
+* lümeninde (in the lumen of)
+* major fissür (major fissure)
+* mastektomi loju (mastectomy site)
+* mediasten (mediastinum)
+* mediastinal (mediastinal)
+* meme (breast)
+* meme başı (nipple)
+* meme içi (intramammary)
+* meme parankimi (breast parenchyma)
+* mesafe (space)
+* mesane (bladder)
+* mezenterik (mesenteric)
+* mide (stomach)
+* mide kardiya (gastric cardia)
+* minör fissür (minor fissure)
+* orta yarıda (mid region)
+* pankreas (pancreas)
+* pankreasta (in the pancreas)
+* parakardiyak yastık (paracardiac fat pad)
+* parapelvik (parapelvic) 
+* parankim alanları (parenchymal areas)
+* parankim/parenkim/parankimal/parankimde (parenchyma, functional tissue of an organ)
+* pektoral kas (pectoralis muscle)
+* pelvis (pelvis)
+* peribronşeal (peribronchial)
+* peribronşial (peribronchial)
+* peribronşioler (peribronchiolar)
+* periferal (peripheral)
+* periferal konumlu (peripherally located)
+* periferal lokalizasyon (peripheral location)
+* perifere (to the periphery)
+* periferinde (at the periphery of)
+* perifissürel (perifissural)
+* perihepatik (perihepatic)
+* perikardiyal (pericardial)
+* perisplenik (perisplenik)
+* planlar (planes)
+* plevra/plevral (pleura/pleural)
+* plevral (pleural)
+* posteriorunda (in the posterior)
+* prekardiyal reses (precardial recess)
+* prekarinal (pre-carinal)
+* proksimal (proximal)
+* proksimalinde (proximally)
+* pulmoner (pulmonary)
+* pulmoner arter (pulmonary artery)
+* pulmoner konus (pulmonary conus)
+* pulmoner trunkus (pulmonary trunk)
+* rektum (rectum)
+* renal arter (renal artery)
+* retroareolar bölge (retroareolar region)
+* sagital düzlem (sagittal plane)
+* santral (central)
+* santral pulmoner arter (central pulmonary artery)
+* santralinde (in the central part)
+* sağ (right)
+* sağ akciğer (right lung)
+* sağda (on the right side / in the right side)
+* sağdan girişli (inserted from the right side)
+* segment 7 (segment 7)
+* segment VIII (segment VIII)
+* segmentektomi lojunda (surrounding regions of the segmentectomy)
+* segmenter (segmental)
+* sentrilobüler (centrilobular)
+* sentırlobüler (centrilobular)
+* servikal zincir (cervical chain)
+* seviye 4 (level4)
+* skapula (scapula)
+* SMA (Superior Mesenteric Artery)
+* solda (on the left side / in the left side)
+* sternum (sternum)
+* sternotomi traktı (sternotomy tract)
+* subdiyafragmatik (subdiaphragmatic)
+* subkarinal (subcarinal)
+* subklavian arter (subclavian artery)
+* subplevral (subpleural)
+* subsegmenter (subsegmental)
+* supraklaviküler alan (supraclavicular area)
+* timik (thymic)
+* tiroid (thyroid)
+* tiroid bezi (thyroid gland)
+* torakal (thoracic)
+* torakoabdominal bileşke (thoracoabdominal junction)
+* torasik aorta (thoracic aorta)
+* transaksiyel düzlem (transaxial plane)
+* transdiyafragmatik (transdiaphragmatic)
+* trase (course, tracing)
+* unilateral (unilateral)
+* üst dış kadranda (in the upper outer quadrant)
+* üst iç kadranda (in the upper inner quadrant)
+* üzerine (over)
+* vasküler yapılar (vascular structures)
+* vertebra (vertebra)
+* vokal kord (vocal cord)
+
+These terms identify specific anatomical locations within the body and are crucial for accurately describing findings in medical imaging reports.
+Additional Notes:
+Pay close attention to terms like "her iki" (both), which might seem generic but are essential for indicating the involvement of both sides of a paired organ or structure.
+This list is not exhaustive. Other anatomical terms may be present in the reports and should be marked as ANAT accordingly.
+
+2- Observations(OBS-P or OBS-A): This category encompasses specific findings, characteristics or medical devices observed in the medical report, including their descriptive modifiers. These modifiers provide crucial context about the observations, such as their quantity, prominence, distribution, or specific characteristics. Do not mark them inside an IMP tag. Examples include, but are not limited to:
+Medical Findings:
+* KTEPH, kronik tromboembolik pulmoner hipertansiyon (CTEPH, chronic thromboembolic pulmonary hypertension)
+* NSIP/NSİP/Nonspesifik interstisyel pnömoni (nonspecific interstitial pneumonia)
+* PTE, pulmoner tromboemboli (pulmonary thromboembolism) 
+* amfizem (emphysema)
+* amfizamatöz (emphysematous)
+* ampiyem (empyema)
+* anevrizma (aneurysm)
+* apse (abscess)
+* atelektazi (atelectasis)
+* atelektazi alanları (areas of atelectasis)
+* atelektazik değişiklikler (atelectatic changes)
+* atelektaziler (atelectatic areas)
+* aterosklerotik değişiklikler (atherosclerotic changes)
+* ateroskleroz (atherosclerosis)
+* aterom (atheromatous)
+* aterom plakları (atheromatous plaques)
+* bileşke (junction)
+* bochdalek hernisi (bochdalek hernia)
+* bronkomalazi (bronchomalacia)
+* bronşiolit (bronchiolitis) 
+* bronşit (bronchitis)
+* bül (bulla)
+* bül formasyonu (bulla formation)
+* büllöz lezyonlar (bullous lesions)
+* çap artışı (dilatation)
+* dansite (density)
+* dansite artımları (density increases)
+* dansite artışları (density increases)
+* dansiteler (densities)
+* defekt (defect)
+* değişiklikler (changes)
+* deviyasyon (deviation)
+* dilatasyon (dilatation)
+* diseksiyon (dissection)
+* distorsiyon (distortion)
+* doku adacıkları (tissue islets)
+* doku distorsiyonu (distortion)
+* dolma defekti (filling defect)
+* dolum defektleri (filling defect)
+* efüzyon (effusion)
+* effüzyon (effusion)
+* effüzyonlar (effusions)
+* efüzyon (effusion)
+* ektazi (ectasia)
+* emboli (embolus)
+* embolizm (embolism)
+* enfeksiyon (infection)
+* enfektif (infectious)
+* fantom tümörü (phantom tumor, loculation of a pleural effusion within an interlobar fissure)
+* fibroadenom (fibroadenoma)
+* fibrokistik hastalık (fibrocystic disease)
+* fibrozis (fibrosis)
+* fibrozis alanı (area of fibrosis)
+* fibrozis alanları (areas of fibrosis)
+* fizyolojik effüzyon (physiologic effusion)
+* formasyon (formation)
+* fragmantasyon (fragmentation)
+* glandüler doku (glandular tissue)
+* granülom (granuloma)
+* göllenme (pooling)
+* görünüm (view of, appearance)
+* görünümdedir (appears)
+* hava hapsi (air trapping)
+* hava hapsi alanları (air trapping areas)
+* hematom (hematoma)
+* hemanjiom (hemangioma)
+* hemotoraks (hemothorax)
+* herni (hernia)
+* herniasyon (herniation)
+* hiatal herni (hiatal hernia)
+* hiatus hernisi (hiatal hernia)
+* imaj (image)
+* implant (implant)
+* implantlar (implants)
+* infarkt alanları (areas of infarction)
+* infiltrasyon (infiltration)
+* jinekomasti (gynecomastia)
+* kabalaşma (coarsening)
+* kaçak (leakage)
+* kallus (callus)
+* kalsifikasyon (calcification)
+* kalsifikasyonlar (calcifications)
+* kalınlaşma (thickening)
+* kalıntı (ramnant)
+* kanama (bleeding)
+* kalp yetmezliği (heart failure)
+* kardiyomegali (cardiomegaly , enlarged heart)
+* kardiyotorasik oran (cardiothoracic ratio)
+* kavitasyon (cavitation)
+* kayma (shift)
+* kırık (fracture)
+* kifotik açılanma (kyphotic deformity)
+* kifoz (kyphosis)
+* kistik nekrotik yapı (cystic necrotic structure)
+* kitle (mass)
+* koah bulguları (findings of COPD)
+* koah süreci (COPD process)
+* kollaps (collapsed)
+* kollabs (collapsed)
+* kompresyon atelektazisi (compression atelectasis)
+* konjestif (congestive)
+* konjesyon (congestion)
+* konjesyone (congested)
+* konsolidasyon (consolidation)
+* kontrast dolumu (contrast filling)
+* kümeleşme (clustering)
+* LAP (lymphadenopathy)
+* lenf nodları (lymph nodes)
+* lenf nodlarında (in lymph nodes)
+* lenfadenopati (lymphadenopathy)
+* lenf nodu (lymph node)
+* lenfanjitis (lymphangitis)
+* lenfanjitis karsinomatoza (lymphangitis carcinomatosa)
+* lezyon (lesion)
+* lipom (lipoma)
+* lokülasyon (loculating)
+* makrokalsifikasyon (macrocalcification)
+* mastektomize (mastectomized)
+* mayi (fluid)
+* mayii (fluid)
+* mikrokalsifikasyon (microcalcification)
+* mukus (mucus)
+* mukus tıkacı (mucus plug)
+* neden olan (causing)
+* nodül (nodule)
+* nüks (rekürrence)
+* obstrüksiyon (obstruction )
+* oluşum (formation)
+* oluşumlar (formations)
+* opasite (opacity)
+* orijin (origin)
+* orijinininden (from the origin of the) 
+* orta hattadır (in the midline)
+* parankimal distorsiyon (parenchymal distortion)
+* plağı (plaque)
+* plak (plaque)
+* pnömoni (pneumonia)
+* pnömonik infiltrasyon (pneumonic infiltration)
+* pnömonitis (pneumonitis)
+* pnömotoraks (pneumothorax)
+* primer kompleks (primary complex - Ghon complex)
+* rekürren (recurrent)
+* rekürren kitle (recurrent mass)
+* remnant (remnant)
+* retansiyon (retention)
+* retraksiyon (retraction)
+* retrakte görünüm (appears retracted)
+* rotoskolyoz (scoliosis)
+* sekel değişiklik (scarring changes)
+* sıvı (fluid)
+* sklerozan adenozis (sclerosing adenosis)
+* skolyoz (scoliosis)
+* subklavian arter (subclavian artery)
+* şift (shift, displacement)
+* şilotoraks (chylothorax)
+* tamponad (tamponade)
+* trabeküler patern (trabecular pattern)
+* tromboemboli (thromboembolism)
+* trombüs (thrombus)
+* trombüsler (thrombi)
+* varyasyon (variation)
+* yağ doku (fat tissue)
+* yağlı hilus (fatty hilum)
+* yağ infiltrasyonu (fat infiltration)
+* yağlı doku (fatty tissue)
+* yapı (structure)
+* yapıda (structure)
+* yer değiştirme (displacement)
+* yer işgal eden lezyon (space-occupying lesion)
+* yetmezlik (failure, insufficiency)
+* yumuşak doku (soft tissue)
+Medical devices or substances:
+* cerrahi materyaller (surgical materials)
+* endotrakeal entübasyon tüpü (endotracheal intubation tube)
+* entübasyon kanülü (endotracheal cannula)
+* kontrast madde (contrast agent)
+* meme implantı (breast implant)
+* metalik klipsler(metal clips)
+* nazogastrik sonda (nasogastric tube)
+* sütur materyalleri (suture materials)
+* kateter (central catheter)
+* PACE Maker (PACE Maker)
+* stabilizasyon vidaları (stabilization screws)
+* venöz kateter (central venous catheter)
+* venöz kateter (venous catheter)
+* venöz port (venous port)
+* vida (screw)
+Descriptive Modifiers:
+* %75 üzeri (exceeding 75%)
+* FDG tutan (Fluorodeoxyglucose avid)
+* FDG tutulumu (Fluorodeoxyglucose uptake)
+* 29 mm (specific measurement)
+* aberran (aberrant)
+* aktif (active)
+* akut (acute)
+* ankiste (loculated)
+* alan dışında (outside the area)
+* ametabolik (ametabolic)
+* anevrizmatik (aneurysmal)
+* anormallik (abnormality)
+* anostomoz hattı düzeyinde (at the level of the anastomosis line)
+* artmıştır (increased)
+* asimetri (asymmetry)
+* asimetrik (asymmetric)
+* asiner tarzda (with acinar pattern)
+* atenüasyon (attenuation)
+* atipik (atypical)
+* ağırlıklı (primarily)
+* ağırlıklı olarak (primarily)
+* bazıları (some of them)
+* bazılarında (in some of them)
+* belirgin (prominent)
+* birkaç alanda (in some areas)
+* boyut (size)
+* boyut ve görünümlerinde (in size and appearance)
+* boyutlarda (in sizes)
+* boyutları (dimensions)
+* boyutunda (in size)
+* bulgular dışında (apart from the  findings)
+* buzlu cam dansitesinde (ground-glass density)
+* büyüklüğü/büyüklük (size)
+* büyüğü (the larger)
+* büyük bölümü (predominantly)
+* çapı (diameter)
+* çaplı (in diameter)
+* çekintiye neden olan (causing retraction)
+* çevresinde (around)
+* çok sayıda (many)
+* çoğunluğu (mostly)
+* çoğunun (most of)
+* dağılım gösteren (showing distribution)
+* dağınık (scattered)
+* daha (more)
+* daha küçük (smaller)
+* daha küçük çaplı (smaller in diameter)
+* dejeneratif (degenerative)
+* dek (up to)
+* dens (dense)
+* diffüz (diffuse)
+* düffüz dağılımlı (diffusely distributed)
+* diğer bir (another)
+* dijital (digital)
+* dizilmiş (aligned)
+* doğal (natural)
+* düzensiz sınırlı (irregularly defined)
+* düzensiz konturlu (with irregular contours)
+* düzeyinde (measuring, e.g., height of the pleural effusion)
+* egzantrik yerleşimli (with an eccentric location)
+* ekspiryum görüntülerinde (on expiratory images)
+* ekspiryum imajlarında (on expiratory images)
+* ektatik (ectatic)
+* eliptik şekilli (elliptical-shaped)
+* en belirgini (the most prominent)
+* en büyüğü (the largest one / the largest measuring / the largest one located on the)
+* en büyükleri (the largest ones)
+* en geniş (the widest)
+* en geniş yerinde (at the widest point)
+* en kalın yerinde (at the thickest point)
+* evantre (entrapped)
+* FDG artışı gösteren (with presence of increased FDG uptake)
+* FDG artışı göstermeyen (with absence of increased FDG uptake)
+* fibroglandüler (fibroglandular)
+* fibrotik izlenimli (with fibrotic appearance)
+* fokal (focal)
+* focal pleomorfik (focal pleomorphic)
+* fuziform (fusiform)
+* geniş (large)
+* geniş boyutlu (large-sized)
+* gevşek (loose)
+* gevşek kümeleşen (loosely clustered)
+* gevşek bir şekilde (loosely)
+* glandüler (glandular)
+* görünümü (appearance)
+* grup yapmış (grouped)
+* gruplaşmış (clustered)
+* hacim kaybı (volume loss)
+* hafif (mild, slight)
+* hafif dens (mildly dense)
+* hafif distorsiyona yol açan (causing mild distortion)
+* hemorajik (hemorrhagic)
+* hemorajik (hemorrhagic)
+* heterojen (heterogeneous)
+* heterojen iç yapıda (with a heterogeneous internal structure)
+* hiperplazik (hyperplastic)
+* hipoplazik (hypoplastic)
+* homojen (homogeneous)
+* içerisinde/içinde/içerisindeki (within)
+* ile örtülü (covered by)
+* ile sınırlı (confined to)
+* ileri (advanced)
+* inspiryum görüntülerinde (on inspiratory images)
+* inspiryum imajlarında (on inspiratory images)
+* intakt (intact)
+* kaba (coarse)
+* kadar (up to)
+* kalın (thick)
+* kalsifiye (calcified)
+* kardiyotorasik oran (cardiothoracic ratio)
+* kaybetmiş (loss of)
+* keskin kenarlı (sharp-edged)
+* kısa (short)
+* kısa segment (short segment)
+* kısmen (partially)
+* kısmi (partial)
+* kistik (cystic)
+* konglemere yapıda (conglomerated)
+* kronik (chronic)
+* kümelenmiş (clustered)
+* küme yapmış (clustered)
+* lenfanjitik (lymphangitic)
+* lezyon dışında (apart from the lesion)
+* lezyonlar dışında (apart from the lesions)
+* lineer-subsegment (linear-subsegmental)
+* lobektomizedir (lobectomized)
+* lokülasyon gösteren (showing loculation)
+* loküle (loculated)
+* mantar (fungal)
+* masif (massive)
+* metalik (metallic)
+* metastazlar (metastases)
+* milimetrik (millimetric)
+* milimetrik boyutlu (Millimeter-sized)
+* minimal (minimal)
+* minimal düzeyde (minimal level)
+* mozaik (mosaic)
+* multilober (multilobar)
+* multipl (multiple)
+* multipl sayıda (multiple)
+* nodül dışında (apart from the nodule)
+* nodüller dışında (apart from the nodules)
+* nodüler (nodular)
+* noktasal (point-like)
+* nonspesifik (nonspecific)
+* normal (normal)
+* normal sınırlarda (within normal limits)
+* normaldir (is normal)
+* odak (focus)
+* odaklar (foci)
+* olağan (common, usual)
+* operasyon lojunda (in the surgical site)
+* orta dansitede (medium density)
+* oval şekilli (with an oval shape)
+* ödemli (edematous)
+* parapnömonik (parapneumonic)
+* pasif (passive)
+* patent (unobstructed, open, exhibit patency)
+* patern (pattern)
+* patoloji (pathology, abnormality)
+* patolojik (pathologic)
+* patolojik boyutta olmayan (which are not pathologically enlarged)
+* parankimle örtülü (covered by parenchyma)
+* pleomorfizm gösteren (pleomorphic)
+* pleomorfik (pleomorphic)
+* poligonal (polygonal)
+* postobstrüktif (postobstructive)
+* poststenotik (poststenotic)
+* punktat (punctate)
+* punktat-tozsu (punctate-dusty)
+* reaksiyonel (reactive)
+* reaktif (reactive)
+* retiküler: retucular
+* round (round)
+* sakküler (saccular)
+* satellid (satellite)
+* satellit (satellite)
+* satellite (satellite)
+* segmentektomizedir (segmentectomized)
+* sekel değişiklikler (sequelae changes)
+* sekel fibrotik değişiklikler (residual fibrotic changes)
+* sekel form (scarred form)
+* serbest (free)
+* seyir (course)
+* sınırları (borders)
+* sıvama tarzında (spread-like)
+* sınırları net seçilemeyen (with indistinct borders)
+* silik sınırlı (with ill-defined borders)
+* sklerotik (sclerotic)
+* sola deviye (deviated to the left)
+* sola yer değiştirme (leftward displacement)
+* solid (solid)
+* solid dansitede (with solid density)
+* sonlanmaktadır (terminates)
+* sonlanan (terminating)
+* spesifik (specific)
+* spiküler (spiculated)
+* spondiloz (spondylosis)
+* subsolid form (subsolid form)
+* subsolid dansitede (with subsolid density)
+* tabanlı (based)
+* tabi (natural)
+* tabii (natural)
+* tama yakın (almost completely)
+* tamamen (completely)
+* tamamı uniform özellikte (all are of uniform nature)
+* tarz (pattern)
+* tek hat üstüne (arranged in a single line)
+* tomurcuklanmış ağaç paterninde (budding tree pattern)
+* tortioz (tortuous)
+* total (totally)
+* tozsu (dusty)
+* uniform (uniform)
+* uzanan (extending/)
+* uzanım gösteren (showing extension)
+* uzanımı bulunan (with extension)
+* uzanımı seçilen (observed with extension)
+* uzanımları olan (with extensions)
+* viral (viral)
+* volümünde azalma (decrease in volume)
+* yamasal (patchy ground)
+* yer işgal eden (space-occupying)
+* yer yer (in places, in some areas, partially, occasionally)
+* yerleşimli (located)
+* yoğun içerikli (dense content)
+* yoğunlaşan (concentrated, particularly)
+* yuvarlak (round)
+* yuvarlak konfigürasyonda (with a rounded configuration) 
+Medical Findings with Descriptive Modifiers:
+* aktif infiltrasyon (active infiltration)
+* akut patoloji (acute pathology)
+* daha belirgin (more prominent)
+* dejeneratif değişiklikler (degenerative changes)
+* diffüz kardiyomegali (diffuse cardiomegaly)
+* lenfanjitik infiltrasyon (lymphangitic infiltration)
+* nodüler kalınlaşma (nodular thickening)
+* nodüler lezyon (nodular lesion)
+* nonspesifik nodüller (nonspecific nodules)
+* pasif atelektazi (passive atelectasis)
+* round atelektazi (round atelectasis)
+* satellid nodül (satellite nodule)
+* serbest sıvı (free fluid)
+
+Numerical Measurements: When annotating medical reports, pay close attention to numerical measurements and sizes associated with medical findings. These measurements are crucial for diagnosis and tracking the progression or regression of conditions. Always mark them as "observation-present" using the <span class="OBS-P">...</span> tag, except for dates. This includes a range of measurement formats:
+* Millimeters (mm): e.g., "3 mm", "10x8 mm", "10 mm"
+* Centimeters (cm): e.g., "5.5x4.5 cm","1 cm"
+* Volume (ml): e.g., "0.166 ml"
+* Amounts: e.g., "iki adet" (two)
+* SUVmax : e.g., "SUVmax:8,3" 
+* HU (Hounsfield units): e.g., "HU=17" 
+* Percent : e.g., "%75" (75%)
+
+Dates: Do not mark dates as observations, regardless of their format (e.g., MM.DD.YYYY, DD.MM.YYYY, YYYY.MM.DD, MM/DD/YYYY, DD/MM/YYYY, YYYY/MM/DD, or YYYY). Dates are often followed by 'tarihinde' or 'tarihli' (meaning 'dated') and provide contextual information. However, the dates themselves are not clinical observations.
+
+Include descriptive modifiers: If a measurement has descriptive modifiers (e.g., "minimal" (minimal), "hafif" (mild)), mark both the measurement and the modifier as "observation-present." Always mark both the medical finding and its descriptive modifier as "observation-present" using the <span class="OBS-P">...</span> tag. This ensures that the report accurately reflects the clinical observations in their entirety, providing a comprehensive picture for medical professionals.
+
+By explicitly emphasizing the importance of numerical measurements and providing clear examples, this revised prompt aims to reduce the likelihood of overlooking them during annotation.
+Include words pertain to measurements and sizes such as: "çapında" (in diameter), "çapta" (in diameter), "çapından", "çapına", "çaplı" (with a diameter of), "boyutları" (dimensions), "boyutunda" (with a size of), "boyutlarda" (sized), "boyutlu" (with a size of), "hacmi" (volume of), "kalınlığı" (the thickness of), "kalınlığında" (with a thickness of)
+
+3- Observation-uncertain (OBS-U): Denotes an uncertain observation, where the condition or characteristic is not definitively present or absent. This includes individual words and phrases that convey uncertainty. Examples include, but are not limited to:
+* IVKM enjeksiyonu yapılmadığı için (as intravenous contrast agent injection was not performed)
+* Bronşit? (Bronchitis?)
+* Enfeksiyon süreci ve mukus tıkacı sonucunda gelişmiş olabilir (It may have developed as a result of the infection process and mucus plug)
+* enfeksiyon sürecine sekonder gelişmiş olabilir (it may have developed secondary to the infection process)
+* görüntü kalitesi nedeniyle kesin tanı konulamadı (definitive diagnosis could not be made due to image quality)
+* ile uyumlu olabilecek (may be consistent with)
+* inceleme kontrastsız olduğu için (as examinations were performed without contrast)
+* inceleme kontrastsız olduğu için optimal değerlendirilememiştir (the evaluation could not be optimal as examinations were performed without contrast)
+* izlenim vermekte (appears)
+* kitle açısından (possibility of a mass)
+* kitle ekartasyonu yapılamayan (cannot be differentiated from a mass)
+* kontrastsız kesitlerde mediasten lenf nodları ve hiler bölgeler detaylı olarak değerlendirilemedi (Mediastinal lymph nodes and hilar regions could not be thoroughly evaluated in non-contrast sections)
+* lezyonun sınırları net olarak belirlenemedi (the borders of the lesion could not be clearly defined)
+* metastaz ekarte edilemez (metastasis cannot be ruled out)
+* metastatik oluştuğu düşünülen (that is considered to be metastatic)
+* net olarak değerlendirilememiştir (could not be clearly evaluated)
+* nodüler lezyon şüphesi (suspicion of a nodular lesion)
+* nodüler lezyon varlığından şüphe edildi (suspicion of the presence of a nodular lesion)
+* olabileceği (may be)
+* oldukları düşünülen (are thought to be)
+* olduğu düşünüldü (thought to be)
+* olduğu düşünülen (is thought to be)
+* optimal değerlendirilememekle birlikte (although it cannot be optimally evaluated)
+* ödem açısından şüpheli görünüm (suspicious appearance for edema)
+* primer kompleks ile uyumlu olabilecek (may be consistent with a primary complex)
+* pulmoner hipertansiyon ile uyumlu olabilir (may be consistent with pulmonary hypertension)
+* uyumlu olabileceği (may be consistent)
+* varlığından şüphe edildi (suspicion of the presence of a)
+* viral pnömonik infiltrasyon açısından anlamlı olabilir (it may be significant in terms of viral pneumonic infiltration)
+Remember:
+"muhtemelen benign oldukları düşünülen" should be tagged as: muhtemelen <span class="IMP">benign</span> <span class="OBS-U">oldukları düşünülen</span>
+4- Impression (IMP): This category includes the overall assessment or risk categorization, encompassing the effects of treatments or procedures. Impressions are critical for understanding the clinical context, including evaluations of the findings' nature, suggestions for further investigation, and comments on changes over time or in response to treatment. This category is broadened to explicitly include:
+
+- Evaluations or descriptions of the condition's nature (IMP). Examples include, but are not limited to:
+* PET BT tetkikinde pozitif tutulum gösteren (showing positive uptake in the PET-CT examination)
+* PET BT tetkikinde tutulum göstermeyen (showing no uptake in the PET-CT examination)
+* azalmış (decreased)
+* azalmıştır (is decreased)
+* azalmış olduğu (was decreased)
+* benign natürde (of a benign nature)
+* benign radyolojik karakterde (with a benign radiological appearance)
+* boyut ve dansitesinde azalma (decrease in size and density)
+* çekim tekniği nedeni ile olduğu düşülmektedir (it is thought that due to the imaging technique used)
+* çepeçevre saran (surrounding from all sites)
+* daraltan (constricting)
+* daralmaya sebep olan (causing narrowing)
+* destrüksiyona yol açan (destructing)
+* destrüksiyona yol açtığı (cause destruction)
+* erezyona uğrattığı (caused erosion)
+* eksize olduğu (excised)
+* erezyona uğrattığı (caused erosion)
+* evre I (stage I)
+* evre T1 (stage T1)
+* evre 1 (stage 1)
+* evre 2 (stage 2)
+* evre 3 (stage 3)
+* evre 4 (stage 4)
+* genelde (generally)
+* genellikle (generally)
+* hemen tamamını kaplayan (covering almost the entire)
+* ile süperpoze (superimposed on)
+* ile karakterize (characterized by)
+* ile uyumlu (consistent with)
+* ile uyumlu bulgular (findings consistent with)
+* infiltre eden (infiltrating)
+* indente ettiği (indents)
+* invaze (invading)
+* invaze eden (invading)
+* invaze edip oblitere eden (invading and obliterating)
+* invaze görünümde (showing invasion)
+* invaze olduğu (invaded)
+* invazyon gösteren (invading)
+* kalsifikasyonların belirginleştiği (calcifications became more pronounced)
+* karsinom (carcinoma)
+* küçüldüğü (shrunk)
+* küçülmüştür (shrunk)
+* malign görünümde (with a malignant appearance)
+* malign karakterli (with malignant characteristics)
+* malign kriterler içeren (containing malignant criteria)
+* malign natürlü (of a malignant nature)
+* malignite lehine (indicative of malignancy)
+* metastatik (metastatic)
+* metastaz (metastasis)
+* oklüde eden (occluding)
+* oblitere eden (obliterating)
+* opere (operated)
+* sağa göre (compared to the right)
+* sarıp invaze eden (wrapping around and invading)
+* sarıp oklüde eden (wrapping around and occluding)
+* sarıp (wrapping around)
+* sola göre (compared to the left)
+* Stanford tip B (Stanford type B)
+* superpoze (superimposed)
+* tutan (involving)
+* tümünde (in all)
+* tümör (tumour) 
+* tümöral invazyon (tumoral invasion)
+* yaş ile uyumlu (consistent with age)
+* yüksek şüpheli (highly suspicious)
+
+-Phrases that describe the cause or reason for a finding (IMP). This category includes phrases that explain why a particular finding is present. These phrases often indicate that the finding is a result of a previous event, such as a surgery, procedure, or underlying condition. Examples: 
+* USG de tariflenen fibroadenom ile uyumludur (Consistent with the fibroadenoma described on ultrasound)
+* ayırıcı tanı (differential diagnosis)
+* bağlı (due to, associated with, secondary to)
+* basılayan (compressing)
+* efüzyona bağlı (due to effusion)
+* biyopsi yapılan alandan kaynaklanan (originating from the area where the biopsy was performed)
+* eski filmleri olmadığı için karşılaştırma yapılamadı (comparison could not be made due to the absence of old films)
+* eski filmleri olmadığı için korelasyon yapılamadı (correlation could not be made due to the absence of old films)
+* eski kot fraktürüne bağlı (due to an old rib fracture)
+* eski tetkikte izlenen drenaj kateteri güncel incelemede izlenmedi (the drainage catheter seen in the previous examination was not observed in the current evaluation)
+* geçirilmiş operasyona bağlı (due to a past surgery)
+* kontrastsız yapılan BT (contrast-free CT)
+* metastaza bağlı (due to metastasis)
+* nedeniyle (due to, because of)
+* nekroza sekonder (consequence of necrosis)
+* operasyona bağlı (due to surgery)
+* opere meme karsinomu (with a history of breast carcinoma surgery)
+* radyoterapiye bağlı (associated with radiotherapy)
+* radyoterapiye sekonder (secondary to radiotherapy)
+* sebep olan (causing)
+* sekonder (secondary to)
+
+- Patient's known history of malignancies, diseases or complaints (IMP), such as:
+* ALL tanısı (diagnosis of acute lymphoblastic leukemia)
+* aile hikayesi olan (with a family history of)
+* akciğer Ca (lung carcinoma)
+* akciğer karsinomu (lung carcinoma)
+* asbestozis (asbestosis)
+* bronşiolitis obliterans (bronchiolitis obliterans)
+* değerlendirilmesine yönelik (for the evaluation of)
+* hemoptizi öyküsü (history of hemoptysis)
+* kalp transplantasyonu nedeni (due to heart transplantation)
+* kendisi opere (has undergone previous surgery)
+* kitle şüphesi (suspicion of a mass)
+* koah (chronic obstructive pulmonary disease - COPD)
+* kronik karaciğer hastalığı (chronic liver disease)
+* küçük hücreli akciğer karsinomu (small cell lung carcinoma)
+* meme karsinomu (breast carcinoma)
+* meme Ca (breast carcinoma)
+* opere meme karsinomu (operated breast carcinoma)
+* öyküsü (history of)
+* parsiyel orototopik karaciğer transplantasyonu (partial orthotopic liver transplantation)
+* patolojik olarak tanısı bulunan malign kitle (a malignant mass with a confirmed pathological diagnosis)
+* pulmoner hipertansiyon (pulmonary hypertension)
+* prostat Ca (prostate cancer)
+* prostat karsinomu (prostate cancer)
+* sarkoidoz (sarcoidosis)
+* skleroderma (scleroderma)
+* sklerodermanın tutulumuna bağlı (associated with scleroderma involvement)
+* SLE (systemic lupus erythematosus)
+* soliter fibröz tümör (solitary fibrous tumor)
+* son dönem akciğer karsinomu (end stage lung carcinoma)
+* takipte skleroderma (followed up due to scleroderma)
+* uterin sarkom (uterine sarcoma)
+* vaskülit (vasculitis)
+* Wegener (Wegener's granulomatosis, granulomatosis with polyangiitis)
+* Wegener granülamatozisi (Wegener granulomatosis, granulomatosis with polyangiitis)
+
+- Recommendations for further investigation (IMP). Examples include, but are not limited to:
+* BT anjiografi ile değerlendirilmesi önerilir (It is recommended to evaluate with CT angiography)
+* PET- BT ile değerlendirilmesi önerilir (evaluation with PET-CT is recommended)
+* US ile değerlendirilmesi önerilir (evaluation with ultrasound is recommended) 
+* değerlendirilmesi önerilir (it is recommended to evaluate)
+* ek incelemesi önerilmektedir (additional examination is recommended)
+* gereklilik halinde histopatolojik korelasyon önerilir (histopathological correlation is recommended if necessary)
+* Klinik ve laborutuar korelasyon önerilir (Clinical and laboratory correlation is recommended)
+* klinik-laboratuvar bulgularla beraber değerlendirilmesi önerilir (it is recommended to evaluate together with clinical and laboratory findings)
+* kontraslı BT veya PET BT bulguları eşliğinde değerlendirilmesi önerilir (It is recommended to evaluate with contrast-enhanced CT or PET-CT findings)
+* kontraslı meme US inceleme önerilir (contrast-enhanced breast ultrasound examination is recommended)
+* nodülün takibi önerilir (follow-up of the nodule is recommended)
+* takibi önerilen (recommended for follow-up)
+* US ile değerlendirmesi ve doku tanısı önerilir (Assessment with ultrasound and tissue diagnosis are recommended)
+* US korelasyonu ve doku tanısı önerilir (Correlation with ultrasound and tissue diagnosis are recommended)
+
+- Direct references to changes over time or treatment effects. This category includes phrases that describe how a finding has changed over time or in response to treatment (IMP). Examples include, but are not limited to:
+* artış göstermiştir (has increased)
+* artış gösterdiği (an increase is observed compared to)
+* belirgin farklılık olmadığı düşünülen (thought to have no significant difference)
+* belirgin farklılık olmadığı düşünüldü (it was considered that there was no significant difference)
+* benzer (similar to)
+* benzer nitelikli (similar in nature)
+* benzer şekilde (similarly)
+* benzer görünümdedir (appears similar to)
+* bıraktığı (left behind)
+* bir önceki tetkikinde (in the previous examination)
+* boyut artışı gösteren (showing an increase in size)
+* boyutlarında hafif azalma (slight decrease in size)
+* boyutlarında hafif azalma bulunan (with slight decrease in size)
+* bu tetkikte (in this examination)
+* büyük oranda regresyon (significant regression)
+* dış merkezli (at another center)
+* dış merkezli tetkikleri ile (with examinations conducted at another center)
+* düzeyindeyken (previously measured)
+* erken aşama (early-stage)
+* eski tetkiki ile karşılaştırıldığında (when compared with the previous examination)
+* eski tetkikte (in the earlier examination)
+* eski tetkikte de izlenen (as seen in the prior examination)
+* eski tetkikinde izlenmeyen (which was not observed in the previous examination)
+* eski tetkikte izlenmeyen (which was not detected in the previous examination)
+* eski tetkikte seçilemeyen (which was not identifiable)
+* eskiye göre (compared to the earlier one)
+* geliştiği (development of)
+* gerileme (regresyon)
+* gerileyen (regressing, decreasing in size)
+* görece (relatively)
+* güncel incelemede (in the current examination)
+* güncel tetkikinde (in the current investigation)
+* hafif boyut artışı izlenen (with mild size increase)
+* hafif progresyon gösteren (showing mild progression)
+* kısmen gerilemiş (partially regressed)
+* kısmen progrese (partially progressed)
+* küçülme (shrinkage)
+* nispeten (relatively)
+* önceki inceleme ile (compared to the previous examination)
+* önceki inceleme ile benzerdir (similar to the previous examination)
+* önceki incelemeye göre bir miktar artış (a slight increase compared to the previous examination)
+* önceki tetkikte izlenmeyen (which was not observed in the previous examination, newly developed)
+* progrese yapıdadır (show progression)
+* progrese (progressed)
+* progrese olduğu (there is progress)
+* progresyon göstermiştir (has progressed)
+* regresyon (regression)
+* rezorbe olan (resorbed)
+* rezorbe olduğu (it was resorbed)
+* sebat etmiştir (persisted)
+* sebat ettiği (persisted)
+* silinmek (wiped out)
+* stabil (stable)
+* stabil yapıdadır (in a stable condition)
+* volümünde azalma (decrease in the volume)
+* yeni gelişmiş (newly developed)
+* yeni metastatik (new metastatic, newly developed metastatic)
+
+Marking an entity as impression or not is not dependent of it's position in the text, whether it is in the conclucion section or not. Entities such as 'lenf nodu' should be marked based on their clinical significance as observations, irrespective of their location in the text, including the conclusion section.
+
+### Specific Instructions
+
+Do not mark up the words as they are not medical entities, regardless of their location in the text:
+* YORUM
+* SONUÇ
+* ÖNERİ
+* IVKM
+
+Do not mark up these terms as they are not medical entities: 
+ayrıca (additionally), bundan başka (other than that), diğer bulgularda (in the other findings), eşlik eden (accompanying), eşlik ettiği (accompanied by), grafiye dahil olan (included in the graph), grafiye kısmen dahil olan (partially included in the graph), izlenebilen kesimlerde (which can be followed), incelemeye dahil (included in the examination), kesitlere dahil kesimde (in the included section), konumlu (located), noniyonik kontrast madde kullanılmıştır (non-ionic contrast agent has been used), tanımlanan (defined), tariflenen (described), tarihli tetkikinden (compared to the examination dated), vasıflı (in nature), vasıfta (in nature), ve (and), veya (or), ya da (or), yaklaşık (approximately), yerleşimli (located), yukarıda tanımlanan (described above)
+
+Text formatting: 
+Do not add or delete special chars such as: ".", ",", ":", ";", "(", ")", "/", "?", "-"
+### Output Format
+Your output format must be an HTML code snippet. Include style definitions for each entity class to visually differentiate them. Do not output as plain text.
+###
+Observations describe findings or characteristics, while anatomy refers to body regions or organs. Always mark observations and anatomical locations as separate entities, even when an observation describes a characteristic of an anatomical feature.  Examples include, but are not limited to:
+* akciğerler konjesyonedir (lungs are congested) -> <span class="ANAT">akciğerler</span> <span class="OBS-P">konjesyonedir</span>
+* aterosklerotik duvar değişiklikleri (atherosclerotic wall changes) -> <span class="OBS-P">aterosklerotik</span> <span class="ANAT">duvar</span> <span class="OBS-P">değişiklikleri</span>
+* intramural hematom (intramural hematoma) -> <span class="ANAT">intramural</span> <span class="OBS-P">hematom</span>
+* konsolidasyon alanları (consolidation areas) -> <span class="OBS-P">konsolidasyon</span> <span class="ANAT">alanları</span>
+* kortikal kalınlaşma (cortical thickening) -> <span class="ANAT">kortikal</span> <span class="OBS-P">kalınlaşma</span>
+* sağ plevral effüzyon (effusion in right pleura) -> <span class="ANAT">sağ plevral</span> <span class="OBS-P">effüzyon</span>
+* sol aksillada metalik klipsler (metal clips in left axilla) -> <span class="ANAT">sol aksillada</span> <span class="OBS-P">metalik klipsler</span>
+* solda plevral mayii (fluid in left pleura) -> <span class="ANAT">solda</span> <span class="ANAT">plevral</span> <span class="OBS-P">mayii</span>
+* sağda 57 mm (57 mm on the right side) -> <span class="ANAT">sağda</span> <span class="OBS-P">57 mm</span>
+* solda 32 mm (32 mm on the left side) -> <span class="ANAT">solda</span> <span class="OBS-P">32 mm</span>
+* nodül komşuluğunda (in the vicinity of nodule) -> <span class="OBS-P">nodül</span> <span class="ANAT">komşuluğunda</span>
+* parapelvik kist (parapelvic cyst) -> <span class="ANAT">parapelvic</span> <span class="OBS-P">cyst</span>
+* peribronşial kalınlaşmalar (peribronchial thickenings) -> <span class="ANAT">peribronşial</span> <span class="OBS-P">kalınlaşmalar</span>
+* plevral mayii (pleural fluid / fluid in the pleura) -> <span class="ANAT">pleural</span> <span class="OBS-P">fluid</span>
+* pulmoner tromboemboli (pulmonary thromboembolism) -> <span class="ANAT">pulmoner</span> <span class="OBS-P">tromboemboli</span>
+* timik remnant (thymic remnant) -> <span class="ANAT">timik</span> <span class="OBS-P">remnant</span>
+* intramusküler lipom (intramuscular lipoma) -> <span class="ANAT">intramusküler</span> <span class="OBS-P">lipom</span>
+### Detailed Entity Categorization Clarification
+Carefully categorize and mark each entity as either 'anatomy', 'observation-present', 'observation-absent', 'observation-uncertain', or 'impression', following the detailed guidelines. It is crucial to distinguish between findings and their clinical implications accurately, especially when a term may describe both an observation and an impression based on its context within the report.
+
+Impressions: Any reference to the nature of a finding (e.g., "Benign natürde") should be marked as impressions. This includes phrases that describe the overall assessment or risk level of a finding.
+
+Observations: Specific findings or characteristics observed (e.g., "aterom plakları", "kalsifiye granulom", "açıktır", "effüzyon", "efüzyon", "kalınlaşma") should be marked as observations, regardless of their nature being benign or otherwise.
+
+When annotating observations in medical reports, it's crucial to include not only the medical findings themselves but also their descriptive modifiers. Descriptive modifiers provide essential context about the observations, such as their quantity, prominence, distribution, or specific characteristics. These modifiers include terms like "çok sayıda" (many), "en belirgini" (the most prominent), "uzanımı seçilen" (selected extension), "yer yer" (in places), among others. They are integral to fully understanding the patient's condition and the extent or significance of the findings.
+
+For example, when you encounter a phrase that describes the quantity or specific attribute of a medical finding, both the finding and its modifier should be tagged as observation. This ensures that the report accurately reflects the clinical observations in their entirety, providing a comprehensive picture for medical professionals. By meticulously including these details in your annotations, you help ensure that the report is as informative and useful as possible for clinical decision-making.
+
+Remember, the goal of annotation is not just to highlight findings but to capture the complete context in which these findings are presented, as this context can significantly affect clinical interpretations and outcomes.
+
+###
+To ensure clarity and consistency in markup:
+Distinguishing Impressions from Observations:
+When annotating medical reports, it's crucial to accurately differentiate between impressions and observations. This distinction is particularly important when a term can describe both an observation and an impression depending on its context within the report.
+Always mark the nature of a finding and its risk assessment as an impression.
+Mark the specific finding or characteristic as an observation.
+When a sentence includes both, clearly differentiate by marking each portion according to its category.
+Examples:
+* belirgin regresyon (significant regression) -> <span class="OBS-P">belirgin </span><span class="IMP">regresyon</span>
+* büyümüş lenf nodları (enlarged lymph nodes) -> <span class="IMP">büyümüş</span> <span class="OBS-P">lenf nodları</span>
+* geçirilmiş operasyona bağlı fizyolojik effüzyon ve sekel değişiklikler (physiological effusion and sequelae changes related to a past surgery) -> <span class="IMP">geçirilmiş operasyona bağlı</span> <span class="OBS-P">fizyolojik effüzyon</span> ve <span class="OBS-P">sekel değişiklikler</span> 
+* stabil görünüm (stable appearance) -> <span class="IMP">stabil</span> <span class="OBS-P">görünüm</span> 
+* tamamen invaze eden (completely invading) -> <span class="OBS-P">tamamen</span> <span class="IMP">invaze eden</span>
+* tamamen tutan (completely involving) -> <span class="OBS-P">tamamen</span> <span class="IMP">tutan</span>
+trombüsler ile uyumlu dolma defekti (filling defect consistent with thrombi) -> <span class="OBS-P">trombüsler</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">dolma defekti</span>
+
+Key point:
+For accurate and consistent entity tagging, always separate the term "metastatik" (metastatic) from the term "lezyonlar" (lesions) and tag them individually in the phrase "metastatik lezyonlar".
+Impression: <span class="IMP">metastatik</span> (metastatic)
+Observation: <span class="OBS-P">lezyonlar</span> (lesions)
+This approach ensures that both the clinical impression (metastatic nature) and the observed finding (lesions) are explicitly captured in the markup, providing a more granular and informative representation of the medical report.
+###
+If an entity is described in the report that fits the definition of an impression, it should be tagged as an impression whether it is found in the body of the report or in the "SONUÇ" (conclusion) section. Do not mark the word 'SONUÇ' as it represents the conclusion section itself. Similarly, observations (present, absent, uncertain) and anatomical references should be identified and tagged based on their characteristics, not their location in the text.
+###
+For accurate and consistent entity tagging, treat the 'SONUÇ' (conclusion) section in the same way as the 'BODY' of the report. This means applying the same entity definitions and tagging guidelines to all sections of the text, regardless of location. Focus on the clinical significance of terms, not their location. 
+###
+In marking entities within medical reports, observe these key rules for handling verbs:
+-When marking absent observations, focus on tagging only the specific terms or phrases that directly describe the missing condition, using the <span class="OBS-A">...</span> tag. Do not include verbs that simply convey the absence itself, such as:
+"mevcut değildir" (does not exist, is not present), "izlenmemektedir" (is not observed, is not seen), "izlenmemiştir" (was not observed, was not seen), "izlenmedi" (was not observed, was not seen), "saptanmadı" (was not detected, was not found), "saptanmamıştır" (was not detected, was not found), "yoktur" (does not exist, is not present), "kaydedilmedi" (was not recorded), "düşünülmedi" (was not considered), or any similar expressions that simply indicate the absence itself. These verbs all convey the absence of something, but they do not specify the specific condition or finding that is absent.
+When marking absent observations in medical reports, it's important to focus on tagging the specific terms or phrases that describe the missing condition, not the verbs that simply indicate the absence. Examples include, but are not limited to:
+<span class="OBS-A">Sınırları seçilebilen kitle lezyonu, kalsifikasyon, yapısal bozulma</span> saptanmamıştır
+<span class="OBS-A">patolojik boyut ve görünümde büyümüş lenf nodu</span> yoktur
+<span class="OBS-A">Kitle</span> ya da <span class="OBS-A">konsolidasyon</span> <span class="OBS-A">alanı</span> izlenmemektedir
+* Terms like "anlamlı farklılık" (significant difference), or "anlamlı fark" (significant difference) describe the missing condition, and should be tagged with <span class="OBS-A">...</span>. They are not impressions and should not be tagged with <span class="IMP">...</span>
+Remember:
+* Terms like "regresyon" (regression) or 'küçülme' (shrinkage) describe changes in existing conditions, not their absence, and should not be tagged with <span class="OBS-A">...</span>. They are impressions and should be tagged with <span class="IMP">...</span>
+
+-When marking present observations, focus on tagging only the specific terms or phrases that directly describe the observed condition, using the <span class="OBS-P">...</span> tag. Do not include verbs that simply state its presence, such as "mevcuttur" (exists, is present), "izlenmektedir" (is observed, is seen), "izlenmiştir" (was observed, was seen), "izlendi" (was observed, was seen - alternative past tense form), "saptandı" (was detected, was found), "saptanmıştır" (was detected, was found - alternative past tense form), "vardır" (exists, is present - alternative form of "mevcuttur"), "dikkati çekmektedir" (is noticeable, attracts attention), "dikkati çekti" (was noticeable, attracted attention - past tense), "dikkati çekmiştir" (was noticeable, attracted attention - alternative past tense form), "kaydedildi" (was recorded), "düşünüldü" (was considered, was thought of), varlığı dikkati çekti (drew attention to its presence), eşlik etmektedir (accompanied by), or any similar expressions indicating presence. Do not include any similar expressions that merely indicate the presence of a condition without specifying what it is.
+Remember:
+* Terms like "ametabolik" (non-avid, ametabolic) describe a characteristic of an observed finding, and should be tagged as OBS-P (observation-present).
+
+-When marking uncertain observations, focus on tagging only the specific terms or phrases that directly describe the uncertain condition, using the <span class="OBS-U">...</span> tag. Do not tag terms that simply state its presence, such as "sınırlı düzeyde kalmıştır" (has been limited), or any similar expressions indicating uncertainity.
+
+This approach ensures clarity by accurately separating the condition or finding from the verb that describes its status.
+
+### Annotation Guidelines
+All reports are written in Turkish language. So do not translate Inputs and Outputs to English Language. All words are as is. Don't delete sentences.
+###
+Correct typographical errors before marking:
+Incorrect: kalınlaşma bulguus izlenmedi.
+Correct: kalınlaşma bulgusu izlenmedi.
+Incorrect: dejeneratif değişşiklikler
+Correct: dejeneratif değişiklikler
+Incorrect: patolojik boyuta lenf nodu
+Correct: patolojik boyutta lenf nodu
+Incorrect: üzem salkımı
+Correct: üzüm salkımı
+Incorrect: cerrahine bağlı
+Correct: cerrahisine bağlı
+Incorrect: timik reminant
+Correct: timik remnant
+Incorrect: sağ hemmitoraks
+Correct: sağ hemitoraks
+Incorrect: değişikler
+Correct: değişiklikler
+Incorrect: sentrilkobüler
+Correct: sentrilobüler
+Incorrect: remnnat
+Correct: remnat
+Incorrect: Milimetirk
+Correct: Milimetrik
+ 
+
+To efficiently correct these targeted typos, follow these steps:
+Review the above typo table: Carefully examine the table provided in the prompt, which lists common typos and their corresponding corrections. Familiarize yourself with these specific errors and their proper forms.
+Scan the report for listed typos: Systematically search the medical report for instances of the typos listed in the table. Pay close attention to words that resemble the incorrect forms, as they might be typos in need of correction.
+Implement corrections: Once you identify a listed typo, replace it with its correct form as indicated in the table.
+Double-check for accuracy: After making corrections, re-read the relevant sections to ensure that the changes have been implemented correctly and that no new errors have been introduced.
+Remember:
+Focus on correcting only the typos listed in the table, as these are the errors that have been specifically identified as potentially impacting entity identification.
+If you encounter a typo that is not listed in the table, you may choose to leave it unchanged or correct it based on your judgment and understanding of the medical terminology.
+###
+Pre-Submission Annotation Quality Checklist:
+Before finalizing your annotations, conduct a detailed review to ensure adherence to the highest standards of accuracy and consistency. Pay special attention to the following refined points:
+
+1- Verify Specific Terms: Ensure comprehensive tagging of all specific terms listed in the guidelines, including clinical conditions, anatomical terms, and descriptive modifiers. These terms are crucial for conveying the full context and significance of clinical observations.
+
+2- Entity Categorization Accuracy: Rigorously double-check the categorization of all entities to match the definitions and examples provided. This includes correct identification and differentiation between "anatomy", "observation-present", "observation-absent", "observation-uncertain", and "impression" entities.
+
+3- Inclusive Modifier Annotation: Specifically, ensure that descriptive modifiers—indicative of quantity, prominence, distribution, or specific characteristics—are not overlooked and are correctly tagged as observations. These modifiers, including terms like "büllöz", "sekel", "fibrotik", "spiküler", "nonspesifik", "lokülasyon", "çok sayıda", "yer yer", and others, provide essential context and should be meticulously included to accurately reflect the clinical observation.
+
+4- Guideline Consistency: Confirm that your annotations align seamlessly with the provided examples and instructions, focusing on accurately representing the medical conditions or findings without tagging the verbs indicating presence or absence.
+
+5- Typographical and Grammatical Precision: Address any textual errors to maintain professionalism and clarity in the annotations.
+
+6- Comprehensive Review for Completeness: Ensure that every relevant entity within the report has been identified, correctly marked, and reviewed for coherence, ensuring full alignment with the guidelines.
+
+7- Modifier Focus: Place additional emphasis on descriptive modifiers as integral components of observations. These modifiers significantly affect the interpretation of findings and should be tagged with the same diligence as primary observations.
+
+8- Continuous Learning and Improvement: After annotation, compare your work against provided examples and seek feedback if possible. Use discrepancies as learning opportunities to refine your understanding and application of the guidelines.
+###
+Enclose Output between:
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<style>
+.ANAT {
+	background-color:Fuchsia
+}
+.OBS-P {
+	background-color:DeepSkyBlue
+}
+.OBS-A {
+	background-color:Yellow
+}
+.OBS-U {
+	background-color:DarkGray 
+}
+.IMP {
+	background-color:#ED2939
+}
+</style>
+    <title>Thoraks BT Report Entity Extractor</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
+<p>
+
+and:
+
+</body>
+</html>
+Include below text before </body> tag:
+</p>
+<br><br><span style="background-color:Fuchsia;">ANATOMY, ANAT </span><br>
+<span style="background-color:DeepSkyBlue;">OBSERVATION_PRESENT, OBS-P </span><br>
+<span style="background-color:Yellow;">OBSERVATION_ABSENT, OBS-A </span><br>
+<span style="background-color:Gray;">OBSERVATION_UNCERTAIN, OBS-U </span><br>
+<span style="background-color:#ED2939;">IMPRESSION, IMP </span>
+###
+To enhance accuracy in future annotations, it's crucial to closely follow the provided examples and definitions within the prompt. Before beginning the markup, review the examples to clarify entity categorization. After completing your markup, compare your work against the examples to ensure consistency and correctness. This iterative process of review and comparison will help prevent misunderstandings and improve the precision of your annotations.
+### Examples
+The following examples illustrate how to mark entities in medical reports. Please note that lines starting with "Teknik:" or "IVKM" should be excluded from the markup.
+Input: SONUÇ
+Output: SONUÇ
+Input: ÖNERİ
+Output: ÖNERİ
+Input: Opere meme karsinomu tanısı ile takip edilen hastada sol meme mastektomizedir
+Output: <span class="IMP">Opere</span> <span class="IMP">meme karsinomu tanısı</span> ile takip edilen hastada <span class="ANAT">sol meme</span> <span class="OBS-P">mastektomizedir</span>
+Input: Operasyon lojunda ve sol aksillada metalik klipsler gözlendi
+Output: <span class="ANAT">Operasyon lojunda</span> ve <span class="ANAT">sol aksillada</span> <span class="OBS-P">metalik klipsler</span> gözlendi
+Input: Rezidü ya da rekürrens saptanmamıştır
+Output: <span class="OBS-A">Rezidü</span> ya da <span class="OBS-A">rekürrens</span> saptanmamıştır
+Input: Trakea ve ana bronşlar normal konfigürasyonda değerlendirilmiştir
+Output: <span class="ANAT">Trakea</span> ve <span class="ANAT">ana bronşlar</span> <span class="OBS-P">normal</span> <span class="OBS-P">konfigürasyonda</span> değerlendirilmiştir
+Input: Mediastinal ana vasküler yapılar normal kalibrasyonda ve patenttir
+Output: <span class="ANAT">Mediastinal</span> <span class="ANAT">ana vasküler yapılar</span> <span class="OBS-P">normal</span> <span class="OBS-P">kalibrasyonda</span> ve <span class="OBS-P">patenttir</span>
+Input: Arkus aortada minimal aterom plakları saptandı
+Output: <span class="ANAT">Arkus aortada</span> <span class="OBS-P">minimal</span> <span class="OBS-P">aterom plakları</span> saptandı
+Input: Kalp boyutları ve konturları normaldir
+Output: <span class="ANAT">Kalp</span> <span class="OBS-P">boyutları</span> ve <span class="OBS-P">konturları</span> <span class="OBS-P">normaldir</span>
+Input: Kalp boşlukları tabi değerlendirildi
+Output: <span class="ANAT">Kalp</span> <span class="ANAT">boşlukları</span> <span class="OBS-P">tabi</span> değerlendirildi
+Input: Kalp boşlukları tabii değerlendirildi
+Output: <span class="ANAT">Kalp</span> <span class="ANAT">boşlukları</span> <span class="OBS-P">tabii</span> değerlendirildi
+Input: Kalp boşlukları doğal olarak değerlendirildi
+Output: <span class="ANAT">Kalp</span> <span class="ANAT">boşlukları</span> <span class="OBS-P">doğal</span> olarak değerlendirildi
+Input: Sağ hilusta birkaç adet en belirgini 15x8 mm boyutunda ölçülen ayrıca subkarinal mesafede 12x10 mm boyutunda değerlendirilen kalsifiye lenf nodları gözlendi
+Output: <span class="ANAT">Sağ hilusta</span> <span class="OBS-P">birkaç adet</span> <span class="OBS-P">en belirgini</span> <span class="OBS-P">15x8 mm</span> <span class="OBS-P">boyutunda</span> ölçülen ayrıca <span class="ANAT">subkarinal mesafede</span> <span class="OBS-P">12x10 mm</span> <span class="OBS-P">boyutunda</span> değerlendirilen <span class="OBS-P">kalsifiye</span> <span class="OBS-P">lenf nodları</span> gözlendi
+Input: Primer kompleks ile uyumlu olabilecek sağ akciğerde alt lobta lateral bazal segmentte yerleşimli 5 mm çapında kalsifiye granulom gözlendi
+Output: <span class="OBS-U">Primer kompleks ile uyumlu olabilecek</span> <span class="ANAT">sağ akciğerde</span> <span class="ANAT">alt lobta</span> <span class="ANAT">lateral bazal segmentte</span> yerleşimli <span class="OBS-P">5 mm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">kalsifiye</span> <span class="OBS-P">granulom</span> gözlendi
+Input: Sağ üst lob posterior segmentte de 2 mm çapında sekel nodül mevcuttur
+Output: <span class="ANAT">Sağ üst lob</span> <span class="ANAT">posterior segmentte</span> de <span class="OBS-P">2 mm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">sekel nodül</span> mevcuttur
+Input: Sol akciğerde nodül saptanmadı
+Output: <span class="ANAT">Sol akciğerde</span> <span class="OBS-A">nodül</span> saptanmadı
+Input: Kitle ya da konsolidasyon alanı izlenmemektedir
+Output: <span class="OBS-A">Kitle</span> ya da <span class="OBS-A">konsolidasyon</span> <span class="ANAT">alanı</span> izlenmemektedir
+Input: Torakal kifoz artmıştır
+Output: <span class="ANAT">Torakal</span> <span class="OBS-P">kifoz</span> <span class="OBS-P">artmıştır</span>
+Input: Vertebra korpuslarında dejeneratif değişiklikler izlendi
+Output: <span class="ANAT">Vertebra korpuslarında</span> <span class="OBS-P">dejeneratif değişiklikler</span> izlendi
+Input: Takipte opere meme karsinomu, sol mastektomize, operasyona bağlı metalik klipsler
+Output: <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="IMP">meme karsinomu</span>, <span class="OBS-P">sol mastektomize</span>, <span class="IMP">operasyona bağlı</span> <span class="OBS-P">metalik klipsler</span>
+Input: Sağ hiler ve subkarinal kalsifiye lenf nodları
+Output: <span class="ANAT">Sağ hiler</span> ve <span class="ANAT">subkarinal</span> <span class="OBS-P">kalsifiye</span> <span class="OBS-P">lenf nodları</span>
+Input: Sağ alt lobta kalsifiye granulom
+Output: <span class="ANAT">Sağ alt lobta</span> <span class="OBS-P">kalsifiye</span> <span class="OBS-P">granulom</span>
+Input: Sağ üst lobta milimetrik sekel nodül
+Output: <span class="ANAT">Sağ üst lobta</span> <span class="OBS-P">milimetrik</span> <span class="OBS-P">sekel nodül</span>
+Input: Vertebra korpuslarında dejeneratif değişiklikler
+Output: <span class="ANAT">Vertebra korpuslarında</span> <span class="OBS-P">dejeneratif değişiklikler</span>
+Input: Opere meme karsinomu tanısı ile izlenen hastada bilateral aksiller bölgelerde, mediastinal ve hiler patolojik boyutta lenf nodu saptanmadı
+Output: <span class="IMP">Opere</span> <span class="IMP">meme karsinomu tanısı</span> ile izlenen hastada <span class="ANAT">bilateral</span> <span class="ANAT">aksiller bölgelerde</span>, <span class="ANAT">mediastinal</span> ve <span class="ANAT">hiler</span> <span class="OBS-A">patolojik boyutta</span> <span class="OBS-A">lenf nodu</span> saptanmadı
+Input: Her iki hemitoraksta plevral effüzyon izlenmedi
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">hemitoraksta</span> <span class="ANAT">plevral</span> <span class="OBS-A">effüzyon</span> izlenmedi
+Input: Akciğer parenkim alanlarında aktif infiltrasyon saptanmadı
+Output: <span class="ANAT">Akciğer</span> <span class="ANAT">parankim alanlarında</span> <span class="OBS-A">aktif</span> <span class="OBS-A">infiltrasyon</span> saptanmadı
+Input: Akciğer parankim alanlarında aktif infiltrasyon saptanmadı
+Output: <span class="ANAT">Akciğer</span> <span class="ANAT">parankim alanlarında</span> <span class="OBS-A">aktif</span> <span class="OBS-A">infiltrasyon</span> saptanmadı
+Input: Yeni nodül izlenmedi
+Output: <span class="OBS-A">Yeni nodül</span> izlenmedi
+Input: Sağ akciğer üst lob posterior segmentte ve alt lob süperior segmentte önceki tetkikte tariflenen nodüllerin boyutlarında farklılık saptanmadı
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">posterior segmentte</span> ve <span class="ANAT">alt lob</span> <span class="ANAT">süperior segmentte</span> <span class="IMP">önceki tetkikte</span> tariflenen <span class="OBS-A">nodüllerin</span> <span class="OBS-A">boyutlarında</span> <span class="OBS-A">farklılık</span> saptanmadı
+Input: Bu tetkiktede boyutları sırası ile 6 mm ve 14 mm olarak ölçüldü
+Output: <span class="IMP">Bu tetkikte</span>de <span class="OBS-P">boyutları sırası ile</span> <span class="OBS-P">6 mm</span> ve <span class="OBS-P">14 mm</span> olarak ölçüldü
+Input: Alt lob süperior segmentte izlenen nodül komşuluğunda izlenen plevral kalınlaşmalar stabil olarak değerlendirildi
+Output: <span class="ANAT">Alt lob</span> <span class="ANAT">süperior segmentte</span> izlenen <span class="OBS-P">nodül</span> <span class="ANAT">komşuluğunda</span> izlenen <span class="ANAT">plevral</span> <span class="OBS-P">kalınlaşmalar</span> <span class="IMP">stabil</span> olarak değerlendirildi
+Input: Toraks duvarını oluşturan kemik yapılarda litik, destrüktif lezyon saptanmadı
+Output: <span class="ANAT">Toraks duvarını oluşturan kemik yapılarda</span> <span class="OBS-A">litik, destrüktif</span> <span class="OBS-A">lezyon</span> saptanmadı
+Input: Diğer sistem bulgularında farklılık izlenmedi
+Output: Diğer sistem bulgularında farklılık izlenmedi
+Input: Takipte opere meme karsinomu
+Output: <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="IMP">meme karsinomu</span>
+Input: Sağ akciğerde izlenen önceki tetkik ile karşılaştırıldığında boyut farklılığı saptanmayan nonspesifik nodüller, eşlik eden alt lob süperior segmentte stabil plevral kalınlaşma görünümleri
+Output: <span class="ANAT">Sağ akciğerde</span> izlenen <span class="IMP">önceki tetkik ile karşılaştırıldığında</span> <span class="IMP">boyut farklılığı saptanmayan</span> <span class="OBS-P">nonspesifik</span> <span class="OBS-P">nodüller</span>, eşlik eden <span class="ANAT">alt lob</span> <span class="ANAT">süperior segmentte</span> <span class="IMP">stabil</span> <span class="ANAT">plevral</span> <span class="OBS-P">kalınlaşma</span> <span class="OBS-P">görünümleri</span>
+Input: Minimal aterom plakları
+Output: <span class="OBS-P">Minimal</span> <span class="OBS-P">aterom plakları</span>
+Input: Vertebra korpuslarında hafif dejeneratif değişiklikler
+Output: <span class="ANAT">Vertebra korpuslarında</span> <span class="OBS-P">hafif</span> <span class="OBS-P">dejeneratif değişiklikler</span>
+Input: Opere süperior sulkus tümörü tanısı ile takip edilen hastada
+Output: <span class="IMP">Opere</span> <span class="IMP">süperior sulkus tümörü tanısı</span> ile takip edilen hastada
+Input: Trakea ve her iki ana bronş açıktır
+Output: <span class="ANAT">Trakea</span> ve <span class="ANAT">her iki</span> <span class="ANAT">ana bronş</span> <span class="OBS-P">açıktır</span>
+Input: Sağ akciğer üst lobektomizedir
+Output: <span class="ANAT">Sağ akciğer üst</span> <span class="OBS-P">lobektomizedir</span>
+Input: Sol akciğer üst lobektomizedir
+Output: <span class="ANAT">Sol akciğer üst</span> <span class="OBS-P">lobektomizedir</span>
+Input: Operasyon lojunda tomografi kriterleri ile ayırt edilebilen rekürrens düşündürecek yumuşak doku görünümü saptanmamıştır
+Output: <span class="ANAT">Operasyon lojunda</span> tomografi kriterleri ile ayırt edilebilen <span class="OBS-A">rekürrens düşündürecek</span> <span class="OBS-A">yumuşak doku görünümü</span> saptanmamıştır
+Input: Operasyon lojunda fizyolojik effüzyon stabil olarak değerlendirilmiştir
+Output: <span class="ANAT">Operasyon lojunda</span> <span class="OBS-P">fizyolojik effüzyon</span> <span class="IMP">stabil</span> olarak değerlendirilmiştir
+Input: Sol hemitoraksta effüzyon ya da kalınlaşma bulguus izlenmedi
+Output: <span class="ANAT">Sol hemitoraksta</span> <span class="OBS-A">effüzyon</span> ya da <span class="OBS-A">kalınlaşma</span> bulgusu izlenmedi
+Input: Mediasten ve her iki hilusta patolojik görünümlü lenf nodu saptanmadı
+Output: <span class="ANAT">Mediasten</span> ve <span class="ANAT">her iki</span> <span class="ANAT">hilusta</span> <span class="OBS-A">patolojik görünümlü</span> <span class="OBS-A">lenf nodu</span> saptanmadı
+Input: Kemik yapılarda dejeneratif değişiklikler izlenmiş olup litik, destrüktif kitle lezyonu saptanmadı
+Output: <span class="ANAT">Kemik yapılarda</span> <span class="OBS-P">dejeneratif değişiklikler</span> izlenmiş olup <span class="OBS-A">litik, destrüktif</span> <span class="OBS-A">kitle lezyonu</span> saptanmadı
+Input: Her iki akciğer parankim alanlarının değerlendirilmesinde her iki akciğer parankiminde pnömonik infiltrasyon ya da kitle görünümü saptanmamıştır
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">parankim alanlarının</span> değerlendirilmesinde <span class="ANAT">her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">parankiminde</span> <span class="OBS-A">pnömonik infiltrasyon</span> ya da <span class="OBS-A">kitle görünümü</span> saptanmamıştır
+Input: Her iki akciğer parankiminde end plate atelektazik değişiklikler ve sekel buzlu cam dansiteleri stabil olarak değerlendirilmiştir
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">parankiminde</span> <span class="ANAT">end plate</span> <span class="OBS-P">atelektazik değişiklikler</span> ve <span class="OBS-P">sekel buzlu cam dansiteleri</span> <span class="IMP">stabil</span> olarak değerlendirilmiştir
+Input: Her iki akciğerde yeni gelişimli spiküle konturlu malignite kriterleri taşıyan nodül izlenmedi
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-A">yeni gelişimli</span> <span class="OBS-A">spiküle konturlu</span> <span class="OBS-A">malignite kriterleri taşıyan</span> <span class="OBS-A">nodül</span> izlenmedi
+Input: Eski tetkiktede izlenen milimetrik boyutlu birkaç adet nonspesifik nodül stabildir
+Output: <span class="IMP">Eski tetkikte de izlenen</span> <span class="OBS-P">milimetrik boyutlu</span> <span class="OBS-P">birkaç adet</span> <span class="OBS-P">nonspesifik</span> <span class="OBS-P">nodül</span> <span class="IMP">stabildir</span>
+Input: Sol akciğer üst lob anterior segmentte plevra tabanlı düzensiz sınırlı 12x6.6 mm (Eski tetkikte 12x8.5 mm) boyutlu düzensiz sınırlı nodüler lezyonun boyutlarında hafif azalma dikkati çekmiştir
+Output: <span class="ANAT">Sol akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">anterior segmentte</span> <span class="ANAT">plevra</span> <span class="OBS-P">tabanlı</span> <span class="OBS-P">düzensiz sınırlı</span> <span class="OBS-P">12x6.6 mm</span> (<span class="IMP">Eski tetkikte</span> <span class="OBS-P">12x8.5 mm</span>) <span class="OBS-P">boyutlu</span> <span class="OBS-P">düzensiz sınırlı</span> <span class="OBS-P">nodüler lezyonun</span> <span class="IMP">boyutlarında hafif azalma</span> dikkati çekmiştir
+Input: Tanımlanan nodülün yakın takibi önerilir
+Output: Tanımlanan <span class="IMP">nodülün yakın takibi önerilir</span>
+Input: Diğer BT bulgularda anlamlı farklılık izlenmedi
+Output: Diğer BT bulgularda anlamlı farklılık izlenmedi
+Input: Diğer BT bulgularında anlamlı farklılık izlenmedi
+Output: Diğer BT bulgularında anlamlı farklılık izlenmedi
+Input: Takipte opere süperior sulkus tümörü ve sağ akciğer üst lobektomize
+Output: <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="IMP">süperior sulkus tümörü</span> ve <span class="ANAT">sağ akciğer üst</span> <span class="OBS-P">lobektomize</span>
+Input: Sağ hemitoraksta üst zonda geçirilmiş operasyona bağlı fizyolojik effüzyon ve sekel değişiklikler
+Output: <span class="ANAT">Sağ hemitoraksta</span> <span class="ANAT">üst zonda</span> <span class="IMP">geçirilmiş operasyona bağlı</span> <span class="OBS-P">fizyolojik effüzyon</span> ve <span class="OBS-P">sekel değişiklikler</span>
+Input: Her iki akciğerde milimetrik boyutlu stabil nonspesifik nodüller
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-P">milimetrik boyutlu</span> <span class="IMP">stabil</span> <span class="OBS-P">nonspesifik nodüller.</span>
+Input: geçirilmiş by pass cerrahine bağlı değişiklikler
+Output: <span class="IMP">geçirilmiş by pass cerrahisine bağlı</span> <span class="OBS-P">değişiklikler</span>
+Input: geçirilmiş by pass cerrahisine bağlı değişiklikler
+Output: <span class="IMP">geçirilmiş by pass cerrahisine bağlı</span> <span class="OBS-P">değişiklikler</span>
+Input: Her iki akciğerde fibroatelektazik değişiklikler
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-P">fibroatelektazik değişiklikler</span>
+Input: Pnömoni saptanmadı
+Output: <span class="OBS-A">Pnömoni</span> saptanmadı
+Input: Kemik yapılarda dejeneratif değişşiklikler
+Output: <span class="ANAT">Kemik yapılarda</span> <span class="OBS-P">dejeneratif değişiklikler</span>
+Input: Mediastinal ana vasküler yapılar patenttir
+Output: <span class="ANAT">Mediastinal</span> <span class="ANAT">ana vasküler yapılar</span> <span class="OBS-P">patenttir</span>
+Input: Tiroidde en büyüğü sol lobda izlenen ve 15x14 mm boyutlarında ölçülen, periferal kalsifikasyonlar içeren büyük komponenti kistik özellikte izlenen olmak üzere birkaç adet nodül saptanmıştır
+Output: <span class="ANAT">Tiroidde</span> <span class="OBS-P">en büyüğü</span> <span class="ANAT">sol lobda</span> izlenen ve <span class="OBS-P">15x14 mm</span> <span class="OBS-P">boyutlarında</span> ölçülen, <span class="ANAT">periferal</span> <span class="OBS-P">kalsifikasyonlar içeren</span> <span class="OBS-P">büyük komponenti kistik</span> özellikte izlenen olmak üzere <span class="OBS-P">birkaç adet</span> <span class="OBS-P">nodül</span> saptanmıştır
+Input: Tiroid US bulguları ile değerlendirilmesi önerilir
+Output: <span class="IMP">Tiroid US bulguları ile değerlendirilmesi önerilir</span>
+Input: Mediastinal ve hiler yerleşimli en büyüğü sağ hilusta izlenen ve 13x10 mm boyutlarında ölçülen birkaç adet lenf nodu izlenmiştir
+Output: <span class="ANAT">Mediastinal</span> ve <span class="ANAT">hiler</span> yerleşimli <span class="OBS-P">en büyüğü</span> <span class="ANAT">sağ hilusta</span> izlenen ve <span class="OBS-P">13x10 mm</span> <span class="OBS-P">boyutlarında</span> ölçülen <span class="OBS-P">birkaç adet</span> <span class="OBS-P">lenf nodu</span> izlenmiştir
+Input: Her iki akciğer apeksinde fibrotik değişiklikler ve paraseptal yerleşimli büyüğü sağda izlenen, 14x6 mm boyutlarında ölçülen büllöz lezyonlar saptandı
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">apeksinde</span> <span class="OBS-P">fibrotik değişiklikler</span> ve <span class="ANAT">paraseptal</span> yerleşimli <span class="OBS-P">büyüğü sağda</span> izlenen, <span class="OBS-P">14x6 mm</span> <span class="OBS-P">boyutlarında</span> ölçülen <span class="OBS-P">büllöz lezyonlar</span> saptandı
+Input: Sağ akciğer üst lob anterior segmentte 17x10 mm boyutlarında düzensiz konturlu nodül saptanmıştır
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">anterior segmentte</span> <span class="OBS-P">17x10 mm</span> <span class="OBS-P">boyutlarında</span> <span class="OBS-P">düzensiz konturlu</span> <span class="OBS-P">nodül</span> saptanmıştır
+Input: Nodül çevresinde lateralde plevraya dek uzanımı bulunan spiküler dansite artışları izlenmiş olup tümöral invazyon ile uyumludur
+Output: <span class="OBS-P">Nodül</span> <span class="OBS-P">çevresinde</span> <span class="ANAT">lateralde plevraya</span> <span class="OBS-P">dek</span> <span class="OBS-P">uzanımı bulunan</span> <span class="OBS-P">spiküler</span> <span class="OBS-P">dansite artışları</span> izlenmiş olup <span class="IMP">tümöral invazyon</span> <span class="IMP">ile uyumludur</span>
+Input: Alt loblarda daha belirgin olarak izlenen hava hapsi alanları ve amfizem bulguları saptandı
+Output: <span class="ANAT">Alt loblarda</span> <span class="OBS-P">daha belirgin</span> olarak izlenen <span class="OBS-P">hava hapsi</span> <span class="ANAT">alanları</span> ve <span class="OBS-P">amfizem</span> <span class="OBS-P">bulguları</span> saptandı
+Input: Aorta ve koroner arter duvarlarında kalsifiye aterom plakları saptandı
+Output: <span class="ANAT">Aorta</span> ve <span class="ANAT">koroner arter</span> <span class="ANAT">duvarlarında</span> <span class="OBS-P">kalsifiye aterom plakları</span> saptandı
+Input: Yaygın bronş duvar kalsifikasyonları izlendi
+Output: <span class="OBS-P">Yaygın</span> <span class="ANAT">bronş</span> <span class="ANAT">duvar</span> <span class="OBS-P">kalsifikasyonları</span> izlendi
+Input: Sağ akciğer üst lobda yukarıda özellikleri tanımlanan malign kriterler içeren soliter pulmoner nodül
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">üst lobda</span> yukarıda özellikleri tanımlanan <span class="IMP">malign kriterler içeren</span> <span class="OBS-P">soliter</span> <span class="ANAT">pulmoner</span> <span class="OBS-P">nodül</span>
+Input: PET- BT ile değerlendirilmesi önerilir
+Output: <span class="IMP">PET- BT ile değerlendirilmesi önerilir</span>
+Input: Amfizem, apekslerde sekel fibrotik değişiklikler, paraseptal büllöz lezyonlar
+Output: <span class="OBS-P">Amfizem</span>, <span class="ANAT">apekslerde</span> <span class="OBS-P">sekel fibrotik değişiklikler</span>, <span class="ANAT">paraseptal</span> <span class="OBS-P">büllöz lezyonlar</span>
+Input: Mediastinal yerleşimli birkaç adet lenf nodu
+Output: <span class="ANAT">Mediastinal</span> yerleşimli <span class="OBS-P">birkaç adet</span> <span class="OBS-P">lenf nodu</span>
+Input: Tiroidde nodül
+Output: <span class="ANAT">Tiroidde</span> <span class="OBS-P">nodül</span>
+Input: US ile değerlendirilmesi önerilir
+Output: <span class="IMP">US ile değerlendirilmesi önerilir</span>
+Input: Aortada ve koroner arterlerde aterosklerotik değişiklikler
+Output: <span class="ANAT">Aortada</span> ve <span class="ANAT">koroner arterlerde</span> <span class="OBS-P">aterosklerotik değişiklikler</span>
+Input: Torakal spondiloz
+Output: <span class="ANAT">Torakal</span> <span class="OBS-P">spondiloz</span>
+Input: Tetkik 2023 tarihli Toraks BT ile karşılaştırılarak değerlendirilmiştir
+Output: Tetkik 2023 tarihli Toraks BT ile karşılaştırılarak değerlendirilmiştir
+Input: Kalp boyutları artmıştır
+Output: <span class="ANAT">Kalp</span> <span class="OBS-P">boyutları artmıştır</span>
+Input: Sol ventrikül apeks duvarında anevrizmatik dilatasyon ve kalsifiye mural trombüs lehine değerlendirilen milimetrik kalsifikasyonlar dikkati çekmiştir
+Output: <span class="ANAT">Sol ventrikül</span> <span class="ANAT">apeks</span> <span class="ANAT">duvarında</span> <span class="OBS-P">anevrizmatik dilatasyon</span> ve <span class="OBS-U">kalsifiye mural trombüs</span> <span class="OBS-U">lehine değerlendirilen</span> <span class="OBS-P">milimetrik kalsifikasyonlar</span> dikkati çekmiştir
+Input: Mediasten ve sternumda by pass cerrahisine bağlı değişiklikler izlendi
+Output: <span class="ANAT">Mediasten</span> ve <span class="ANAT">sternumda</span> <span class="IMP">by pass cerrahisine bağlı</span> <span class="OBS-P">değişiklikler</span> izlendi
+Input: Torakal aorta ve koroner arterlerde aterosklerotik değişiklikler izlendi
+Output: <span class="ANAT">Torakal aorta</span> ve <span class="ANAT">koroner arterlerde</span> <span class="OBS-P">aterosklerotik değişiklikler</span> izlendi
+Input: Pulmoner trunkus çapı 30 mm ölçülmüş olup normalden hafif geniştir
+Output: <span class="ANAT">Pulmoner trunkus</span> <span class="OBS-P">çapı</span> <span class="OBS-P">30 mm</span> ölçülmüş olup <span class="OBS-P">normalden hafif geniştir</span>
+Input: Mediastende bazıları kalsifiye milimetrik boyutlu lenf nodları izlenmiştir
+Output: <span class="ANAT">Mediastende</span> <span class="OBS-P">bazıları kalsifiye</span> <span class="OBS-P">milimetrik boyutlu</span> <span class="OBS-P">lenf nodları</span> izlenmiştir
+Input: Her iki hemitoraksta efüzyon ya da kalınlaşma bulgusu izlenmedi
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">hemitoraksta</span> <span class="OBS-A">efüzyon</span> ya da <span class="OBS-A">kalınlaşma</span> bulgusu izlenmedi
+Input: Sağ akciğer üst lobda ve lingulada fibrotik sekel değişikliklerde anlamlı farklılık saptanmamıştır
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">üst lobda</span> ve <span class="ANAT">lingulada</span> <span class="OBS-P">fibrotik sekel değişiklikler</span>de anlamlı farklılık saptanmamıştır
+Input: Sol akciğer süperior lingular segmentte 16x14.5 mm (Eski tetkikte aynı düzeyde 11x9.5 mm) boyutlu, boyut artışı gösteren lobüle konturlu solid dansitede nodül izlenmiş olup tanımlanan nodüle yönelik PET CT ve gereklilik halinde histopatolojik korelasyon önerilir
+Output: <span class="ANAT">Sol akciğer</span> <span class="ANAT">süperior</span> <span class="ANAT">lingular segmentte</span> <span class="OBS-P">16x14.5 mm</span> (<span class="IMP">Eski tetkikte</span> <span class="ANAT">aynı düzeyde</span> <span class="OBS-P">11x9.5 mm</span>) boyutlu, <span class="IMP">boyut artışı gösteren</span> <span class="OBS-P">lobüle konturlu</span> <span class="OBS-P">solid dansitede</span> <span class="OBS-P">nodül</span> izlenmiş olup tanımlanan nodüle yönelik <span class="IMP">PET CT</span> ve <span class="IMP">gereklilik halinde histopatolojik korelasyon önerilir</span>
+Input: Tanımlanan nodül dışında milimetrik boyutlu birkaç adet nonspesifik stabil nodül izlenmiştir
+Output: Tanımlanan <span class="OBS-P">nodül dışında</span> <span class="OBS-P">milimetrik boyutlu</span> <span class="OBS-P">birkaç adet</span> <span class="OBS-P">nonspesifik</span> <span class="IMP">stabil</span> <span class="OBS-P">nodül</span> izlenmiştir
+Input: Tanımlı diğer bulgularda anlamlı farklılık saptanmadı
+Output: Tanımlı diğer bulgularda anlamlı farklılık saptanmadı
+Input: Trakea sol lateral duvarda hastanın eski tetkikinde de izlenen 9x5 mm (Eski tetkikte 8x5 mm) boyutlu polipoid nodüler lezyonda minimal boyut artışı dikkati çekmiştir
+Output: <span class="ANAT">Trakea</span> <span class="ANAT">sol lateral</span> <span class="ANAT">duvarda</span> hastanın <span class="IMP">eski tetkikinde de izlenen</span> <span class="OBS-P">9x5 mm</span> (<span class="IMP">Eski tetkikte</span> <span class="OBS-P">8x5 mm</span>) boyutlu <span class="OBS-P">polipoid</span> <span class="OBS-P">nodüler lezyonda</span> <span class="OBS-P">minimal</span> <span class="IMP">boyut artışı</span> dikkati çekmiştir
+Input: Tanımlanan nodüle yönelik bronkoskopik değerlendirme önerilir
+Output: Tanımlanan nodüle yönelik <span class="IMP">bronkoskopik değerlendirme önerilir</span>
+Input: Sol akciğer üst lob lingulada boyut artışı gösteren lobüle konturlu solid dansitede nodül izlenmiş olup
+Output: <span class="ANAT">Sol akciğer</span> <span class="ANAT">üst lob lingulada</span> <span class="IMP">boyut artışı gösteren</span> <span class="OBS-P">lobüle konturlu</span> <span class="OBS-P">solid dansitede</span> <span class="OBS-P">nodül</span> izlenmiş olup
+Input: Pulmoner trunkusta ektazi
+Output: <span class="ANAT">Pulmoner trunkusta</span> <span class="OBS-P">ektazi</span>
+Input: Sol ventrikül apeksinde kalsifiye anevrizmatik dilatasyon
+Output: <span class="ANAT">Sol ventrikül</span> <span class="ANAT">apeksinde</span> <span class="OBS-P">kalsifiye</span> <span class="OBS-P">anevrizmatik dilatasyon</span>
+Input: Trakea, her iki ana bronş açıktır
+Output: <span class="ANAT">Trakea</span>, <span class="ANAT">her iki</span> <span class="ANAT">ana bronş</span> <span class="OBS-P">açıktır</span>
+Input: Mediastinal ana vasküler yapıların kalibrasyonları normal sınırlardadır
+Output: <span class="ANAT">Mediastinal</span> <span class="ANAT">ana vasküler yapıların</span> <span class="OBS-P">kalibrasyonları normal</span> sınırlardadır
+Input: Torasik aortada, koroner arterlerde aterosklerotik değişiklikler izlenmektedir
+Output: <span class="ANAT">Torasik aortada</span>, <span class="ANAT">koroner arterlerde</span> <span class="OBS-P">aterosklerotik değişiklikler</span> izlenmektedir
+Input: Mediastinal prekarinal düzeyde belirginleşen kısa aksı 10 mm ye ulaşan lenf nodları dikkati çekmiştir
+Output: <span class="ANAT">Mediastinal</span> <span class="ANAT">prekarinal düzeyde</span> <span class="OBS-P">belirginleşen</span> <span class="OBS-P">kısa aksı</span> <span class="OBS-P">10 mm</span> ye ulaşan <span class="OBS-P">lenf nodları</span> dikkati çekmiştir
+Input: Bilateral hiler patolojik boyuta lenf nodu saptanmadı
+Output: <span class="ANAT">Bilateral</span> <span class="ANAT">hiler</span> <span class="OBS-A">patolojik boyutta</span> <span class="OBS-A">lenf nodu</span> saptanmadı
+Input: Her iki hiler patolojik boyutta lenf nodu saptanmadı
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">hiler</span> <span class="OBS-A">patolojik boyutta</span> <span class="OBS-A">lenf nodu</span> saptanmadı
+Input: Perikardiyal efüzyon izlenmedi
+Output: <span class="ANAT">Perikardiyal</span> <span class="OBS-A">efüzyon</span> izlenmedi
+Input: Her iki hemitoraksta plevral efüzyon, kalınlaşma saptanmadı
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">hemitoraksta</span> <span class="ANAT">plevral</span> <span class="OBS-A">efüzyon</span>, <span class="OBS-A">kalınlaşma</span> saptanmadı
+Input: Sağ akciğer alt lob posterobazal segment bronşu düzeyinden başlayarak bronşial ağacı takip eden üzüm salkımı formunda birbiri ile ilişkili büyüğünün çapı yaklaşık 16 mm ye ulaşan yaklaşık en uzun segmentinde 3.5 cm lik alanı etkileyen kitle lezyonu görünümü dikkati çekmiştir
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">alt lob</span> <span class="ANAT">posterobazal segment</span> <span class="ANAT">bronşu düzeyinden</span> başlayarak <span class="ANAT">bronşial ağacı</span> <span class="OBS-P">takip eden</span> <span class="OBS-P">üzüm salkımı formunda</span> <span class="OBS-P">birbiri ile ilişkili</span> <span class="OBS-P">büyüğünün çapı</span> yaklaşık <span class="OBS-P">16 mm</span> ye ulaşan yaklaşık <span class="OBS-P">en uzun segmentinde</span> <span class="OBS-P">3.5 cm</span> lik <span class="ANAT">alanı</span> <span class="OBS-P">etkileyen</span> <span class="OBS-P">kitle lezyonu</span> <span class="OBS-P">görünümü</span> dikkati çekmiştir
+Input: Tanımlı lezyon dışında sağ akciğerde üst lob anterior segmentte parakardiyak alanda yaklaşık 8.5 mm çapta satellid kaydedilmiştir
+Output: Tanımlı <span class="OBS-P">lezyon dışında</span> <span class="ANAT">sağ akciğerde</span> <span class="ANAT">üst lob</span> <span class="ANAT">anterior segmentte</span> <span class="ANAT">parakardiyak alanda</span> yaklaşık <span class="OBS-P">8.5 mm</span> <span class="OBS-P">çapta</span> <span class="OBS-P">satellid</span> kaydedilmiştir
+Input: satellid lezyon izlenmiştir
+Output: <span class="OBS-P">satellid lezyon</span> izlenmiştir
+Input: Akciğer parankim alanlarında dependan atelektatik değişiklikler, eşlik eden lineer atelektaziler ve üst loblarda belirginleşen amfizematöz değişiklikler kaydedilmiştir
+Output: <span class="ANAT">Akciğer</span> <span class="ANAT">parankim alanlarında</span> <span class="OBS-P">dependan</span> <span class="OBS-P">atelektatik değişiklikler</span>, eşlik eden <span class="OBS-P">lineer</span> <span class="OBS-P">atelektaziler</span> ve <span class="ANAT">üst loblarda</span> <span class="OBS-P">belirginleşen</span> <span class="OBS-P">amfizematöz değişiklikler</span> kaydedilmiştir
+Input: Aktif infiltrasyon görünümü saptanmadı
+Output: <span class="OBS-A">Aktif</span> <span class="OBS-A">infiltrasyon görünümü</span> saptanmadı
+Input: Kemik yapılarda litik, destrüktif lezyon izlenmedi
+Output: <span class="ANAT">Kemik yapılarda</span> <span class="OBS-A">litik, destrüktif</span> <span class="OBS-A">lezyon</span> izlenmedi
+Input: Dejeneratif değişiklikler kaydedilmiştir
+Output: <span class="OBS-P">Dejeneratif değişiklikler</span> kaydedilmiştir
+Input: Sağ akciğer alt lob posterobazal segmentte, posterobazal segment bronşundan orjin alarak bronşial ağacı takip eden üzem salkımı formunda kitle görünümü, eşlik eden üst lobda tanımlı satellid nodül
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">alt lob</span> <span class="ANAT">posterobazal segmentte</span>, <span class="ANAT">posterobazal segment</span> <span class="ANAT">bronşundan</span> orjin alarak <span class="ANAT">bronşial ağacı</span> <span class="OBS-P">takip eden</span> <span class="OBS-P">üzüm salkımı formunda kitle görünümü</span>, eşlik eden <span class="ANAT">üst lobda</span> tanımlı <span class="OBS-P">satellid nodül</span>
+Input: Akciğer parankim alanlarında amfizematöz değişiklikler ve atelektatik değişiklikler
+Output: <span class="ANAT">Akciğer</span> <span class="ANAT">parankim alanlarında</span> <span class="OBS-P">amfizematöz değişiklikler</span> ve <span class="OBS-P">atelektatik değişiklikler</span>
+Input: IVKM sonrası aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur
+Output: IVKM sonrası aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur
+Input: 3 mm kalınlıkta kesitler
+Output: 3 mm kalınlıkta kesitler
+Input: 5 mm kalınlıkta kesitler
+Output: 5 mm kalınlıkta kesitler
+Input: IVKM sonrası aksiyel planda 5 mm kalınlıkta kesitler elde olunmuştur
+Output: IVKM sonrası aksiyel planda 5 mm kalınlıkta kesitler elde olunmuştur
+Input: IVKM verilmeden aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur
+Output: IVKM verilmeden aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur
+Input: IVKM verilmesini takiben aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur
+Output: IVKM verilmesini takiben aksiyel planda 3 mm kalınlıkta kesitler elde olunmuştur
+Input: İnceleme 2021 tarihli Toraks BT incelemesi ile karşılaştırılarak değerlendirildi
+Output: İnceleme 2021 tarihli Toraks BT incelemesi ile karşılaştırılarak değerlendirildi
+Input: Mide gastrointestinal stromal tümör tanısıyla takip edilen hastada, akciğer parankim alanlarında metastaz bulgusu saptanmadı
+Output: <span class="ANAT">Mide</span> <span class="IMP">gastrointestinal stromal tümör tanısıyla</span> takip edilen hastada, <span class="ANAT">akciğer</span> <span class="ANAT">parankim alanlarında</span> <span class="OBS-A">metastaz</span> bulgusu saptanmadı
+Input: Trakea ve her iki ana bronş açık, vasküler yapılar patent, kalp boyutu normaldir
+Output: <span class="ANAT">Trakea</span> ve <span class="ANAT">her iki</span> <span class="ANAT">ana bronş</span> <span class="OBS-P">açık</span>, <span class="ANAT">vasküler yapılar</span> <span class="OBS-P">patent</span>, <span class="ANAT">kalp</span> <span class="OBS-P">boyutu normaldir</span>
+Input: Plevral efüzyon izlenmedi
+Output: <span class="ANAT">Plevral</span> <span class="OBS-A">efüzyon</span> izlenmedi
+Input: Mediastende sağ paratrakeal 8 mm çapında reaktif lenf nodu izlendi
+Output: <span class="ANAT">Mediastende</span> <span class="ANAT">sağ paratrakeal</span> <span class="OBS-P">8 mm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">reaktif</span> <span class="OBS-P">lenf nodu</span> izlendi
+Input: Akciğer parankim alanlarında nodül veya kitle, konsolide alan saptanmadı
+Output: <span class="ANAT">Akciğer</span> <span class="ANAT">parankim alanlarında</span> <span class="OBS-A">nodül</span> veya <span class="OBS-A">kitle</span>, <span class="OBS-A">konsolide</span> <span class="ANAT">alan</span> saptanmadı
+Input: Sağ alt lobda plevraya doğru uzanım gösteren lineer atelektazi mevcuttur
+Output: <span class="ANAT">Sağ alt lobda</span> <span class="ANAT">plevraya</span> <span class="ANAT">doğru</span> <span class="OBS-P">uzanım gösteren</span> <span class="OBS-P">lineer atelektazi</span> mevcuttur
+Input: Takipte mide gastrointestinal stromal tümör
+Output: <span class="IMP">Takipte</span> <span class="ANAT">mide</span> <span class="IMP">gastrointestinal stromal tümör</span>
+Input: Pulmoner metastaz saptanmadı
+Output: <span class="ANAT">Pulmoner</span> <span class="OBS-A">metastaz</span> saptanmadı
+Input: Mediastinal reaktif lenf nodu
+Output: <span class="ANAT">Mediastinal</span> <span class="OBS-P">reaktif lenf nodu</span>
+Input: Akciğerlerde sağ bazalde minimal atelektazi
+Output: <span class="ANAT">Akciğerlerde</span> <span class="ANAT">sağ bazalde</span> <span class="OBS-P">minimal</span> <span class="OBS-P">atelektazi</span>
+Input: Tetkik 2018 tarihli BT incelemesi ile karşılaştırılarak değerlendirilmiştir
+Output: Tetkik 2018 tarihli BT incelemesi ile karşılaştırılarak değerlendirilmiştir
+Input: Pulmoner trunkus çapı 29 mm olarak ölçülmüş olup normalin üst sınırındadır
+Output: <span class="ANAT">Pulmoner trunkus</span> <span class="OBS-P">çapı</span> <span class="OBS-P">29 mm</span> olarak ölçülmüş olup <span class="OBS-P">normalin üst sınırındadır</span>
+Input: Diğer mediastinal ana vasküler yapılar normal genişliktedir ve patenttir
+Output: <span class="ANAT">Diğer mediastinal</span> <span class="ANAT">ana vasküler yapılar</span> <span class="OBS-P">normal genişliktedir</span> ve <span class="OBS-P">patenttir</span>
+Input: Anterior mediastende timik remnanta ait görünüm izlendi
+Output: <span class="ANAT">Anterior mediastende</span> <span class="ANAT">timik</span> <span class="OBS-P">remnanta</span> <span class="OBS-P">ait görünüm</span> izlendi
+Input: Aortopulmoner lokalizasyonda 25x8 mm boyutlarında lenf nodu izlenmiş olup önceki inceleme ile benzerdir
+Output: <span class="ANAT">Aortopulmoner lokalizasyonda</span> <span class="OBS-P">25x8 mm</span> <span class="OBS-P">boyutlarında</span> <span class="OBS-P">lenf nodu</span> izlenmiş olup <span class="IMP">önceki inceleme ile benzerdir</span>
+Input: Sağ hilus inferiorunda 13 mm çapında perikardiyal kist izlenmiştir
+Output: <span class="ANAT">Sağ hilus</span> <span class="ANAT">inferiorunda</span> <span class="OBS-P">13 mm</span> <span class="OBS-P">çapında</span> <span class="ANAT">perikardiyal</span> <span class="OBS-P">kist</span> izlenmiştir
+Input: Önceki inceleme ile benzerdir
+Output: <span class="IMP">Önceki inceleme ile benzerdir</span>
+Input: Plevral, perikardiyal efüzyon saptanmamıştır
+Output: <span class="ANAT">plevral</span>, <span class="ANAT">perikardiyal</span> <span class="OBS-A">efüzyon</span> saptanmamıştır
+Input: Her iki akciğer alt lob posteriorda subplevral sekel düzensizlikler söz konusudur
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">alt lob</span> <span class="ANAT">posteriorda</span> <span class="ANAT">subplevral</span> <span class="OBS-P">sekel düzensizlikler</span> söz konusudur
+Input: Önceki incelemeye göre bir miktar artış kaydedilmiştir
+Output: <span class="IMP">Önceki incelemeye göre</span> <span class="IMP">bir miktar artış</span> kaydedilmiştir
+Input: Lingula inferiorda subsegmenter atelektazi mevcuttur
+Output: <span class="ANAT">Lingula</span> <span class="ANAT">inferiorda</span> <span class="ANAT">subsegmenter</span> <span class="OBS-P">atelektazi</span> mevcuttur
+Input: Parankim alanlarının değerlendirilmesinde her iki akciğerde belirgin nodül, kitle ya da infiltrasyon bulgusu saptanmamıştır
+Output: <span class="ANAT">Parankim alanlarının</span> değerlendirilmesinde <span class="ANAT">her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-A">belirgin nodül</span>, <span class="OBS-A">kitle</span> ya da <span class="OBS-A">infiltrasyon</span> bulgusu saptanmamıştır
+Input: Torakal vertebralarda dejeneratif değişiklikler gözlendi
+Output: <span class="ANAT">Torakal</span> <span class="ANAT">vertebralarda</span> <span class="OBS-P">dejeneratif değişiklikler</span> gözlendi
+Input: Takipte gastrointestinal stromal tümör
+Output: <span class="IMP">Takipte</span> <span class="IMP">gastrointestinal stromal tümör</span>
+Input: Normalin üst sınırında pulmoner trunkus çapı
+Output: <span class="OBS-P">Normalin üst sınırında</span> <span class="ANAT">pulmoner trunkus</span> <span class="OBS-P">çapı</span>
+Input: Sağ hilus inferiorunda perikardiyal kiste ait görünüm
+Output: <span class="ANAT">Sağ hilus</span> <span class="ANAT">inferiorunda</span> <span class="ANAT">perikardiyal</span> <span class="OBS-P">kiste</span> <span class="OBS-P">ait görünüm</span>
+Input: Aorta pulmoner lokalizasyonlu stabil lenf nodu
+Output: <span class="ANAT">Aorta</span> <span class="ANAT">pulmoner lokalizasyonlu</span> <span class="IMP">stabil</span> <span class="OBS-P">lenf nodu</span>
+Input: Opere timik karsinom tanısıyla takip edilen hastada anterior mediastende prevasküler alandaki fokal fibrozis alanlarında anlamlı farklılık saptanmadı
+Output: <span class="IMP">Opere</span> <span class="IMP">timik karsinom tanısıyla</span> takip edilen hastada <span class="ANAT">anterior mediastende</span> <span class="ANAT">prevasküler alandaki</span> <span class="OBS-P">fokal</span> <span class="OBS-P">fibrozis</span> <span class="ANAT">alanlarında</span> <span class="OBS-A">anlamlı farklılık</span> saptanmadı
+Input: Bu alana komşu sol akciğer üst lob anterior segment medialindeki parankimal fibrozis alanı da stabil yapıdadır
+Output: Bu alana <span class="ANAT">komşu</span> <span class="ANAT">sol akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">anterior segment</span> <span class="ANAT">medialindeki parankimal </span> <span class="OBS-P">fibrozis</span> <span class="ANAT">alanı</span> da <span class="IMP">stabil</span> <span class="OBS-P">yapıdadır</span>
+Input: Rekürrensi düşündürecek kitle imajı gözlenmemektedir
+Output: <span class="OBS-A">Rekürrensi düşündürecek</span> <span class="OBS-A">kitle imajı</span> gözlenmemektedir
+Input: Mediastende en belirgini aortikopulmoner mesafede 1 cm çapında ölçülen lenf nodları da stabil olarak değerlendirildi
+Output: <span class="ANAT">Mediastende</span> <span class="OBS-P">en belirgini</span> <span class="ANAT">aortikopulmoner mesafede</span> <span class="OBS-P">1 cm</span> <span class="OBS-P">çapında</span> ölçülen <span class="OBS-P">lenf nodları</span> da <span class="IMP">stabil</span> olarak değerlendirildi
+Input: Plevral effüzyon saptanmadı
+Output: <span class="ANAT">Plevral</span> <span class="OBS-A">effüzyon</span> saptanmadı
+Input: Vasküler yapılar patenttir
+Output: <span class="ANAT">Vasküler yapılar</span> <span class="OBS-P">patenttir</span>
+Input: Kalp normal boyuttadır
+Output: <span class="ANAT">Kalp</span> <span class="OBS-P">normal boyuttadır</span>
+Input: Sol diyafragma sağa göre normalden envantre olarak değerlendirildi
+Output: <span class="ANAT">Sol diyafragma</span> <span class="IMP">sağa göre</span> <span class="OBS-P">normalden envantre</span> olarak değerlendirildi
+Input: Sol akciğerde üst lobda anterior segmentteki 4 mm çapındaki nodülün subsolid forma dönüştüğü izlendi
+Output: <span class="ANAT">Sol akciğerde</span> <span class="ANAT">üst lobda</span> <span class="ANAT">anterior segmentteki</span> <span class="OBS-P">4 mm</span> <span class="OBS-P">çapındaki</span> <span class="OBS-P">nodülün</span> <span class="OBS-P">subsolid forma</span> <span class="IMP">dönüştüğü</span> izlendi
+Input: Sol alt lob süperior segmentte plevral tabanlı nodülün de 8 mm çapından 6 mm çapına küçüldüğü izlenmektedir
+Output: <span class="ANAT">Sol alt lob</span> <span class="ANAT">süperior segmentte</span> <span class="ANAT">plevral</span> <span class="OBS-P">tabanlı</span> <span class="OBS-P">nodülün</span> de <span class="OBS-P">8 mm</span> <span class="OBS-P">çapından</span> <span class="OBS-P">6 mm</span> <span class="OBS-P">çapına</span> <span class="IMP">küçüldüğü</span> izlenmektedir
+Input: Alt lob lateral bazal segmentteki nodül ise sekel forma dönüşmüştür
+Output: <span class="ANAT">Alt lob</span> <span class="ANAT">lateral</span> <span class="ANAT">bazal segmentteki</span> <span class="OBS-P">nodül</span> ise <span class="OBS-P">sekel forma</span> <span class="IMP">dönüşmüştür</span>
+Input: Yeni gelişen nodül saptanmamıştır
+Output: <span class="OBS-A">Yeni gelişen nodül</span> saptanmamıştır
+Input: Akciğerlerde dağınık amfizem patern alanları izlendi
+Output: <span class="ANAT">Akciğerlerde</span> <span class="OBS-P">dağınık</span> <span class="OBS-P">amfizem</span> <span class="OBS-P">patern</span> <span class="ANAT">alanları</span> izlendi
+Input: Mediastinalde geçirilmiş cerrahiye bağlı fibrozis alanları
+Output: <span class="ANAT">Mediastinalde</span> <span class="IMP">geçirilmiş cerrahiye bağlı</span> <span class="OBS-P">fibrozis</span> <span class="ANAT">alanları</span>
+Input: Sol akciğer üst lob anterior segmentte izlenen parankimal fibrozis görünümü
+Output: <span class="ANAT">Sol akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">anterior segmentte</span> izlenen <span class="ANAT">parankimal</span> <span class="OBS-P">fibrozis görünümü</span>
+Input: Sol akciğerde küçülme gösteren, rezorbe olan nodül oluşumları
+Output: <span class="ANAT">Sol akciğerde</span> <span class="IMP">küçülme gösteren</span>, <span class="IMP">rezorbe olan</span> <span class="OBS-P">nodül</span> <span class="OBS-P">oluşumları</span>
+Input: Akciğerlerde amfizem paterni
+Output: <span class="ANAT">Akciğerlerde</span> <span class="OBS-P">amfizem paterni</span>
+Input: Sol akciğer bazalinde atelektazik değişiklikler
+Output: <span class="ANAT">Sol akciğer</span> <span class="ANAT">bazalinde</span> <span class="OBS-P">atelektazik değişiklikler</span>
+Input: Sağ üst lob azigos fissür ve lobu
+Output: <span class="ANAT">Sağ üst lob</span> <span class="ANAT">azigos fissür</span> ve <span class="ANAT">lobu</span>
+Input: Aterom plakları
+Output: <span class="OBS-P">Aterom plakları</span>
+Input: majör fissürde çekintiye neden olan 11x14 mm boyutunda spiküle konturlu eskiye göre duvarında kalınlaşma gözlenen içerisinde kavitasyon gelişen ve boyutunda artış izlenen satellit nodül izlenmektedir
+Output: <span class="ANAT">majör fissürde</span> <span class="OBS-P">çekintiye neden olan</span> <span class="OBS-P">11x14 mm</span> <span class="OBS-P">boyutunda</span> <span class="OBS-P">spiküle konturlu</span> <span class="IMP">eskiye göre</span> <span class="IMP">duvarında kalınlaşma gözlenen</span> <span class="IMP">içerisinde kavitasyon gelişen</span> ve <span class="IMP">boyutunda artış izlenen</span> <span class="OBS-P">satellit nodül</span> izlenmektedir
+Input: Sol kostal arkta geçirilmiş cerrahiye bağlı değişiklikler
+Output: <span class="ANAT">Sol kostal arkta</span> <span class="IMP">geçirilmiş cerrahiye bağlı</span> <span class="OBS-P">değişiklikler</span>
+Input: Anterior mediastende minimal timik remnant görünümü izlendi
+Output: <span class="ANAT">Anterior mediastende</span> <span class="OBS-P">minimal</span> <span class="ANAT">timik</span> <span class="OBS-P">remnant</span> <span class="OBS-P">görünümü</span> izlendi
+Input: Mediastinal ve hiler 1 cm'den küçük reaktif lenf nodları stabil yapıdadır
+Output: <span class="ANAT">Mediastinal</span> ve <span class="ANAT">hiler</span> <span class="OBS-P">1 cm'den</span> <span class="OBS-P">küçük</span> <span class="OBS-P">reaktif</span> <span class="OBS-P">lenf nodları</span> <span class="IMP">stabil</span> <span class="OBS-P">yapıdadır</span>
+Input: Sol akciğerde üst lobta anterior segment medialindeki subplevral nodülde anlamlı farklılık saptanmamış olup, 9x4,5 mm boyutunda ölçüldü
+Output: <span class="ANAT">Sol akciğerde</span> <span class="ANAT">üst lobta</span> <span class="ANAT">anterior segment</span> <span class="ANAT">medialindeki</span> <span class="ANAT">subplevral</span> <span class="OBS-P">nodülde</span> <span class="OBS-A">anlamlı farklılık</span> saptanmamış olup, <span class="OBS-P">9x4,5 mm</span> <span class="OBS-P">boyutunda</span> ölçüldü
+Input: Sekel fibrotik nodül ile uyumludur
+Output: <span class="OBS-P">Sekel</span> <span class="OBS-P">fibrotik</span> <span class="OBS-P">nodül</span> <span class="IMP">ile uyumludur</span>
+Input: Her iki akciğerde yeni gelişmiş nodül saptanmadı
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-A">yeni gelişmiş nodül</span> saptanmadı
+Input: Kitle ya da konsolidasyon alanı gözlenmemiştir
+Output: <span class="OBS-A">Kitle</span> ya da <span class="OBS-A">konsolidasyon</span> <span class="ANAT">alanı</span> gözlenmemiştir
+Input: Sol alt lob posterobazal segmentte minimal düzeyde dependan atelektaziler izlenmektedir
+Output: <span class="ANAT">Sol alt lob</span> <span class="ANAT">posterobazal segmentte</span> <span class="OBS-P">minimal düzeyde</span> <span class="OBS-P">dependan</span> <span class="OBS-P">atelektaziler</span> izlenmektedir
+Input: Sol akciğer üst lobta stabil fibrotik izlenimli nodül
+Output: <span class="ANAT">Sol akciğer</span> <span class="ANAT">üst lobta</span> <span class="IMP">stabil</span> <span class="OBS-P">fibrotik izlenimli</span> <span class="OBS-P">nodül</span>
+Input: Sol bazalde minimal atelektaziler
+Output: <span class="ANAT">Sol bazalde</span> <span class="OBS-P">minimal</span> <span class="OBS-P">atelektaziler</span>
+Input: Timik remnant ile uyumlu görünüm
+Output: <span class="ANAT">Timik</span> <span class="OBS-P">remnant</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">görünüm</span>
+Input: Mediastinal stabil reaktif lenf nodları
+Output: <span class="ANAT">Mediastinal</span> <span class="IMP">stabil</span> <span class="OBS-P">reaktif lenf nodları</span>
+Input: Ancak lezyonların çoğunun bu tetkikte kaviter forma dönüştüğü anlaşıldı
+Output: Ancak <span class="OBS-P">lezyonların</span> <span class="OBS-P">çoğunun</span> <span class="IMP">bu tetkikte</span> <span class="OBS-P">kaviter forma dönüştüğü</span> anlaşıldı
+Input: Her iki akciğer parenkiminde bu tetkikte kaviter form kazandığı anlaşılan multipl metastatik lezyonlar
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">parenkiminde</span> <span class="IMP">bu tetkikte</span> <span class="OBS-P">kaviter form kazandığı</span> <span class="OBS-P">anlaşılan</span> <span class="OBS-P">multipl</span> <span class="IMP">metastatik</span> <span class="OBS-P">lezyonlar</span>
+Input: çok sayıda metastatik lezyon
+Output: <span class="OBS-P">çok sayıda</span> <span class="IMP">metastatik</span> <span class="OBS-P">lezyon</span>
+Input: Mediastinal ve hiler lenf nodları
+Output: <span class="ANAT">Mediastinal</span> ve <span class="ANAT">hiler</span> <span class="OBS-P">lenf nodları</span>
+Input: Port kateteri
+Output: <span class="OBS-P">Port kateteri</span>
+Input: NOT: Tetkik sırasında Optiray 350/200 Flakon (Loversol) IV 100 ml noniyonik kontrast madde kullanılmıştır
+Output: NOT: Tetkik sırasında Optiray 350/200 Flakon (Loversol) IV 100 ml noniyonik kontrast madde kullanılmıştır
+Input: Sağ paratraekal milimetrik hava kisti mevcuttur
+Output: <span class="ANAT">Sağ paratraekal</span> <span class="OBS-P">milimetrik</span> <span class="OBS-P">hava kisti</span> mevcuttur
+Input: Bilateral pulmoner arter dallarında yeni incelemede gelişen akut masif trombüs görünümleri saptandı
+Output: <span class="ANAT">Bilateral</span> <span class="ANAT">pulmoner arter</span> <span class="ANAT">dallarında</span> yeni incelemede gelişen <span class="OBS-P">akut</span> <span class="OBS-P">masif</span> <span class="OBS-P">trombüs</span> <span class="OBS-P">görünümleri</span> saptandı
+Input: atelektazi-infarkt alanları izlendi
+Output: <span class="OBS-P">atelektazi</span>-<span class="OBS-P">infarkt</span> <span class="ANAT">alanları</span> izlendi
+Input: Pnömonik infiltrasyon, kitle ya da nodül saptanmadı
+Output: <span class="OBS-A">Pnömonik infiltrasyon</span>, <span class="OBS-A">kitle</span> ya da <span class="OBS-A">nodül</span> saptanmadı
+Input: Her iki akciğer parenkiminde stabil metastatik nodüller
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">parenkiminde</span> <span class="IMP">stabil</span> <span class="IMP">metastatik</span> <span class="OBS-P">nodüller</span>
+Input: Opere mesane ve kolon karsinomu tanıları ile takip edilen hastada
+Output: <span class="IMP">Opere</span> <span class="IMP">mesane ve kolon karsinomu tanıları</span> ile takip edilen hastada
+Input: sağ akciğerde önceki incelemede izlenen çok sayıda metastatik pulmoner nodülün kısmen progrese olduğu izlenmiş olup
+Output: <span class="ANAT">sağ akciğerde</span> <span class="IMP">önceki incelemede izlenen</span> <span class="OBS-P">çok sayıda</span> <span class="IMP">metastatik</span> <span class="ANAT">pulmoner</span> <span class="OBS-P">nodülün</span> <span class="IMP">kısmen progrese olduğu</span> izlenmiş olup
+Input: en belirgini sağ akciğer üst lobda 38 mm çapında ölçüldü
+Output: <span class="OBS-P">en belirgini</span> <span class="ANAT">sağ akciğer</span> <span class="ANAT">üst lobda</span> <span class="OBS-P">38 mm</span> <span class="OBS-P">çapında</span> ölçüldü
+Input: Bir önceki tetkikte sağ akciğerde tariflenen effüzyonun bir miktar regrese olduğu dikkati çekmiştir
+Output: Bir <span class="IMP">önceki tetkikte</span> <span class="ANAT">sağ akciğerde</span> tariflenen <span class="OBS-P">effüzyonun</span> <span class="IMP">bir miktar regrese olduğu</span> dikkati çekmiştir
+Input: Her iki hemitoraksta fissürlere de uzanımı seçilen ve yer yer lokülasyon gösteren plevral effüzyon dikkati çekmiştir
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">hemitoraksta</span> <span class="ANAT">fissürlere</span> de <span class="OBS-P">uzanımı seçilen</span> ve <span class="OBS-P">yer yer</span> <span class="OBS-P">lokülasyon gösteren</span> <span class="ANAT">plevral</span> <span class="OBS-P">effüzyon</span> dikkati çekmiştir
+Input: Bu aşamada aktif infiltrasyon düşünülmedi
+Output: Bu aşamada <span class="OBS-A">aktif</span> <span class="OBS-A">infiltrasyon</span> düşünülmedi
+Input: Takipte opere mesane ve kolon karsinomu
+Output: <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="IMP">mesane ve kolon karsinomu</span>
+Input: Sağ hemitoraksta ve sol hemitoraksta yer yer lokülasyon gösteren minimal plevral efüzyon
+Output: <span class="ANAT">Sağ hemitoraksta</span> ve <span class="ANAT">sol hemitoraksta</span> <span class="OBS-P">yer yer</span> <span class="OBS-P">lokülasyon</span> <span class="OBS-P">gösteren</span> <span class="OBS-P">minimal</span> <span class="ANAT">plevral</span> <span class="OBS-P">efüzyon</span>
+Input: Sağ akciğerde kısmen progrese metastatik pulmoner nodüller
+Output: <span class="ANAT">Sağ akciğerde</span> <span class="IMP">kısmen progrese</span> <span class="IMP">metastatik</span> <span class="ANAT">pulmoner</span> <span class="OBS-P">nodüller</span>
+Input: Asendan aortada anevrizmatik dilatasyon, torasik aortada aterosklerotik değişiklikler
+Output: <span class="ANAT">Asendan aortada</span> <span class="OBS-P">anevrizmatik dilatasyon</span>, <span class="ANAT">torasik aortada</span> <span class="OBS-P">aterosklerotik değişiklikler</span>
+Input: Kostalarda eski fraktür sekeli ile uyumlu kallus formasyonları
+Output: <span class="ANAT">Kostalarda</span> eski <span class="OBS-P">fraktür sekeli</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">kallus</span> <span class="OBS-P">formasyonları</span>
+Input: Ana pulmoner arter 30 mm çapında normalden hafif ektatiktir
+Output: <span class="ANAT">Ana pulmoner arter</span> <span class="OBS-P">30 mm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">normalden hafif ektatiktir</span>
+Input: Paratrakeal, aortikopulmoner, prevasküler, bilateral hiler, en büyükleri prevasküler mesafede 15x6 mm boyuta ve sağ hilusta 13x11 mm boyuta ulaşan birkaç lenf nodu gözlendi
+Output: <span class="ANAT">Paratrakeal</span>, <span class="ANAT">aortikopulmoner</span>, <span class="ANAT">prevasküler</span>, <span class="ANAT">bilateral</span> <span class="ANAT">hiler</span>, <span class="OBS-P">en büyükleri</span> <span class="ANAT">prevasküler mesafede</span> <span class="OBS-P">15x6 mm</span> <span class="OBS-P">boyuta</span> ve <span class="ANAT">sağ hilusta</span> <span class="OBS-P">13x11</span> mm <span class="OBS-P">boyuta</span> ulaşan <span class="OBS-P">birkaç</span> <span class="OBS-P">lenf nodu</span> gözlendi
+Input: Sağ akciğer alt lob anterior bazal segment bronşunu oblitere eden yaklaşık 43x35 mm boyutunda nodüler kitle lezyonu izlenmektedir
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">alt lob</span> <span class="ANAT">anterior bazal segment</span> <span class="ANAT">bronşunu</span> <span class="IMP">oblitere eden</span> yaklaşık <span class="OBS-P">43x35 mm</span> <span class="OBS-P">boyutunda</span> <span class="OBS-P">nodüler</span> <span class="OBS-P">kitle lezyonu</span> izlenmektedir
+Input: Lezyon periferinde subsegmenter atelektazi görünümü izlenmektedir
+Output: <span class="OBS-P">Lezyon</span> <span class="ANAT">periferinde</span> <span class="ANAT">subsegmenter</span> <span class="OBS-P">atelektazi görünümü</span> izlenmektedir
+Input: Lezyonun majör fissürü indente ettiği gözlendi
+Output: <span class="OBS-P">Lezyonun</span> <span class="ANAT">majör fissürü</span> <span class="IMP">indente ettiği</span> gözlendi.
+Input: Lezyonun identifikasyonuna yönelik toraks diffüzyon MRG ileri tetkiki ve bunun sonucuna göre transtorasik biyopsi önerilir
+Output: <span class="OBS-P">Lezyonun</span> identifikasyonuna yönelik <span class="IMP">toraks diffüzyon MRG ileri tetkiki</span> ve bunun sonucuna göre <span class="IMP">transtorasik biyopsi önerilir</span>
+Input: Sağ akciğerde orta lob lateral segmentte minör fissür komşuluğunda 4 mm çapında, sol akciğerde lingula süperior segmentte subplevral 3 mm çapında nonspesifik nodüller izlendi
+Output: <span class="ANAT">Sağ akciğerde</span> <span class="ANAT">orta lob</span> <span class="ANAT">lateral segmentte</span> <span class="ANAT">minör fissür</span> <span class="ANAT">komşuluğunda</span> <span class="OBS-P">4 mm</span> <span class="OBS-P">çapında</span>, <span class="ANAT">sol akciğerde</span> <span class="ANAT">lingula</span> <span class="ANAT">süperior segmentte</span> <span class="ANAT">subplevral</span> <span class="OBS-P">3 mm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">nonspesifik</span> <span class="OBS-P">nodüller</span> izlendi
+Input: İnsidental bulgu olarak tiroid glandı her iki lobunda en büyüğü 1 cm çapa ulaşan nodüller gözlenmektedir
+Output: İnsidental bulgu olarak <span class="ANAT">tiroid glandı</span> <span class="ANAT">her iki lobunda</span> <span class="OBS-P">en büyüğü</span> <span class="OBS-P">1 cm</span> <span class="OBS-P">çapa</span> ulaşan <span class="OBS-P">nodüller</span> gözlenmektedir
+Input: Sağ akciğer alt lob anterior bazal segment düzeyinde yerleşimli, evre T1 akciğer karsinomu düşündüren nodüler kitle lezyonu
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">alt lob</span> <span class="ANAT">anterior bazal segment</span> <span class="ANAT">düzeyinde</span> yerleşimli, <span class="IMP">evre T1</span> <span class="IMP">akciğer karsinomu</span> <span class="OBS-P">düşündüren</span> <span class="OBS-P">nodüler</span> <span class="OBS-P">kitle lezyonu</span>
+Input: Lezyon periferinde subsegmenter atelektazi
+Output: <span class="OBS-P">Lezyon</span> <span class="ANAT">periferinde</span> <span class="ANAT">subsegmenter</span> <span class="OBS-P">atelektazi</span>
+Input: Öncelikle segment bronşundan gelişmiş skuamoz hücreli karsinom ile uyumlu olabileceği düşünüldü
+Output: Öncelikle <span class="ANAT">segment bronşundan</span> gelişmiş <span class="OBS-U">skuamoz hücreli karsinom ile uyumlu olabileceği</span> düşünüldü
+Input: bir önceki tetkikte sağ akciğer üst lob düzeyinde sağ hiler bölgede tanımlı kitle lezyonu bu tetkikte izlenmedi
+Output: bir <span class="IMP">önceki tetkikte</span> <span class="ANAT">sağ akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">düzeyinde</span> <span class="ANAT">sağ hiler</span> <span class="ANAT">bölgede</span> tanımlı <span class="OBS-A">kitle lezyonu</span> <span class="IMP">bu tetkikte</span> izlenmedi
+Input: sağ akciğerde izlenen kitle lezyonunda bilateral akciğer metastazlarında ve mediastinal ve hiler metastatik lenfadenopatilerinde belirgin regresyon
+Output: <span class="ANAT">sağ akciğerde</span> izlenen <span class="OBS-P">kitle lezyonunda</span> <span class="ANAT">bilateral</span> <span class="ANAT">akciğer</span> <span class="OBS-P">metastazlarında</span> ve <span class="ANAT">mediastinal</span> ve <span class="ANAT">hiler</span> <span class="IMP">metastatik</span> <span class="OBS-P">lenfadenopatilerinde</span> <span class="OBS-P">belirgin </span><span class="IMP">regresyon</span>
+Input: Küçük hücreli akciğer karsinomu tanısı ile izlenen hastada
+Output: <span class="IMP">Küçük hücreli akciğer karsinomu tanısı</span> ile izlenen hastada
+Input: yaklaşık 28x17 mm boyutlarda nonspesifik yumuşak doku dansitesi kaydedilmiştir
+Output: yaklaşık <span class="OBS-P">28x17 mm</span> <span class="OBS-P">boyutlarda</span> <span class="OBS-P">nonspesifik</span> <span class="OBS-P">yumuşak doku</span> <span class="OBS-P">dansitesi</span> kaydedilmiştir
+Input: birbirine yakın komşulukta büyüğü 5 mm çaplı iki adet nodül kaydedilmiştir
+Output: birbirine yakın komşulukta <span class="OBS-P">büyüğü</span> <span class="OBS-P">5 mm</span> <span class="OBS-P">çaplı</span> <span class="OBS-P">iki adet</span> <span class="OBS-P">nodül</span> kaydedilmiştir
+Input: Bu tetkikte yeni gelişmiş 21 mm kalınlığa ulaşan perikardiyal effüzyon dikkati çekti
+Output: <span class="IMP">Bu tetkikte</span> <span class="IMP">yeni gelişmiş</span> <span class="OBS-P">21 mm</span> <span class="OBS-P">kalınlığa</span> ulaşan <span class="ANAT">perikardiyal</span> <span class="OBS-P">effüzyon</span> dikkati çekti
+Input: bir önceki tetkik ile karşılaştırıldığında izlenen metastatik lezyon sayı ve boyutlarında artış dikkati çekmiştir
+Output: bir <span class="IMP">önceki tetkik ile karşılaştırıldığında</span> izlenen <span class="IMP">metastatik</span> <span class="OBS-P">lezyon</span> <span class="IMP">sayı ve boyutlarında artış</span> dikkati çekmiştir
+Input: bilateral akciğer metastazlarında ve mediastinal ve hiler metastatik lenfadenopatilerinde belirgin regresyon
+Output: <span class="ANAT">bilateral</span> <span class="ANAT">akciğer</span> <span class="OBS-P">metastazlarında</span> ve <span class="ANAT">mediastinal</span> ve <span class="ANAT">hiler</span> <span class="IMP">metastatik</span> <span class="OBS-P">lenfadenopatilerinde</span> <span class="OBS-P">belirgin</span> <span class="IMP">regresyon</span>
+Input: Sağ akciğer üst lob düzeyinde iki adet milimetrik metastatik parenkimal nodül
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">düzeyinde</span> <span class="OBS-P">iki adet</span> <span class="OBS-P">milimetrik</span> <span class="IMP">metastatik</span> <span class="ANAT">parenkimal</span> <span class="OBS-P">nodül</span>
+Input: Bu tetkikte gelişmiş perikardiyal effüzyon
+Output: <span class="IMP">Bu tetkikte gelişmiş</span> <span class="ANAT">perikardiyal</span> <span class="OBS-P">effüzyon</span>
+Input: Kemik metastazlarında bir önceki tetkik ile karşılaştırıldığında sayı ve boyut artışı
+Output: <span class="ANAT">Kemik</span> <span class="OBS-P">metastazlarında</span> bir <span class="IMP">önceki tetkik ile karşılaştırıldığında</span> <span class="IMP">sayı ve boyut artışı</span>
+Input: hastada bir önceki tetkikte sağ akciğer üst lob düzeyinde sağ hiler bölgede tanımlı kitle lezyonu bu tetkikte izlenmedi
+Output: hastada bir <span class="IMP">önceki tetkikte</span> <span class="ANAT">sağ akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">düzeyinde</span> <span class="ANAT">sağ hiler</span> <span class="ANAT">bölgede</span> tanımlı <span class="OBS-A">kitle lezyonu</span> <span class="IMP">bu tetkikte</span> izlenmedi
+Input: paratrakeal düzeyde sağda yaklaşık 28x17 mm boyutlarda nonspesifik yumuşak doku dansitesi kaydedilmiştir
+Output: <span class="ANAT">paratrakeal</span> <span class="ANAT">düzeyde</span> <span class="ANAT">sağda</span> yaklaşık <span class="OBS-P">28x17 mm</span> <span class="OBS-P">boyutlarda</span> <span class="OBS-P">nonspesifik</span> <span class="OBS-P">yumuşak doku</span> <span class="OBS-P">dansitesi</span> kaydedilmiştir
+Input: sağ akciğer üst lob düzeyinde birbirine yakın komşulukta büyüğü 5 mm çaplı iki adet nodül kaydedilmiştir
+Output: <span class="ANAT">sağ akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">düzeyinde</span> birbirine yakın komşulukta <span class="OBS-P">büyüğü</span> <span class="OBS-P">5 mm</span> <span class="OBS-P">çaplı</span> <span class="OBS-P">iki adet</span> <span class="OBS-P">nodül</span> kaydedilmiştir
+Input: Sağ akciğer üst lob düzeyinde iki adet milimetrik metastatik parenkimal nodül
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">düzeyinde</span> <span class="OBS-P">iki adet</span> <span class="OBS-P">milimetrik</span> <span class="IMP">metastatik</span> <span class="ANAT">parenkimal</span> <span class="OBS-P">nodül</span>
+Input: sağ akciğer alt lobda süperior segment düzeyindeki kitle lezyonunun yeni incelemede progrese olduğu gözlenmekte
+Output: <span class="ANAT">sağ akciğer</span> <span class="ANAT">alt lobda</span> <span class="ANAT">süperior segment</span> <span class="ANAT">düzeyindeki</span> <span class="OBS-P">kitle lezyonunun</span> yeni incelemede <span class="IMP">progrese olduğu</span> gözlenmekte
+Input: Santrali kistik nekrotik vasıfta olarak gözlenmekte olup kitle lezyonunun göğüs duvarına invaze olduğu gözlenmektedir
+Output: <span class="ANAT">Santrali</span> <span class="OBS-P">kistik nekrotik</span> vasıfta olarak gözlenmekte olup <span class="OBS-P">kitle lezyonunun</span> <span class="ANAT">göğüs duvarına</span> <span class="IMP">invaze olduğu</span> gözlenmektedir
+Input: 6. ve 7. kotları posteriorda destrükte ettiği ve aynı seviyedeki transvers prosesleri de erezyona uğrattığı gözlenmektedir
+Output: <span class="ANAT">6. ve 7. kotları</span> <span class="ANAT">posteriorda</span> <span class="IMP">destrükte ettiği</span> ve aynı seviyedeki <span class="ANAT">transvers prosesleri</span> de <span class="IMP">erezyona uğrattığı</span> gözlenmektedir
+Input: interlobuler septal kalınlaşma alanları ve 4 mm boyutunda nodüller seçilmekte olup intralober metastas ile uyumlu olarak değerlendirildi
+Output: <span class="ANAT">interlobuler</span> <span class="ANAT">septal</span> <span class="OBS-P">kalınlaşma</span> <span class="ANAT">alanları</span> ve <span class="OBS-P">4 mm</span> <span class="OBS-P">boyutunda</span> <span class="OBS-P">nodüller</span> seçilmekte olup <span class="ANAT">intralober</span> <span class="IMP">metastas</span> <span class="IMP">ile uyumlu</span> olarak değerlendirildi
+Input: kitle lezyonu çevresinde lenfanjitik infiltrasyonu düşündüren bulgular
+Output: <span class="OBS-P">kitle lezyonu</span> <span class="OBS-P">çevresinde</span> <span class="OBS-P">lenfanjitik infiltrasyonu düşündüren bulgular</span>
+Input: kot destrüksiyonları ve sağ transvers proçes invazyonlarıyla uyumlu bulgular
+Output: <span class="ANAT">kot</span> <span class="IMP">destrüksiyonları</span> ve <span class="ANAT">sağ</span> <span class="ANAT">transvers proçes</span> <span class="IMP">invazyonlarıyla</span> <span class="OBS-U">uyumlu</span> <span class="OBS-P">bulgular</span>
+Input: Subkarinal progrese yapıda lenf nodu
+Output: <span class="ANAT">Subkarinal</span> <span class="IMP">progrese</span> <span class="OBS-P">yapıda</span> <span class="OBS-P">lenf nodu</span>
+Input: Diğer parankim alanlarında metastazı düşündürecek nodül saptanmadı
+Output: <span class="ANAT">Diğer parankim</span> <span class="ANAT">alanlarında</span> <span class="OBS-A">metastazı düşündürecek nodül</span> saptanmadı
+Input: Diğer bulgularda farklılık saptanmadı
+Output: Diğer bulgularda farklılık saptanmadı
+Input: Sağ akciğer alt ve orta lobektomizedir
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">alt ve orta</span> <span class="OBS-P">lobektomizedir</span>
+Input: Takipte opere akciğer karsinomu, sağ alt ve orta lobektomize
+Output: <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="IMP">akciğer karsinomu</span>, <span class="ANAT">sağ alt ve orta</span> <span class="OBS-P">lobektomize</span>
+Input: Mediasten ve kalpte hafif sağ şift
+Output: <span class="ANAT">Mediasten</span> ve <span class="ANAT">kalpte</span> <span class="OBS-P">hafif</span> <span class="OBS-P">sağ şift</span>
+Input: Takipte opere sol akciğer karsinomu
+Output: <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="ANAT">sol</span> <span class="IMP">akciğer karsinomu</span>
+Input: Sağ hemitoraksta hacim kaybı mediasten ve kalpte hafif sağ şift
+Output: <span class="ANAT">Sağ hemitoraksta</span> <span class="OBS-P">hacim kaybı</span> <span class="ANAT">mediasten</span> ve <span class="ANAT">kalpte</span> <span class="OBS-P">hafif</span> <span class="OBS-P">sağ şift</span>
+Input: Sağ humerus baş ve şaftında metalik fiksasyon materyalleri
+Output: <span class="ANAT">Sağ humerus</span> <span class="ANAT">baş ve şaftında</span> <span class="OBS-P">metalik</span> <span class="OBS-P">fiksasyon materyalleri</span>
+Input: litik, destrüktif kitle lezyonu saptanmamıştır
+Output: <span class="OBS-A">litik, destrüktif</span> <span class="OBS-A">kitle lezyonu</span> saptanmamıştır
+Input: nodülün hacmi 0.166 ml hesaplanmıştır
+Output: <span class="OBS-P">nodülün</span> <span class="OBS-P">hacmi</span> <span class="OBS-P">0.166 ml</span> hesaplanmıştır
+Input: Nodül içerisindeki solid komponentin boyutları 4.5x2.7 mm (Eski tetkikte 4.8x3.9 mm) boyutlarında ölçülmüş olup
+Output: <span class="OBS-P">Nodül</span> <span class="ANAT">içerisindeki</span> <span class="OBS-P">solid komponentin</span> <span class="OBS-P">boyutları</span> <span class="OBS-P">4.5x2.7 mm</span> (<span class="IMP">Eski tetkikte</span> <span class="OBS-P">4.8x3.9 mm</span>) <span class="OBS-P">boyutlarında</span> ölçülmüş olup
+Input: solid komponentinde genel boyutlarında hafif azalma bulunan çevresindeki buzlu cam dansitesi stabil olarak izlenen hafif düzensiz sınırlı nodül
+Output: <span class="OBS-P">solid komponentinde</span> <span class="IMP">genel boyutlarında hafif azalma bulunan</span> <span class="OBS-P">çevresindeki</span> <span class="OBS-P">buzlu cam dansitesi</span> <span class="IMP">stabil</span> olarak izlenen <span class="OBS-P">hafif düzensiz sınırlı</span> <span class="OBS-P">nodül</span>
+Input: Buna bağlı sağ akciğer volümünde azalma, mediasten ve kalpte hafif sağa şift görünümleri izlendi
+Output: Buna bağlı <span class="ANAT">sağ akciğer</span> <span class="OBS-P">volümünde azalma</span>, <span class="ANAT">mediasten</span> ve <span class="ANAT">kalpte</span> <span class="OBS-P">hafif</span> <span class="OBS-P">sağa şift</span> <span class="OBS-P">görünümleri</span> izlendi
+Input: Assenden aorta 37 mm. çapında ölçülmüş olup normal kalibrasyondadır
+Output: <span class="ANAT">Assenden aorta</span> <span class="OBS-P">37 mm.</span> <span class="OBS-P">çapında</span> ölçülmüş olup <span class="OBS-P">normal kalibrasyondadır</span>
+Input: Mediastinal lenf nodlarının nispeten küçüldükleri izlenmekte olup en belirginleri aortikopulmoner 8 mm çapında ölçüldü
+Output: <span class="ANAT">Mediastinal</span> <span class="OBS-P">lenf nodlarının</span> <span class="IMP">nispeten</span> <span class="IMP">küçüldükleri</span> izlenmekte olup <span class="OBS-P">en belirginleri</span> <span class="ANAT">aortikopulmoner</span> <span class="OBS-P">8 mm</span> <span class="OBS-P">çapında</span> ölçüldü
+Input: Akciğerlerde koah süreci ile uyumlu bulgular mevcuttur
+Output: <span class="ANAT">Akciğerlerde</span> <span class="OBS-P">koah süreci</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">bulgular</span> mevcuttur
+Input: Takipte opere akciğer karsinomu, sağ üst lobektomize
+Output: <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="IMP">akciğer karsinomu</span>, <span class="ANAT">sağ üst</span> <span class="OBS-P">lobektomize</span>
+Input: Yeni gelişmiş nodül veya pnömonik konsolidasyon alanı gözlenmedi
+Output: <span class="OBS-A">Yeni gelişmiş</span> <span class="OBS-A">nodül</span> veya <span class="OBS-A">pnömonik</span> <span class="OBS-A">konsolidasyon</span> <span class="ANAT">alanı</span> gözlenmedi
+Input: Sağ bazalde sekel plevral kalınlaşma görünümleri
+Output: <span class="ANAT">Sağ bazalde</span> <span class="OBS-P">sekel</span> <span class="ANAT">plevral</span> <span class="OBS-P">kalınlaşma</span> <span class="OBS-P">görünümleri</span>
+Input: tanımlanan lenf nodlarında minimal boyut artışı dikkati çekmiştir
+Output: tanımlanan <span class="OBS-P">lenf nodlarında</span> <span class="OBS-P">minimal</span> <span class="IMP">boyut artışı</span> dikkati çekmiştir
+Input: Sağ hemitporaksta sekel plevral kalınlaşma stabildir
+Output: <span class="ANAT">Sağ hemitporaksta</span> <span class="OBS-P">sekel</span> <span class="ANAT">plevral</span> <span class="OBS-P">kalınlaşma</span> <span class="IMP">stabildir</span>
+Input: eski tetkikte de izlenen minimal plevral kalınlaşma stabil olarak değerlendirilmiş olup sekel değişiklik lehine değerlendirilmiştir
+Output: <span class="IMP">eski tetkikte de izlenen</span> <span class="OBS-P">minimal</span> <span class="ANAT">plevral</span> <span class="OBS-P">kalınlaşma</span> <span class="IMP">stabil</span> olarak değerlendirilmiş olup <span class="OBS-U">sekel değişiklik</span> <span class="OBS-U">lehine değerlendirilmiştir</span>
+Input: Pulmoner konjesyon bulguları
+Output: <span class="ANAT">Pulmoner</span> <span class="OBS-P">konjesyon bulguları</span>
+Input: Her iki akciğerde hafif progresyon gösteren multipl metastatik kitle lezyonları
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="IMP">hafif progresyon gösteren</span> <span class="OBS-P">multipl</span> <span class="IMP">metastatik</span> <span class="OBS-P">kitle lezyonları</span>
+Input: sağ hemitorakstaki plevral effüzyon kalınlığı güncel incelemede 34 mm ( Eski tetkikte en kalın yerinde 33 mm) ölçülmüş olup stabildir
+Output: <span class="ANAT">sağ hemitorakstaki</span> <span class="ANAT">plevral</span> <span class="OBS-P">effüzyon</span> <span class="OBS-P">kalınlığı</span> <span class="IMP">güncel incelemede</span> <span class="OBS-P">34 mm</span> ( <span class="IMP">Eski tetkikte</span> <span class="OBS-P">en kalın yerinde</span> <span class="OBS-P">33 mm</span>) ölçülmüş olup <span class="IMP">stabildir</span>
+Input: hafif boyut artışı izlenen çok sayıda dağınık yerleşimli metastatik kitle lezyonu sebat etmektedir
+Output: <span class="IMP">hafif boyut artışı izlenen</span> <span class="OBS-P">çok sayıda</span> <span class="OBS-P">dağınık yerleşimli</span> <span class="IMP">metastatik</span> <span class="OBS-P">kitle lezyonu</span> <span class="IMP">sebat etmektedir</span>
+Input: Peritoneal karsinomatozis bulguları mevcuttur
+Output: <span class="IMP">Peritoneal karsinomatozis</span> <span class="OBS-P">bulguları</span> mevcuttur
+Input: İntraperitoneal progese yapıda asit görünümü
+Output: <span class="ANAT">İntraperitoneal</span> <span class="IMP">progese</span> <span class="OBS-P">yapıda</span> <span class="OBS-P">asit görünümü</span>
+Input: İnceleme alanına giren kesitlerde karaciğer sağ lobu yüzeyindeki ve periton duvarı üzerindeki metastatik lezyonların ve intraperitoneal serbest sıvının da progese olduğu izlenmektedir
+Output: İnceleme alanına giren kesitlerde <span class="ANAT">karaciğer</span> <span class="ANAT">sağ lobu</span> <span class="ANAT">yüzeyindeki</span> ve <span class="ANAT">periton duvarı</span> <span class="ANAT">üzerindeki</span> <span class="IMP">metastatik</span> <span class="OBS-P">lezyonların</span> ve <span class="ANAT">intraperitoneal</span> <span class="OBS-P">serbest sıvının da</span> <span class="IMP">progese olduğu</span> izlenmektedir
+Input: Nodüllerin en belirginin sağ akciğer orta lobda medial segmentte yerleşimli olanının 16 mm çapından 19 mm çapına progrese olduğu gözlendi
+Output: <span class="OBS-P">Nodüllerin</span> <span class="OBS-P">en belirginin</span> <span class="ANAT">sağ akciğer</span> <span class="ANAT">orta lobda</span> <span class="ANAT">medial segmentte</span> yerleşimli olanının <span class="OBS-P">16 mm</span> <span class="OBS-P">çapından</span> <span class="OBS-P">19 mm</span> <span class="OBS-P">çapına</span> <span class="IMP">progrese olduğu</span> gözlendi
+Input: Akciğerlerdeki metastatik nodüllerde boyutsal progresyon
+Output: <span class="ANAT">Akciğerlerdeki</span> <span class="IMP">metastatik</span> <span class="OBS-P">nodüllerde</span> <span class="IMP">boyutsal progresyon</span>
+Input: Karaciğer sağ loba komşuluğunda metastatik implantlar
+Output: <span class="ANAT">Karaciğer sağ loba</span> <span class="ANAT">komşuluğunda</span> <span class="IMP">metastatik</span> <span class="OBS-P">implantlar</span>
+Input: nodüllerin boyut ve sayısı progresyon göstermiştir
+Output: <span class="OBS-P">nodüllerin</span> <span class="IMP">boyut ve sayısı progresyon göstermiştir</span>
+Input: Plevral effüzyon bu incelemede artış göstermiştir
+Output: <span class="ANAT">Plevral</span> <span class="OBS-P">effüzyon</span> bu incelemede <span class="IMP">artış göstermiştir</span>
+Input: Kalp büyüklüğü normaldir
+Output: <span class="ANAT">Kalp</span> <span class="OBS-P">büyüklüğü</span> <span class="OBS-P">normaldir</span>
+Input: Mediastinal en büyüğü sağ prekarinal 13x7 mm boyutlarında ölçülen birkaç adet lenf nodu mevcut
+Output: <span class="ANAT">Mediastinal</span> <span class="OBS-P">en büyüğü</span> <span class="ANAT">sağ prekarinal</span> <span class="OBS-P">13x7 mm</span> <span class="OBS-P">boyutlarında</span> ölçülen <span class="OBS-P">birkaç adet</span> <span class="OBS-P">lenf nodu</span> mevcut
+Input: Vertebra korpuslarında T1, T4, T6, T11 ve L1 vertebralarındaki eski sklerotik metastazlarda farklılık saptanmadı
+Output: <span class="ANAT">Vertebra</span> <span class="ANAT">korpuslarında</span> <span class="ANAT">T1</span>, <span class="ANAT">T4</span>, <span class="ANAT">T6</span>, <span class="ANAT">T11</span> ve <span class="ANAT">L1</span> <span class="ANAT">vertebralarındaki</span> eski <span class="OBS-A">sklerotik metastazlarda farklılık</span> saptanmadı
+Input: Takipte akciğer karsinomu
+Output: <span class="IMP">Takipte</span> <span class="IMP">akciğer karsinomu</span>
+Input: Asendan aortada minimal osteofit formasyonu
+Output: <span class="ANAT">Asendan aortada</span> <span class="OBS-P">minimal</span> <span class="OBS-P">osteofit</span> <span class="OBS-P">formasyonu</span>
+Input: Her iki akciğerde pulmoner fibrozis paterni sebat etmektedir
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="ANAT">pulmoner</span> <span class="OBS-P">fibrozis paterni</span> <span class="IMP">sebat etmektedir</span>
+Input: Her iki akciğerde atelektaziler
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-P">atelektaziler</span>
+Input: metastatik lezyonların boyut ve sayılarında belirgin farklılık saptanmadı
+Output: <span class="IMP">metastatik</span> <span class="OBS-P">lezyonların</span> <span class="OBS-A">boyut ve sayılarında belirgin farklılık</span> saptanmadı
+Input: En büyüğü sağ akciğer orta lobda izlenen ve 25x24 mm boyutlarında ölçülen multipl metastatik nodüller mevcuttur
+Output: <span class="OBS-P">En büyüğü</span> <span class="ANAT">sağ akciğer</span> <span class="ANAT">orta lobda</span> izlenen ve <span class="OBS-P">25x24 mm</span> <span class="OBS-P">boyutlarında</span> ölçülen <span class="OBS-P">multipl</span> <span class="IMP">metastatik</span> <span class="OBS-P">nodüller</span> mevcuttur
+Input: Tetkik 2015 tarihli Toraks BT ve PET BT tetkikleri ile birlikte değerlendirilmiştir
+Output: Tetkik 2015 tarihli Toraks BT ve PET BT tetkikleri ile birlikte değerlendirilmiştir
+Input: Mediastinal ana vasküler yapıların kalibrasyonları normal sınırlarda olup lümenleri patenttir
+Output: <span class="ANAT">Mediastinal</span> <span class="ANAT">ana vasküler yapıların</span> <span class="OBS-P">kalibrasyonları</span> <span class="OBS-P">normal</span> sınırlarda olup <span class="ANAT">lümenleri</span> <span class="OBS-P">patenttir</span>
+Input: Toraks BT ve PET BT tetkikleri ile birlikte değerlendirilmiştir
+Output: Toraks BT ve PET BT tetkikleri ile birlikte değerlendirilmiştir
+Input: Toraks BT ve PET BT ile birlikte değerlendirildiğinde
+Output: Toraks BT ve PET BT ile birlikte değerlendirildiğinde
+Input: Toraks BT ile karşılaştırıldığında
+Output: Toraks BT ile karşılaştırıldığında
+Input: bir önceki Toraks BT tetkikinde
+Output: bir <span class="IMP">önceki Toraks BT tetkikinde</span>
+Input: PET BT tetkikinde pozitif tutulum gösteren
+Output: <span class="IMP">PET BT tetkikinde pozitif tutulum gösteren</span>
+Input: bir önceki toraks BT tetkikinde ve PET BT tetkikinde de izlenen
+Output: bir <span class="IMP">önceki toraks BT tetkikinde ve PET BT tetkikinde de izlenen</span>
+Input: PET BT tetkikinde tutulum göstermeyen
+Output: <span class="IMP">PET BT tetkikinde tutulum göstermeyen</span>
+Input: bir önceki Toraks BT tetkikinde boyutları yaklaşık
+Output: bir <span class="IMP">önceki Toraks BT tetkikinde</span> <span class="OBS-P">boyutları</span> yaklaşık
+Input: boyutlarında azalma izlenen kitle lezyonu
+Output: <span class="IMP">boyutlarında azalma izlenen</span> <span class="OBS-P">kitle lezyonu</span>
+Input: Sol akciğer üst lob apikoposterior segmentektomizedir
+Output: <span class="ANAT">Sol akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">apikoposterior</span> <span class="OBS-P">segmentektomizedir</span>
+Input: Segmentektomi lojunda postoperatif değişiklikler izlenmiştir
+Output: <span class="ANAT">Segmentektomi lojunda</span> <span class="OBS-P">postoperatif değişiklikler</span> izlenmiştir
+Input: Tanımlanan nodülün takibi önerilir
+Output: Tanımlanan <span class="IMP">nodülün takibi önerilir</span>
+Input: Hafif hiatal herni
+Output: <span class="OBS-P">Hafif</span> <span class="OBS-P">hiatal herni</span>
+Input: segmentektomi cerrahisine bağlı postoperatif sekel değişiklikler ve cerrahi materyaller izlenmiştir
+Output: <span class="IMP">segmentektomi cerrahisine bağlı</span> <span class="OBS-P">postoperatif</span> <span class="OBS-P">sekel değişiklikler</span> ve <span class="OBS-P">cerrahi materyaller</span> izlenmiştir
+Input: ön planda round atelektazi olduğu düşünülen nodüler görünüm dikkati çekmiştir
+Output: ön planda <span class="OBS-U">round atelektazi olduğu düşünülen</span> <span class="OBS-P">nodüler görünüm</span> dikkati çekmiştir
+Input: Sağ meme total mastektomize ve sağ memede protez
+Output: <span class="ANAT">Sağ meme</span> <span class="OBS-P">total mastektomize</span> ve <span class="ANAT">sağ memede</span> <span class="OBS-P">protez</span>
+Input: Sağ akciğer anterior segmentte radyoterapiye sekonder minimal fibrozis bulguları
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">anterior segmentte</span> <span class="IMP">radyoterapiye sekonder</span> <span class="OBS-P">minimal</span> <span class="OBS-P">fibrozis bulguları</span>
+Input: Kontrastsız kesitlerde mediasten lenf nodları ve hiler bölgeler detaylı olarak değerlendirilemedi
+Output: <span class="OBS-U">Kontrastsız kesitlerde mediasten lenf nodları ve hiler bölgeler detaylı olarak değerlendirilemedi</span>
+Input: Sağ aksilla düzeyinde sütur materyallerine komşu, yoğun içerikli sıvı dansitesinde izlenen lezyon
+Output: <span class="ANAT">Sağ aksilla</span> <span class="ANAT">düzeyinde</span> sütur materyallerine komşu, <span class="OBS-P">yoğun içerikli</span> <span class="OBS-P">sıvı dansitesinde</span> izlenen <span class="OBS-P">lezyon</span>
+Input: kontraslı meme US inceleme
+Output: <span class="IMP">kontraslı meme US inceleme</span>
+Input: kontraslı BT veya PET BT
+Output: <span class="IMP">kontraslı BT veya PET BT</span>
+Input: plevra ile sınırlı
+Output: <span class="ANAT">plevra</span> <span class="OBS-P">ile sınırlı</span>
+Input: destrüksiyon ve ekspansiyona sebep olan geniş boyutlu metastatik kitle lezyonu
+Output: <span class="IMP">destrüksiyon</span> ve <span class="IMP">ekspansiyona</span> <span class="IMP">sebep olan</span> geniş boyutlu <span class="IMP">metastatik</span> <span class="OBS-P">kitle lezyonu</span>
+Input: bronşları sarıp invaze eden malign karekterli geniş boyutlu kitle lezyonu
+Output: <span class="ANAT">bronşları</span> <span class="IMP">sarıp invaze eden</span> <span class="IMP">malign karekterli</span> <span class="OBS-P">geniş boyutlu</span> <span class="OBS-P">kitle lezyonu</span>
+Input: Trakea lümeninde endotrakeal entübasyon tüpü izlenmiştir
+Output: <span class="ANAT">Trakea</span> <span class="ANAT">lümeninde</span> <span class="OBS-P">endotrakeal entübasyon tüpü</span> izlenmiştir
+Input: aspirasyon pnömonisi açısından anlamlı bulunmuştur
+Output: <span class="OBS-U">aspirasyon pnömonisi açısından anlamlı</span> bulunmuştur
+Input: sekel değişiklik olduğu düşünülen retiküler dansite artımları dikkati çekmiştir
+Output: <span class="OBS-U">sekel değişiklik olduğu düşünülen</span> <span class="OBS-P">retiküler</span> <span class="OBS-P">dansite artımları</span> dikkati çekmiştir
+Input: silik sınırlı yamasal buzlu cam dansitesinde tomurcuklanmış ağaç paterninde pnömonik infiltrasyon alanları izlenmiş olup aspirasyon pnömonisi açısından anlamlı bulunmuştur
+Output: <span class="OBS-P">silik sınırlı</span> <span class="OBS-P">yamasal</span> <span class="OBS-P">buzlu cam dansitesinde</span> <span class="OBS-P">tomurcuklanmış ağaç paterninde</span> <span class="OBS-P">pnömonik infiltrasyon</span> <span class="ANAT">alanları</span> izlenmiş olup <span class="OBS-U">aspirasyon pnömonisi açısından anlamlı</span> bulunmuştur
+Input: evantrasyona bağlı olduğu düşünülen
+Output: <span class="OBS-U">evantrasyona bağlı olduğu düşünülen</span>
+Input: ( Bronşit ? )
+Output: ( <span class="OBS-U">Bronşit ?</span> )
+Input: Bilateral masif plevral effüzyon
+Output: <span class="ANAT">Bilateral</span> <span class="OBS-P">masif</span> <span class="ANAT">plevral</span> <span class="OBS-P">effüzyon</span>
+Input: en kalın yerinde 6.5 cm ölçülen bilateral plevral effüzyon izlendi
+Output: <span class="OBS-P">en kalın yerinde</span> <span class="OBS-P">6.5 cm</span> ölçülen <span class="ANAT">bilateral</span> <span class="ANAT">plevral</span> <span class="OBS-P">effüzyon</span> izlendi
+Input: 2.2 cm çapında amfizematö bül formasyonu izlendi
+Output: <span class="OBS-P">2.2 cm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">amfizematö</span> <span class="OBS-P">bül</span> <span class="OBS-P">formasyonu</span> izlendi
+Input: Her iki akciğerde pulmoner konjesyon ile uyumlu intersisyel ödem izlendi
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-P">pulmoner konjesyon</span> <span class="IMP">ile uyumlu</span> <span class="ANAT">intersisyel</span> <span class="OBS-P">ödem</span> izlendi
+Input: Pulmoner konusta ektazi
+Output: <span class="ANAT">Pulmoner</span> <span class="ANAT">konusta</span> <span class="OBS-P">ektazi</span>
+Input: Sol akciğerde alt lob süperiorda amfizematö bül
+Output: <span class="ANAT">Sol akciğerde</span> <span class="ANAT">alt lob</span> <span class="ANAT">süperiorda</span> <span class="OBS-P">amfizematö bül</span>
+Input: kardiyomegali
+Output: <span class="OBS-P">kardiyomegali</span>
+Input: santral venöz katetere ait görünüm
+Output: <span class="ANAT">santral</span> <span class="OBS-P">venöz katetere</span> <span class="OBS-P">ait görünüm</span>
+Input: Baş-boyun bölgesi kesitlerinde
+Output: <span class="ANAT">Baş-boyun</span> <span class="ANAT">bölgesi</span> kesitlerinde
+Input: Anterior kesiminde belirgin olmak üzere vokal kordda FDG tutulumu gözlenmektedir
+Output: <span class="ANAT">Anterior</span> <span class="ANAT">kesiminde</span> <span class="OBS-P">belirgin</span> olmak üzere <span class="ANAT">vokal kordda</span> <span class="OBS-P">FDG tutulumu</span> gözlenmektedir
+Input: ilaç toksisitesine bağlı olabileceği düşünülmüştür
+Output: <span class="OBS-U">ilaç toksisitesine bağlı olabileceği düşünülmüştür</span>
+Input: Ancak her iki hilus inceleme kontrastsız olduğu için optimal değerlendirilememiştir
+Output: Ancak <span class="ANAT">her iki</span> <span class="ANAT">hilus</span> <span class="OBS-U">inceleme kontrastsız olduğu için optimal değerlendirilememiştir</span>
+Input: Sağ parakardiyak yastıkta büyümüş lenf nodu
+Output: <span class="ANAT">Sağ</span> <span class="ANAT">parakardiyak yastıkta</span> <span class="IMP">büyümüş</span> <span class="OBS-P">lenf nodu</span>
+Input: Tanımlanan diğer BT bulgularında anlamlı farklılık izlenmedi
+Output: Tanımlanan diğer BT bulgularında anlamlı farklılık izlenmedi
+Input: Tanımlanan diğer BT bulgularında anlamlı farklılık saptanmamıştır
+Output: Tanımlanan diğer BT bulgularında anlamlı farklılık saptanmamıştır
+Input: eski tetkik ile kıyaslandığında anlamlı farklılık saptanmadı
+Output: eski tetkik ile kıyaslandığında anlamlı farklılık saptanmadı
+Input: Solda plevral mayii
+Output: <span class="ANAT">Solda</span> <span class="ANAT">plevral</span> <span class="OBS-P">mayii</span>
+Input: önceki tetkikte 22 mm
+Output: <span class="IMP">önceki tetkikte</span> <span class="OBS-P">22 mm</span>
+Input: Sağ juguler venöz kateter sağ atriumda sonlanmaktadır
+Output: <span class="ANAT">Sağ</span> <span class="ANAT">juguler</span> <span class="OBS-P">venöz kateter</span> <span class="ANAT">sağ</span> <span class="ANAT">atriumda</span> <span class="OBS-P">sonlanmaktadır</span>
+Input: Lümen içi trombüs materyali saptanmamıştır
+Output: <span class="ANAT">Lümen içi</span> <span class="OBS-A">trombüs materyali</span> saptanmamıştır
+Input: birleşme eğilimi gösteren konsolidasyon alanları dikkati çekmiştir
+Output: <span class="OBS-P">birleşme eğilimi gösteren</span> <span class="OBS-P">konsolidasyon</span> <span class="ANAT">alanları</span> dikkati çekmiştir
+Input: Kalp boşluk boyutlarında artış
+Output: <span class="ANAT">Kalp</span> <span class="ANAT">boşluk</span> <span class="OBS-P">boyutlarında artış</span>
+Input: Kalp boşluk boyutları artmıştır
+Output: <span class="ANAT">Kalp</span> <span class="ANAT">boşluk</span> <span class="OBS-P">boyutları artmıştır</span>
+Input: Akciğer parankiminde pnömonik infiltrasyon bulguları
+Output: <span class="ANAT">Akciğer</span> <span class="ANAT">parankiminde</span> <span class="OBS-P">pnömonik infiltrasyon bulguları</span>
+Input: her iki hemitoraksda en derin yerinde sağda 57 mm, solda en derin yerinde 32 mm ölçülen plevral effüzyon
+Output: <span class="ANAT">her iki</span> <span class="ANAT">hemitoraksda</span> <span class="OBS-P">en derin yerinde</span> <span class="ANAT">sağda</span> <span class="OBS-P">57 mm</span>, <span class="ANAT">solda</span> <span class="OBS-P">en derin yerinde</span> <span class="OBS-P">32 mm</span> ölçülen <span class="ANAT">plevral</span> <span class="OBS-P">effüzyon</span>
+Input: Diğer bulgularda farklılık gözlenmedi
+Output: Diğer bulgularda farklılık gözlenmedi
+Input: Hastanın metastatik sigmoid kolon Ca nedeniyle takipte olduğu anlaşılmıştır
+Output: Hastanın <span class="IMP">metastatik</span> <span class="IMP">sigmoid kolon Ca</span> <span class="IMP">nedeniyle</span> <span class="IMP">takipte</span> olduğu anlaşılmıştır
+Input: intralober yayılımı düşündüren intersital infiltrasyon
+Output: <span class="ANAT">intralober</span> <span class="OBS-P">yayılımı düşündüren</span> <span class="ANAT">intersital</span> <span class="OBS-P">infiltrasyon</span>
+Input: parietal plevraya kadar uzanım gösteren heterojen kitle lezyonu dikkati çekmiştir
+Output: <span class="ANAT">parietal plevraya</span> <span class="OBS-P">kadar</span> <span class="OBS-P">uzanım gösteren</span> <span class="OBS-P">heterojen</span> <span class="OBS-P">kitle lezyonu</span> dikkati çekmiştir
+Input: Mediastinal ve hiler lenf nodları stabil izlenim vermekte
+Output: <span class="ANAT">Mediastinal</span> ve <span class="ANAT">hiler</span> <span class="OBS-P">lenf nodları</span> <span class="IMP">stabil</span> <span class="OBS-P">izlenim</span> vermekte
+Input: Mediastinal ve hiler stabil lenf nodları
+Output: <span class="ANAT">Mediastinal</span> ve <span class="ANAT">hiler</span> <span class="IMP">stabil</span> <span class="OBS-P">lenf nodları</span>
+Input: Diğer bulgularda interval değişiklik saptanmamıştır
+Output: Diğer bulgularda interval değişiklik saptanmamıştır
+Input: Sağ plevral effüzyon
+Output: <span class="ANAT">Sağ</span> <span class="ANAT">plevral</span> <span class="OBS-P">effüzyon</span>
+Input: farklılık saptanmayan eski sklerotik metastatik odaklar
+Output: <span class="IMP">farklılık saptanmayan</span> eski <span class="OBS-P">sklerotik</span> <span class="IMP">metastatik</span> <span class="OBS-P">odaklar</span>
+Input: yeni gelişmiş lenfanjitis karsinomatoza görünümü
+Output: <span class="IMP">yeni gelişmiş</span> <span class="OBS-P">lenfanjitis karsinomatoza</span> <span class="OBS-P">görünümü</span>
+Input: herni düzeyinde duvar kalınlığı belirgin olarak artmıştır
+Output: <span class="OBS-P">herni</span> <span class="ANAT">düzeyinde</span> <span class="ANAT">duvar</span> <span class="OBS-P">kalınlığı</span> <span class="OBS-P">belirgin</span> olarak <span class="OBS-P">artmıştır</span>
+Input: yaygın intersisyel kalınlaşma görünümlerinin geliştiği gözlendi
+Output: <span class="OBS-P">yaygın</span> <span class="ANAT">intersisyel</span> <span class="OBS-P">kalınlaşma</span> <span class="OBS-P">görünümlerinin</span> <span class="IMP">geliştiği</span> gözlendi
+Input: nekroza sekonder hipodens kistik görünüm
+Output: <span class="IMP">nekroza sekonder</span> <span class="OBS-P">hipodens</span> <span class="OBS-P">kistik</span> <span class="OBS-P">görünüm</span>
+Input: metastatik lezyon nodül saptanmadı
+Output: <span class="OBS-A">metastatik lezyon nodül</span> saptanmadı
+Input: ekstratorasik metastatik lezyon izlendi
+Output: <span class="ANAT">ekstratorasik</span> <span class="IMP">metastatik</span> <span class="OBS-P">lezyon</span> izlendi
+Input: Bu düzeyde 9. kotta destrüksiyona yol açtığı gözlenmektedir
+Output: <span class="ANAT">Bu düzeyde</span> <span class="ANAT">9. kotta</span> <span class="IMP">destrüksiyona yol açtığı</span> gözlenmektedir
+Input: invazyona bağlı destrüksiyon görünümü
+Output: <span class="IMP">invazyona bağlı</span> <span class="IMP">destrüksiyon</span> <span class="OBS-P">görünümü</span>
+Input: yaygın sentrilobüler amfizematöz değişiklikler dikkati çekmiştir
+Output: <span class="OBS-P">yaygın</span> <span class="ANAT">sentrilobüler</span> <span class="OBS-P">amfizematöz değişiklikler</span> dikkati çekmiştir
+Input: boyut ve dansitesinde azalma izlenen dansite artımları dikkati çekmiştir
+Output: <span class="IMP">boyut ve dansitesinde azalma izlenen</span> <span class="IMP">dansite artımları</span> dikkati çekmiştir
+Input: Sağdan girişli santral venöz katetere ait görünüm izlenmektedir
+Output: <span class="ANAT">Sağdan girişli</span> <span class="ANAT">santral</span> <span class="OBS-P">venöz katetere</span> <span class="OBS-P">ait görünüm</span> izlenmektedir
+Input: fokal FDG tutulumu gözlenmektedir (SUVmax:8,3)
+Output: <span class="OBS-P">fokal FDG tutulumu</span> gözlenmektedir (<span class="OBS-P">SUVmax:8,3</span>)
+Input: santrali ametabolik konglomere lenf nodları
+Output: <span class="ANAT">santrali</span> <span class="OBS-P">ametabolik</span> <span class="OBS-P">konglomere</span> <span class="OBS-P">lenf nodları</span>
+Input: Trakea, her iki ana bronş normaldir
+Output: <span class="ANAT">Trakea</span>, <span class="ANAT">her iki</span> <span class="ANAT">ana bronş</span> <span class="OBS-P">normaldir</span>
+Input: metastazlara ait olduğu düşünülen sklerotik nodüler lezyonlar
+Output: <span class="OBS-U">metastazlara ait olduğu düşünülen</span> <span class="OBS-P">sklerotik</span> <span class="OBS-P">nodüler</span> <span class="OBS-P">lezyonlar</span>
+Input: Takipte opere akciğer Ca
+Output: <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="IMP">akciğer Ca</span>
+Input: uygun tedavi sonrasında kontrol tetkik önerilir
+Output: <span class="IMP">uygun tedavi sonrasında kontrol tetkik önerilir</span>
+Input: bu tetkikte 14 mm ölçülen hipodens nodül
+Output: <span class="IMP">bu tetkikte</span> <span class="OBS-P">14 mm</span> ölçülen <span class="OBS-P">hipodens</span> <span class="OBS-P">nodül</span>
+Input: Aortada aterosklerotik duvar değişiklikleri izlenmiştir
+Output: <span class="ANAT">Aortada</span> <span class="OBS-P">aterosklerotik</span> <span class="ANAT">duvar</span> <span class="OBS-P">değişiklikleri</span> izlenmiştir
+Input: Sol hemitoraksta önceki tetkikte izlenmeyen plevral effüzyon mevcuttur
+Output: <span class="ANAT">Sol hemitoraksta</span> <span class="IMP">önceki tetkikte izlenmeyen</span> <span class="ANAT">plevral</span> <span class="OBS-P">effüzyon</span> mevcuttur
+Input: mediasten hafif sola deviye görünümdedir
+Output: <span class="ANAT">mediasten</span> <span class="OBS-P">hafif</span> <span class="OBS-P">sola deviye</span> <span class="OBS-P">görünümdedir</span>
+Input: Mediasten ve kalpte sola yer değiştirme dikkati çekti
+Output: <span class="ANAT">Mediasten</span> ve <span class="ANAT">kalpte</span> <span class="OBS-P">sola yer değiştirme</span> dikkati çekti
+Input: bronşlar yer yer oblitere görünümdedir
+Output: <span class="ANAT">bronşlar</span> <span class="OBS-P">yer yer</span> <span class="IMP">oblitere</span> <span class="OBS-P">görünümdedir</span>
+Input: büyüğü subkarinada 14x10 mm boyutta ölçülen lenf nodları
+Output: <span class="OBS-P">büyüğü</span> <span class="ANAT">subkarinada</span> <span class="OBS-P">14x10 mm</span> <span class="OBS-P">boyutta</span> ölçülen <span class="OBS-P">lenf nodları</span>
+Input: Sağ hemitoraksta biyopsi yapılan alandan kaynaklanan hafif pnömotoraks izlenmiştir
+Output: <span class="ANAT">Sağ hemitoraksta</span> <span class="IMP">biyopsi yapılan alandan kaynaklanan</span> <span class="OBS-P">hafif pnömotoraks</span> izlenmiştir
+Input: Sağ hemitoraksta eski tetkikte izlenmeyen plevral sıvı izlendi
+Output: <span class="ANAT">Sağ hemitoraksta</span> <span class="IMP">eski tetkikte izlenmeyen</span> <span class="ANAT">plevral</span> <span class="OBS-P">sıvı</span> izlendi
+Input: ayrıca peribronşial kalınlaşmalar mevcuttur
+Output: ayrıca <span class="ANAT">peribronşial</span> <span class="OBS-P">kalınlaşmalar</span> mevcuttur
+Input: Her iki akciğerde eski tetkikte seçilemeyen intraparankimal nodül izlendi
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="IMP">eski tetkikte seçilemeyen</span> <span class="ANAT">intraparankimal</span> <span class="OBS-P">nodül</span> izlendi
+Input: Trakea orta hattadır
+Output: <span class="ANAT">Trakea</span> <span class="OBS-P">orta hattadır</span>
+Input: Sol meme dokusu izlenmedi (opere)
+Output: <span class="ANAT">Sol meme</span> <span class="ANAT">dokusu</span> <span class="OBS-P">izlenmedi</span> (<span class="IMP">opere</span>)
+Input: Torakal omurgada spondiloz bulguları izlenmektedir
+Output: <span class="ANAT">Torakal</span> <span class="ANAT">omurgada</span> <span class="OBS-P">spondiloz bulguları</span> izlenmektedir
+Input: subplevral yağ doku ile uyumlu 7.5 mm çapında nodüler görünüm izlenmektedir
+Output: <span class="ANAT">subplevral</span> <span class="OBS-P">yağ doku</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">7.5 mm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">nodüler görünüm</span> izlenmektedir
+Input: Varsa eski BT'ler ile karşılaştırılması önerilir
+Output: Varsa <span class="IMP">eski BT'ler ile karşılaştırılması önerilir</span>
+Input: Mediastende ve hiler düzeylerde
+Output: <span class="ANAT">Mediastende</span> ve <span class="ANAT">hiler</span> <span class="ANAT">düzeylerde</span>
+Input: Hemotoraks-pnömotoraks izlenmemiştir
+Output: <span class="OBS-U">Hemotoraks</span>-<span class="OBS-A">pnömotoraks</span> izlenmemiştir
+Input: mide kardiya düzeyinde rekürren kitle imajının geliştiği dikkati çekmektedir
+Output: <span class="ANAT">mide</span> <span class="ANAT">kardiya</span> <span class="ANAT">düzeyinde</span> <span class="OBS-P">rekürren kitle imajının</span> <span class="IMP">geliştiği</span> dikkati çekmektedir
+Input: Normal sınırlarda toraks BT incelemesi
+Output: Normal sınırlarda toraks BT incelemesi
+Input: Normal sınırlarda toraks BT tetkiki
+Output: Normal sınırlarda toraks BT tetkiki
+Input: rekürren kitle imajı ile uyumlu görünüm
+Output: <span class="OBS-P">rekürren kitle imajı</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">görünüm</span>
+Input: Akciğer parankim alanlarında dağınık yerleşimli sağ orta lob lateral segment düzeyinde belirginleşen infiltrasyonlar izlendi
+Output: <span class="ANAT">Akciğer</span> <span class="ANAT">parankim alanlarında</span> <span class="OBS-P">dağınık yerleşimli</span> <span class="ANAT">sağ</span> <span class="ANAT">orta lob</span> <span class="ANAT">lateral segment</span> <span class="ANAT">düzeyinde</span> <span class="OBS-P">belirginleşen</span> <span class="OBS-P">infiltrasyonlar</span> izlendi
+Input: oval şekilli büyümüş lenf nodları izlenmiştir
+Output: <span class="OBS-P">oval şekilli</span> <span class="IMP">büyümüş</span> <span class="OBS-P">lenf nodları</span> izlenmiştir
+Input: Sağ diyafram posteriorda milimetrik defekt ve abdominal yağlı dokunun toraksa hafif herniasyonu dikkati çekmiştir
+Output: <span class="ANAT">Sağ diyafram</span> <span class="ANAT">posteriorda</span> <span class="OBS-P">milimetrik</span> <span class="OBS-P">defekt</span> ve <span class="ANAT">abdominal</span> <span class="OBS-P">yağlı dokunun</span> <span class="ANAT">toraksa</span> <span class="OBS-P">hafif</span> <span class="OBS-P">herniasyonu</span> dikkati çekmiştir
+Input: ayırıcı tanıda ön planda viral pnömoni düşünülmüştür
+Output: ayırıcı tanıda ön planda <span class="OBS-U">viral pnömoni düşünülmüştür</span>
+Input: zeminde yer alabilecek kitle açısından BT ile takibi önerilir
+Output: zeminde yer alabilecek <span class="OBS-U">kitle açısından</span> <span class="IMP">BT ile takibi önerilir</span>
+Input: nispeten belirginleşen plevral kalınlaşma
+Output: <span class="IMP">nispeten</span> <span class="OBS-P">belirginleşen</span> <span class="ANAT">plevral</span> <span class="OBS-P">kalınlaşma</span>
+Input: ALL tanısı ile takip edilen hastada
+Output: <span class="IMP">ALL tanısı</span> ile takip edilen hastada
+Input: Sağ prekardiyal resesteki sıvıda stabil görünüm
+Output: <span class="ANAT">Sağ prekardiyal</span> <span class="ANAT">resesteki</span> <span class="OBS-P">sıvıda</span> <span class="IMP">stabil</span> <span class="OBS-P">görünüm</span>
+Input: Sağ prekardiyal reses düzeyindeki 4.5 cm kalınlığındaki loküle effüzyonun sebat ettiği izlenmekte olup anlamlı farklılık saptanmadı
+Output: <span class="ANAT">Sağ prekardiyal</span> <span class="ANAT">reses</span> <span class="ANAT">düzeyindeki</span> <span class="OBS-P">4.5 cm</span> <span class="OBS-P">kalınlığındaki</span> <span class="OBS-P">loküle</span> <span class="OBS-P">effüzyonun</span> <span class="IMP">sebat ettiği</span> izlenmekte olup <span class="OBS-A">anlamlı farklılık</span> saptanmadı
+Input: Kardiyotorasik oran normalin üst sınırındadır
+Output: <span class="OBS-P">Kardiyotorasik oran</span> <span class="OBS-P">normalin üst sınırındadır</span>
+Input: Bypass cerrahisine bağlı değişiklikler
+Output: <span class="IMP">Bypass cerrahisine bağlı</span> <span class="OBS-P">değişiklikler</span>
+Input: kitle ekartasyonu yapılamayan yumuşak doku görünümü
+Output: <span class="OBS-U">kitle ekartasyonu yapılamayan</span> <span class="OBS-P">yumuşak doku görünümü</span>
+Input: akciğer tutulumunu düşündürecek nodül görünümü saptanmamıştır
+Output: <span class="ANAT">akciğer</span> <span class="OBS-A">tutulumunu düşündürecek nodül görünümü</span> saptanmamıştır
+Input: pnömonik infiltrasyon görünümü saptanmadı
+Output: <span class="OBS-A">pnömonik infiltrasyon görünümü</span> saptanmadı
+Input: yer işgal eden lezyon izlenmemiştir
+Output: <span class="OBS-A">yer işgal eden lezyon</span> izlenmemiştir
+Input: 1 cm düzeyinde minimal plevral efüzyonlar izlendi
+Output: <span class="OBS-P">1 cm</span> <span class="OBS-P">düzeyinde</span> <span class="OBS-P">minimal</span> <span class="ANAT">plevral</span> <span class="OBS-P">efüzyonlar</span> izlendi
+Input: Parankim alanlarında kardiyak konjestif değişiklikler
+Output: <span class="ANAT">Parankim alanlarında</span> <span class="ANAT">kardiyak</span> <span class="OBS-P">konjestif</span> <span class="OBS-P">değişiklikler</span>
+Input: Tanımlanan alan dışında her iki akciğer parankiminde metastazı düşündürecek spiküle konturlu nodül saptanmamıştır
+Output: Tanımlanan <span class="ANAT">alan dışında</span> <span class="ANAT">her iki akciğer</span> <span class="ANAT">parankiminde</span> <span class="OBS-A">metastazı düşündürecek spiküle konturlu nodül</span> saptanmamıştır
+Input: satellit nodüller dışında her iki akciğer parankiminde pnömonik infiltrasyon görünümü saptanmadı
+Output: <span class="OBS-P">satellit nodüller</span> <span class="OBS-P">dışında</span> <span class="ANAT">her iki akciğer</span> <span class="ANAT">parankiminde</span> <span class="OBS-A">pnömonik infiltrasyon görünümü</span> saptanmadı
+Input: satellit nodüllerin eşlik ettiği malign karekterli geniş boyutlu kitle lezyonu izlenmiştir
+Output: <span class="OBS-P">satellit nodüllerin</span> eşlik ettiği <span class="IMP">malign karekterli</span> <span class="OBS-P">geniş boyutlu</span> <span class="OBS-P">kitle lezyonu</span> izlenmiştir
+Input: plevrada hafif düzensizliğe sebep olan kitle lezyonu izlenmiştir
+Output: <span class="ANAT">plevrada</span> <span class="OBS-P">hafif</span> <span class="OBS-P">düzensizliğe</span> <span class="IMP">sebep olan</span> <span class="OBS-P">kitle lezyonu</span> izlenmiştir
+Input: geniş boyutlu malign karekterli kitle lezyonunun çevresinde satallit nodüller izlendi
+Output: <span class="OBS-P">geniş boyutlu</span> <span class="IMP">malign karekterli</span> <span class="OBS-P">kitle lezyonunun</span> <span class="OBS-P">çevresinde</span> <span class="OBS-P">satallit nodüller</span> izlendi
+Input: ileri lober pnömoniyle uyumlu parankimal konsolidasyonlar
+Output: <span class="OBS-P">ileri</span> <span class="ANAT">lober</span> <span class="OBS-P">pnömoniyle</span> <span class="IMP">uyumlu</span> <span class="ANAT">parankimal</span> <span class="OBS-P">konsolidasyonlar</span>
+Input: akciğer apsesiyle uyumlu kavite formasyonu
+Output: <span class="ANAT">akciğer</span> <span class="OBS-P">apsesiyle</span> <span class="IMP">uyumlu</span> <span class="OBS-P">kavite</span> <span class="OBS-P">formasyonu</span>
+Input: 1 cm'den küçük boyutta birkaç adet daha lenf nodu eşlik etmektedir
+Output: <span class="OBS-P">1 cm'den küçük</span> <span class="OBS-P">boyutta</span> <span class="OBS-P">birkaç adet</span> <span class="OBS-P">daha</span> <span class="OBS-P">lenf nodu</span> eşlik etmektedir
+Input: Mediastende eşlik eden birkaç adet lenf nodları
+Output: <span class="ANAT">Mediastende</span> eşlik eden <span class="OBS-P">birkaç adet</span> <span class="OBS-P">lenf nodları</span>
+Input: lenfanjitik infiltrasyon gösteren kitle izlendi
+Output: <span class="OBS-P">lenfanjitik infiltrasyon</span> <span class="OBS-P">gösteren</span> <span class="OBS-P">kitle</span> izlendi
+Input: FDG tutulumu fizyolojik sınırlardadır
+Output: <span class="OBS-P">FDG tutulumu</span> <span class="OBS-P">fizyolojik</span> sınırlardadır
+Input:  torakoabdominal bileşke düzeyinin distaline uzanan ve yaklaşık L1 düzeyinde sonlanan Stanford tip B diseksiyon
+Output:  <span class="ANAT">torakoabdominal bileşke</span> <span class="ANAT">düzeyinin</span> <span class="ANAT">distaline</span> <span class="OBS-P">uzanan</span> ve yaklaşık <span class="ANAT">L1 düzeyinde</span> <span class="OBS-P">sonlanan</span> <span class="IMP">Stanford tip B</span> <span class="OBS-P">diseksiyon</span>
+Input: Sağ ana iliak arter çapı en geniş yerinde 22 mm ölçülmüştür
+Output: <span class="ANAT">Sağ</span> <span class="ANAT">ana iliak arter</span> <span class="OBS-P">çapı</span> <span class="OBS-P">en geniş yerinde</span> <span class="OBS-P">22 mm</span> ölçülmüştür
+Input: bu düzeyin hemen distalinde hafif poststenotik dilatasyon izlenmektedir
+Output: <span class="ANAT">bu düzeyin</span> <span class="ANAT">hemen distalinde</span> <span class="OBS-P">hafif</span> <span class="OBS-P">poststenotik</span> <span class="OBS-P">dilatasyon</span> izlenmektedir
+Input: 16 mm çapında sakküler anevrizmatik genişleme izlenmiştir
+Output: <span class="OBS-P">16 mm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">sakküler</span> <span class="OBS-P">anevrizmatik genişleme</span> izlenmiştir
+Input: Stanford tip B diseksiyon ve intramural hematom
+Output: <span class="IMP">Stanford tip B</span> <span class="OBS-P">diseksiyon</span> ve <span class="ANAT">intramural</span> <span class="OBS-P">hematom</span>
+Input: Aktif kanama lehine bulgu yoktur
+Output: <span class="OBS-A">Aktif kanama lehine bulgu</span> yoktur
+Input: Torakoabdominal aorta tortioz seyirlidir
+Output: <span class="ANAT">Torakoabdominal aorta</span> <span class="OBS-P">tortioz seyirlidir</span>
+Input: Aorta ve dallarında aterosklerotik duvar değişiklikleri mevcuttur
+Output: <span class="ANAT">Aorta ve dallarında</span> <span class="OBS-P">aterosklerotik</span> <span class="ANAT">duvar</span> <span class="OBS-P">değişiklikleri</span> mevcuttur
+Input: %75 üstü darlığa neden olan yumuşak plak
+Output: <span class="OBS-P">%75 üstü darlığa neden olan</span> <span class="OBS-P">yumuşak</span> <span class="OBS-P">plak</span>
+Input: her iki böbrekte parapelvik ve kortikal kistler
+Output: <span class="ANAT">her iki</span> <span class="ANAT">böbrekte</span> <span class="ANAT">parapelvik</span> ve <span class="ANAT">kortikal</span> <span class="OBS-P">kistler</span>
+Input: bilateral plevral mayii
+Output: <span class="ANAT">bilateral</span> <span class="ANAT">plevral</span> <span class="OBS-P">mayii</span>
+Input: 5 cm düzeyinde ölçülen plevral efüzyon
+Output: <span class="OBS-P">5 cm</span> <span class="OBS-P">düzeyinde</span> ölçülen <span class="ANAT">plevral</span> <span class="OBS-P">efüzyon</span>
+Input: yeni değerlendirmede 10 mm kalınlığına küçüldüğü gözlendi
+Output: yeni değerlendirmede <span class="OBS-P">10 mm</span> <span class="OBS-P">kalınlığına</span> <span class="IMP">küçüldüğü</span> gözlendi
+Input: genelde paraseptal konumlu amfizem bülleri mevcuttur
+Output: <span class="IMP">genelde</span> <span class="ANAT">paraseptal</span> <span class="ANAT">konumlu</span> <span class="OBS-P">amfizem bülleri</span> mevcuttur
+Input: Akciğerler üst lob ağırlıklı amfizem paterni göstermektedir
+Output: <span class="ANAT">Akciğerler</span> <span class="ANAT">üst lob</span> <span class="OBS-P">ağırlıklı</span> <span class="OBS-P">amfizem paterni</span> göstermektedir
+Input: sklerotik vasıflı metastatik odaklar gözlenmektedir
+Output: <span class="OBS-P">sklerotik</span> vasıflı <span class="IMP">metastatik odaklar</span> gözlenmektedir
+Input: Sağda santral kateter izlendi
+Output: <span class="ANAT">Sağda</span> <span class="ANAT">santral</span> <span class="OBS-P">kateter</span> izlendi
+Input: Milimetrik boyutlu stabil nodüller
+Output: <span class="OBS-P">Milimetrik boyutlu</span> <span class="IMP">stabil</span> <span class="OBS-P">nodüller</span>
+Input: sağ kalp yetmezliğiyle uyumlu hepatik venlerde kontrast madde göllenmesi izlenmektedir
+Output: <span class="ANAT">sağ</span> <span class="OBS-P">kalp yetmezliğiyle</span> <span class="IMP">uyumlu</span> <span class="ANAT">hepatik venlerde</span> <span class="OBS-P">kontrast madde</span> <span class="OBS-P">göllenmesi</span> izlenmektedir
+Input: akciğerler konjesyonedir
+Output: <span class="ANAT">akciğerler</span> <span class="OBS-P">konjesyonedir</span>
+Input: Effüzyonlar kısmen üst zonlarda fissüral uzanım göstermektedir
+Output: <span class="OBS-P">Effüzyonlar</span> <span class="OBS-P">kısmen</span> <span class="ANAT">üst zonlarda</span> <span class="ANAT">fissüral</span> <span class="OBS-P">uzanım</span> göstermektedir
+Input: Akciğerlerde konjesyone görünümler
+Output: <span class="ANAT">Akciğerlerde</span> <span class="OBS-P">konjesyone</span> <span class="OBS-P">görünümler</span>
+Input: Bilateral minimal plevral ve perikardiyal effüzyonlar
+Output: <span class="ANAT">Bilateral</span> <span class="OBS-P">minimal</span> <span class="ANAT">plevral</span> ve <span class="ANAT">perikardiyal</span> <span class="OBS-P">effüzyonlar</span>
+Input: Sağda 7. kotda kallus oluşumu
+Output: <span class="ANAT">Sağda</span> <span class="ANAT">7. kotda</span> <span class="OBS-P">kallus</span> <span class="OBS-P">oluşumu</span>
+Input: Her iki akciğer pulmoner arterlerinde pulmoner tromboemboli ile uyumlu trombüs görünümleri
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">pulmoner arterlerinde</span> <span class="ANAT">pulmoner</span> <span class="OBS-P">tromboemboli</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">trombüs</span> <span class="OBS-P">görünümleri</span>
+Input: pulmoner trombomeboli ile uyumlu dolum defektleri kaydedilmiştir
+Output: <span class="ANAT">pulmoner</span> <span class="OBS-P">trombomeboli</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">dolum defektleri</span> kaydedilmiştir
+Input: pulmoner arteriyel vasküler yapılarda kontrast dolumu patent olarak değerlendirildi
+Output: <span class="ANAT">pulmoner</span> <span class="ANAT">arteriyel</span> <span class="ANAT">vasküler yapılarda</span> <span class="OBS-P">kontrast dolumu</span> <span class="OBS-P">patent</span> olarak değerlendirildi
+Input: nodüler alanın atelektatik akciğer dokusuna ait olduğu düşünüldü
+Output: <span class="OBS-P">nodüler</span> <span class="ANAT">alanın</span> <span class="OBS-P">atelektatik</span> <span class="ANAT">akciğer dokusuna</span> <span class="OBS-U">ait olduğu</span> düşünüldü
+Input: 15x7 mm lik bir alanda düzensiz sınırlı retiküler dansite artımları dikkati çekmiştir
+Output: <span class="OBS-P">15x7 mm</span> lik <span class="ANAT">bir alanda</span> <span class="OBS-P">düzensiz sınırlı</span> <span class="OBS-P">retiküler</span> <span class="OBS-P">dansite artımları</span> dikkati çekmiştir
+Input: üst lob apikoposterior segmentte pnömoni pnömonik infiltrasyon alanları izlenmiştir
+Output: <span class="ANAT">üst lob</span> <span class="ANAT">apikoposterior</span> <span class="ANAT">segmentte</span> <span class="OBS-P">pnömoni</span> <span class="OBS-P">pnömonik infiltrasyon</span> <span class="ANAT">alanları</span> izlenmiştir
+Input: Sağ akciğer alt lobda tomurcuklanmış ağaç paterninde bronkopnömonik infiltrasyon alanları izlendi
+Output: <span class="ANAT">Sağ akciğer</span> <span class="ANAT">alt lobda</span> <span class="OBS-P">tomurcuklanmış ağaç paterninde</span> <span class="OBS-P">bronkopnömonik infiltrasyon</span> <span class="ANAT">alanları</span> izlendi
+Input: Pnömonik konsolide alan izlenmedi
+Output: <span class="OBS-A">Pnömonik</span> <span class="OBS-A">konsolide</span> <span class="ANAT">alan</span> izlenmedi.
+Input: yer yer benzer nitelikli silik nodüler buzlu cam dansite alanları söz konusudur
+Output: <span class="OBS-P">yer yer</span> <span class="IMP">benzer nitelikli</span> <span class="OBS-P">silik</span> <span class="OBS-P">nodüler</span> <span class="OBS-P">buzlu cam dansite</span> <span class="ANAT">alanları</span> söz konusudur
+Input: Lingular segment seviyesinde konsolidasyon alanı
+Output: <span class="ANAT">Lingular</span> <span class="ANAT">segment</span> <span class="ANAT">seviyesinde</span> <span class="OBS-P">konsolidasyon</span> <span class="ANAT">alanı</span>
+Input: intertisiyel ve alveoler konsolidasyon alanları
+Output: <span class="ANAT">intertisiyel</span> ve <span class="ANAT">alveoler</span> <span class="OBS-P">konsolidasyon</span> <span class="ANAT">alanları</span>
+Input: Sol akciğer volümünün sağa göre azalmış olduğu dikkati çekti
+Output: <span class="ANAT">Sol akciğer</span> <span class="OBS-P">volümünün</span> <span class="IMP">sağa göre</span> <span class="IMP">azalmış olduğu</span> dikkati çekti
+Input: Bu bulgular öncelikle ampiyem sekeli ile uyumlu olarak yorumlandı
+Output: Bu bulgular öncelikle <span class="OBS-P">ampiyem sekeli</span> <span class="IMP">ile uyumlu</span> olarak yorumlandı
+Input: özellikle süperior segmentte yoğunlaşan bronkopnömonik infiltrasyonlar gözlenmektedir
+Output: özellikle <span class="ANAT">süperior segmentte</span> <span class="OBS-P">yoğunlaşan</span> <span class="OBS-P">bronkopnömonik</span> <span class="OBS-P">infiltrasyonlar</span> gözlenmektedir
+Input: Kitle ya da nodül gözlenmedi
+Output: <span class="OBS-A">Kitle</span> ya da <span class="OBS-A">nodül</span> gözlenmedi
+Input: kısmen koroner arterlerde kalsifiye aterom plakları mevcuttur
+Output: <span class="OBS-P">kısmen</span> <span class="ANAT">koroner arterlerde</span> <span class="OBS-P">kalsifiye</span> <span class="OBS-P">aterom</span> <span class="OBS-P">plakları</span> mevcuttur
+Input: kısmen alveoler ödem bulguları mevcuttur.
+Output: <span class="OBS-P">kısmen</span> <span class="ANAT">alveoler</span> <span class="OBS-P">ödem</span> <span class="OBS-P">bulguları</span> mevcuttur.
+Input: alt lober bronşu tamamen invaze eden geniş boyutlu malign karakterli kitle lezyonu izlenmiştir
+Output: <span class="ANAT">alt lober</span> <span class="ANAT">bronşu</span> <span class="OBS-P">tamamen</span> <span class="IMP">invaze eden</span> <span class="OBS-P">geniş boyutlu</span> <span class="IMP">malign karakterli</span> <span class="OBS-P">kitle lezyonu</span> izlenmiştir
+Input: Sol akciğer alt lobu tamamen tutan kitle lezyonu
+Output: <span class="ANAT">Sol akciğer</span> <span class="ANAT">alt lobu</span> <span class="OBS-P">tamamen</span> <span class="IMP">tutan</span> <span class="OBS-P">kitle lezyonu</span>
+Input: Sağ hemitoraks volümü sola göre azalmıştır
+Output: <span class="ANAT">Sağ hemitoraks</span> <span class="OBS-P">volümü</span> <span class="IMP">sola göre</span> <span class="IMP">azalmıştır</span>
+Input: kesitlere dahil kesimde anevrizmatik dilatasyon mevcuttur
+Output: kesitlere dahil kesimde <span class="OBS-P">anevrizmatik dilatasyon</span> mevcuttur
+Input: Sağ akciğerde yukarıda tanımlanan kitle
+Output: <span class="ANAT">Sağ akciğerde</span> yukarıda tanımlanan <span class="OBS-P">kitle</span>
+Input: viral pnömoni ekarte edilemez
+Output: <span class="OBS-U">viral pnömoni ekarte edilemez</span>
+Input: Diğer patolojik bulgular stabil görünümdedir
+Output: <span class="OBS-P">Diğer patolojik bulgular</span> <span class="IMP">stabil</span> <span class="OBS-P">görünümdedir</span>
+Input: Her iki akciğerde stabil izlenimli satellit nodüller
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="IMP">stabil</span> <span class="OBS-P">izlenimli</span> <span class="OBS-P">satellit nodüller</span>
+Input: dağınık yerleşimli birkaç adet nonspesifik nodül izlendi
+Output: <span class="OBS-P">dağınık yerleşimli</span> <span class="OBS-P">birkaç adet</span> <span class="OBS-P">nonspesifik</span> <span class="OBS-P">nodül</span> izlendi
+Input: Her iki akciğerdeki dağınık yerleşimli satellit nodüllerde anlamlı farklılık saptanmamıştır
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">akciğerdeki</span> <span class="OBS-P">dağınık yerleşimli</span> <span class="OBS-P">satellit nodüllerde</span> <span class="OBS-A">anlamlı farklılık</span> saptanmamıştır
+Input: Soliter fibröz tümör nedeni ile opere olan hastada trakea ve her iki ana bronş açıktır
+Output: <span class="IMP">Soliter fibröz tümör nedeni ile opere</span> olan hastada <span class="ANAT">trakea</span> ve <span class="ANAT">her iki ana bronş</span> <span class="OBS-P">açıktır</span>
+Input: Her iki hilus inceleme kontrastsız olduğu için optimal değerlendirilememiştir
+Output: <span class="ANAT">Her iki hilus</span> <span class="IMP">inceleme kontrastsız olduğu için optimal değerlendirilememiştir</span>
+Input: operasyon lojunda round atelektazi ile uyumlu bulgular dikkati çekmiştir
+Output: <span class="ANAT">operasyon lojunda</span> <span class="OBS-P">round atelektazi</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">bulgular</span> dikkati çekmiştir
+Input: Sütur materyallerin olduğu lokalizasyonda kaçağı düşündürecek görünüm saptanmamıştır
+Output: <span class="ANAT">Sütur materyallerin olduğu lokalizasyonda</span> <span class="OBS-A">kaçağı düşündürecek görünüm</span> saptanmamıştır
+Input: sağ infrahiler mesafede kalsifiye olarak 1 cm çapında ölçülen reaktif lenf nodları izlendi
+Output: <span class="ANAT">sağ</span> <span class="ANAT">infrahiler mesafede</span> <span class="OBS-P">kalsifiye</span> olarak <span class="OBS-P">1 cm</span> <span class="OBS-P">çapında</span> ölçülen <span class="OBS-P">reaktif</span> <span class="OBS-P">lenf nodları</span> izlendi
+Input: orta lobda lateral segment bazalinde subplevral 5 mm çapında subsolid nodül izlendi
+Output: <span class="ANAT">orta lobda</span> <span class="ANAT">lateral segment</span> <span class="ANAT">bazalinde</span> <span class="ANAT">subplevral</span> <span class="OBS-P">5 mm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">subsolid</span> <span class="OBS-P">nodül</span> izlendi
+Input: Solda PACE Maker'a ait görünüm izlendi
+Output: <span class="ANAT">Solda</span> <span class="OBS-P">PACE Maker'a</span> <span class="OBS-P">ait görünüm</span> izlendi
+Input: Her iki hemitoraksta plevral effüzyon ya da kalınlaşma bulgusu izlenmedi
+Output: <span class="ANAT">Her iki</span> <span class="ANAT">hemitoraksta</span> <span class="ANAT">plevral</span> <span class="OBS-A">effüzyon</span> ya da <span class="OBS-A">kalınlaşma</span> bulgusu izlenmedi
+Input: Diğer parankim alanlarında infiltrasyon bulgusu veya atelektazik alan saptanmamıştır
+Output: <span class="ANAT">Diğer parankim alanlarında</span> <span class="OBS-A">infiltrasyon</span> bulgusu veya <span class="OBS-A">atelektazik</span> <span class="ANAT">alan</span> saptanmamıştır
+Input: Enfeksiyon süreci ve mukus tıkacı sonucunda gelişmiş olabilir
+Output: <span class="OBS-U">Enfeksiyon süreci ve mukus tıkacı sonucunda gelişmiş olabilir</span>
+Input: İzlenen atelektazi enfeksiyon sürecine sekonder gelişmiş olabilir
+Output: İzlenen <span class="OBS-P">atelektazi</span> <span class="OBS-U">enfeksiyon sürecine sekonder gelişmiş olabilir</span>
+Input: asiner tarzda peribronşial pnömonik infiltrasyonlara ait görünümler dikkati çekmiştir
+Output: <span class="OBS-P">asiner tarzda</span> <span class="ANAT">peribronşial</span> <span class="OBS-P">pnömonik infiltrasyonlara</span> <span class="OBS-P">ait görünümler</span> dikkati çekmiştir
+Input: eşlik eden sekel kalsifik parenkimal subplevral nodüller kaydedilmiştir
+Output: eşlik eden <span class="OBS-P">sekel</span> <span class="OBS-P">kalsifik</span> <span class="ANAT">parenkimal</span> <span class="ANAT">subplevral</span> <span class="OBS-P">nodüller</span> kaydedilmiştir
+Input: sağ akciğer üst lob posterior segmentte asiner pnömonik infiltrasyon
+Output: <span class="ANAT">sağ akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">posterior segmentte</span> <span class="OBS-P">asiner</span> <span class="OBS-P">pnömonik</span> <span class="OBS-P">infiltrasyon</span>
+Input: Mediastinal ve hiler patolojik boyutta olmayan reaksiyonel lenf nodları izlenmektedir
+Output: <span class="ANAT">Mediastinal</span> ve <span class="ANAT">hiler</span> <span class="OBS-P">patolojik boyutta olmayan</span> <span class="OBS-P">reaksiyonel</span> <span class="OBS-P">lenf nodları</span> izlenmektedir
+Input: Entübasyon kanülüne ait görünüm
+Output: <span class="OBS-P">Entübasyon kanülüne</span> <span class="OBS-P">ait görünüm</span>
+Input: tarihli tetkike göre belirgin farklılık saptanmadı
+Output: tarihli tetkike göre belirgin farklılık saptanmadı
+Input: Küçük hücreli akciğer karsinomu tanısı ile izlenen olguda
+Output: <span class="IMP">Küçük hücreli akciğer karsinomu tanısı</span> ile izlenen olguda
+Input: lezyonun minimal progresyon gösterdiği dikkati çekti
+Output: <span class="OBS-P">lezyonun</span> <span class="OBS-P">minimal</span> <span class="IMP">progresyon gösterdiği</span> dikkati çekti
+Input: Sol hilus yerleşimli önceki tetkike göre boyutlarında minimal progresyon dikkati çeken kitle
+Output: <span class="ANAT">Sol hilus</span> yerleşimli <span class="IMP">önceki tetkike göre</span> <span class="OBS-P">boyutlarında</span> <span class="OBS-P">minimal</span> <span class="IMP">progresyon</span> dikkati çeken <span class="OBS-P">kitle</span>
+Input: Lezyon çevresinde parankimal fibrozis ile uyumlu dansite artışları
+Output: <span class="OBS-P">Lezyon</span> <span class="OBS-P">çevresinde</span> <span class="ANAT">parankimal</span> <span class="OBS-P">fibrozis</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">dansite artışları</span>
+Input: Bronş ve bronşiol duvarlarında kıkırdak kalsifikasyonları dikkati çekmiştir
+Output: <span class="ANAT">Bronş</span> ve <span class="ANAT">bronşiol</span> <span class="ANAT">duvarlarında</span> <span class="ANAT">kıkırdak</span> <span class="OBS-P">kalsifikasyonları</span> dikkati çekmiştir
+Input: Hasta kliniği ile birlikte değerlendirilmesi önerilir
+Output: <span class="IMP">Hasta kliniği ile birlikte değerlendirilmesi önerilir</span>
+Input: Diffüz kardiyomegali
+Output: <span class="OBS-P">Diffüz kardiyomegali</span>
+Input: Kalp diffüz büyük görünümdedir
+Output: <span class="ANAT">Kalp</span> <span class="OBS-P">diffüz büyük</span> <span class="OBS-P">görünümdedir</span>
+Input: Akciğerler amfizamatöz görünümdedir
+Output: <span class="ANAT">Akciğerler</span> <span class="OBS-P">amfizamatöz</span> <span class="OBS-P">görünümdedir</span>
+Input: Alt loblarda yer yer subsegmenter atelektaziler
+Output: <span class="ANAT">Alt loblarda</span> <span class="OBS-P">yer yer</span> <span class="ANAT">subsegmenter</span> <span class="OBS-P">atelektaziler</span>
+Input: metastaza bağlı efüzyon geliştiği şeklinde düşünüldü
+Output: <span class="IMP">metastaza bağlı</span> <span class="OBS-P">efüzyon</span> <span class="IMP">geliştiği</span> şeklinde düşünüldü
+Input: Solda belirgin efüzyon saptanmadı
+Output: <span class="ANAT">Solda</span> <span class="OBS-A">belirgin efüzyon</span> saptanmadı
+Input: Sağ akciğerde efüzyona bağlı pasif atelektaziler mevcuttur
+Output: <span class="ANAT">Sağ akciğerde</span> <span class="IMP">efüzyona bağlı</span> <span class="OBS-P">pasif atelektaziler</span> mevcuttur
+Input: metastatik oluştuğu düşünülen plevral efüzyon
+Output: <span class="OBS-U">metastatik oluştuğu düşünülen</span> <span class="ANAT">plevral</span> <span class="OBS-P">efüzyon</span>
+Input: Efüzyona bağlı sağ akciğerde atelektaziler
+Output: <span class="IMP">Efüzyona bağlı</span> <span class="ANAT">sağ akciğerde</span> <span class="OBS-P">atelektaziler</span>
+Input: Bronşiel obstrüksiyon saptanmadı
+Output: <span class="ANAT">Bronşiel</span> <span class="OBS-A">obstrüksiyon</span> saptanmadı
+Input: humerus başlarında progrese izlenimli sklerotik metastatik lezyonlar
+Output: <span class="ANAT">humerus başlarında</span> <span class="IMP">progrese</span> <span class="OBS-P">izlenimli</span> <span class="OBS-P">sklerotik</span> <span class="ANAT">metastatik</span> <span class="OBS-P">lezyonlar</span>
+Input: Bu görünüm pulmoner hipertansiyon ile uyumlu olabilir
+Output: Bu görünüm <span class="OBS-U">pulmoner hipertansiyon</span> <span class="OBS-U">ile uyumlu olabilir</span>
+Input: Akciğerlerde ekspiryum imajlarında daha belirgin hava hapsi alanları
+Output: <span class="ANAT">Akciğerlerde</span> <span class="OBS-P">ekspiryum imajlarında</span> <span class="OBS-P">daha belirgin</span> <span class="OBS-P">hava hapsi</span> <span class="ANAT">alanları</span>
+Input: Takipte prostat karsinomu
+Output: <span class="IMP">Takipte</span> <span class="IMP">prostat karsinomu</span>
+Input: sol hemitoraksta sıvama tarzı plevral effüzyon izlendi
+Output: <span class="ANAT">sol hemitoraksta</span> <span class="OBS-P">sıvama tarzı</span> <span class="ANAT">plevral</span> <span class="OBS-P">effüzyon</span> izlendi
+Input: Diğer bulgularda fark saptanmadı
+Output: Diğer bulgularda fark saptanmadı
+Input: Diğer BT bulgularda anlamlı farklılık saptanmadı
+Output: Diğer BT bulgularda anlamlı farklılık saptanmadı
+Input: Diğer BT bulgularında anlamlı farklılık saptanmadı
+Output: Diğer BT bulgularında anlamlı farklılık saptanmadı
+Input: Diğer bulgularda anlamlı farklılık izlenmedi
+Output: Diğer bulgularda anlamlı farklılık izlenmedi
+Input: Diğer BT bulgularında anlamlı farklılık izlenmedi
+Output: Diğer BT bulgularında anlamlı farklılık izlenmedi
+Input: Tiroid glandı boyutları artmış, gland retrosternal uzanım göstermektedir
+Output: <span class="ANAT">Tiroid glandı</span> <span class="OBS-P">boyutları artmış</span>, <span class="ANAT">gland</span> <span class="ANAT">retrosternal</span> <span class="OBS-P">uzanım</span> göstermektedir
+Input: Kardiyak pace kateterine ait görünüm izlenmiştir.
+Output: <span class="ANAT">Kardiyak</span> <span class="OBS-P">pace kateterine</span> <span class="OBS-P">ait görünüm</span> izlenmiştir.
+Input: mediobazal segmentlerde fibrotik parenkimal bant oluşumları izlenmiştir
+Output: <span class="ANAT">mediobazal segmentlerde</span> <span class="OBS-P">fibrotik</span> <span class="ANAT">parenkimal</span> <span class="OBS-P">bant oluşumları</span> izlenmiştir
+Input: Opere takipte vajen Ca
+Output: <span class="IMP">Opere takipte vajen Ca</span>
+Input: Dorsal vertebralarda açıklığı sağa bakan skolyoz
+Output: <span class="ANAT">Dorsal vertebralarda</span> <span class="OBS-P">açıklığı sağa bakan</span> <span class="OBS-P">skolyoz</span>
+Input: Mediastende kısa çapı 1 cm'yi geçmeyen lenf nodları izlenmiştir
+Output: <span class="ANAT">Mediastende</span> <span class="OBS-P">kısa çapı</span> <span class="OBS-P">1 cm'yi geçmeyen</span> <span class="OBS-P">lenf nodları</span> izlenmiştir
+Input:  Sağ akciğerde öncelikle enfeksiyon sürecini düşündüren infiltratif odaklar
+Output: <span class="ANAT">Sağ akciğerde</span> öncelikle <span class="OBS-U">enfeksiyon sürecini düşündüren</span> <span class="OBS-P">infiltratif odaklar</span>
+Input: erken dönem viral pnömoni açısından klinik korelasyon önerilir
+Output: <span class="OBS-U">erken dönem viral pnömoni açısından</span> <span class="IMP">klinik korelasyon önerilir</span>
+Input: Ana pulmoner arter ve dallarında konjesyona bağlı belirgin genişleme mevcuttur
+Output: <span class="ANAT">Ana pulmoner arter</span> ve <span class="ANAT">dallarında</span> <span class="IMP">konjesyona bağlı</span> <span class="OBS-P">belirgin genişleme</span> mevcuttur
+Input: Anterior mediastende pramit şekilli hiperplazik timus glandı dikkati çekmiştir(timik remnanat)
+Output: <span class="ANAT">Anterior mediastende</span> <span class="OBS-P">pramit şekilli</span> <span class="OBS-P">hiperplazik</span> <span class="ANAT">timus glandı</span> dikkati çekmiştir(<span class="ANAT">timik</span> <span class="OBS-P">remnanat</span>)
+Input: Akciğerlerde genel olarak değerlendirildiğinde stabil izlenim veren olağan interstisyel pnömoni paterni
+Output: <span class="ANAT">Akciğerlerde</span> <span class="IMP">genel olarak değerlendirildiğinde</span> <span class="IMP">stabil</span> <span class="OBS-P">izlenim veren</span> <span class="OBS-P">olağan</span> <span class="OBS-P">interstisyel pnömoni</span> <span class="OBS-P">paterni</span>
+###
+here is the tomography report to be tagged:

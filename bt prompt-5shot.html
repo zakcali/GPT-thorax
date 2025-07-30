@@ -1,0 +1,1316 @@
+### Task
+Your task is to generate an HTML version of a radiology report, marking up specific healthcare-related entities. The entities to be identified are: "anatomy", "observation-present", "observation-absent", "observation-uncertain", and "impression". Use HTML <span></span> tags to highlight these entities, each with a class attribute indicating the type of the entity.
+Output Format:
+Always provide the output as an HTML code snippet enclosed within a code snippet window. Include style definitions for each entity class to visually differentiate them. Do not output as plain text.
+
+When rendering the output, be sure to preserve the line breaks from the input text by including <br> tags after each line. This ensures the original formatting is maintained in the output.
+Example:
+Input:
+This is line 1.
+This is line 2.
+Output:
+This is line 1.<br>
+This is line 2.<br>
+Exclude lines starting with "IVKM" or "NOT" from task: Do not mark up anything inside lines that begin with the term "IVKM" or "NOT", as they typically describe technical aspects of the imaging procedure and are not relevant to the clinical findings or impressions. Do not evaluate them, just let them unformatted text and skip to the next line.
+### Entity Definitions
+1- Anatomy (ANAT): This category denotes regions of the human body, specifically referencing anatomical areas or organs. Examples include, but are not limited to:
+* C1 (Cervikal first vertebra)
+* L1 (Lumbar first vertebra)
+* S1 (Sacral first vertebra)
+* T1 (Thoracal 1st vertebra)
+* akciğer (lung)
+* aksiyel düzlemde (in the axial plane)
+* alan (area)
+* alanda (in the ... area)
+* alveoler (alveolar)
+* ana iliak arter (main iliac artery)
+* aortopulmoner lokalizasyon (aortopulmonary location)
+* apikal (apex)
+* arasındaki (between)
+* asinüs (acinus)
+* baş-boyun (head and neck)
+* bazalinde (at the base of)
+* bezinde (in the gland)
+* bilateral (bilateral)
+* bileşke (junction)
+* bir alanda (in an area)
+* birleşkesi düzeyinde (at the level of the junction)
+* bölgesi (region of)
+* bronşiel (bronchial )
+* bu düzeyde (at this level)
+* cidar (wall)
+* çeper (wall)
+* cilt (skin)
+* cilt altı (subcutaneous)
+* cilt-cilt altı doku (skin-subcutaneous tissue)
+* çıkan torasik aorta (ascending thoracic aorta)
+* çöliak trunkus (celiac trunk)
+* dalak hilusu (splenic hilum)
+* dalları (branches)
+* distal (distal)
+* distalinde (distally)
+* doğru (towards)
+* duvar (wall)
+* düzeyinde (at the level of)
+* düzeyine uyan konumda (in a position corresponding to the level of)
+* dış kesimde (in the outer region)
+* ekstratorasik (extrathoracic)
+* end plate (endplate of a vertebra)
+* fissür (fissure in the lung)
+* fold (fold)
+* foldda (in the fold)
+* grafiye dahil olan kesimi (within the included section of the image)
+* hemen distalinde (just distal to)
+* her iki (both, referring to paired organs or structures)
+* hiler düzeyler (hilar levels)
+* hilus (hilum of the lung)
+* humerus (humerus)
+* humerus başı (head of the humerus)
+* humerus başları (humerus heads)
+* humerus şaftı (shaft of the humerus)
+* ile arasındaki planlar (the planes between)
+* iliak arter (iliac artery)
+* inen torasik aorta (descending thoracic aorta)
+* infrahiler (infra-hilar) 
+* interlobuler (interlobular)
+* intersisyel (interstitial)
+* intertisiyel (interstitial)
+* interstisyel (interstitial)
+* intralober (intralobar)
+* intramural (intramural)
+* intramusküler (intramuscular)
+* iç kesimde (in the inner region)
+* içerisinde (winthin the, inside of)
+* infrarenal (infrarenal)
+* infrarenal düzey (infrarenal level)
+* kalp (heart)
+* kalp boşlukları (heart chambers)
+* kas-iskelet sistemi (musculoskeletal system)
+* kemik iliği (bone marrow)
+* kemik yapılarda (in bone structures)
+* kesiminde (section)
+* kıkırdak (cartilage)
+* kolon (colon)
+* komşuluğunda (in the vicinity of)
+* korakoid proçes (coracoid process)
+* koronal düzlem (coronal plane)
+* koroner arter (coronary artery)
+* korteks (cortical area)
+* kortikal (cortical)
+* LAD dalı (left anterior descending branch)
+* lümen (lumen)
+* lümen içi (in the lumen of)
+* lümeninde (in the lumen of)
+* major fissür (major fissure)
+* mastektomi loju (mastectomy site)
+* mediasten (mediastinum)
+* mediastinal (mediastinal)
+* meme (breast)
+* meme başı (nipple)
+* meme içi (intramammary)
+* meme parankimi (breast parenchyma)
+* mesafe (space)
+* mesane (bladder)
+* mezenterik (mesenteric)
+* mide (stomach)
+* mide kardiya (gastric cardia)
+* minör fissür (minor fissure)
+* orta yarıda (mid region)
+* pankreas (pancreas)
+* pankreasta (in the pancreas)
+* parakardiyak yastık (paracardiac fat pad)
+* parapelvik (parapelvic) 
+* parankim alanları (parenchymal areas)
+* parankim/parenkim/parankimal/parankimde (parenchyma, functional tissue of an organ)
+* pektoral kas (pectoralis muscle)
+* pelvis (pelvis)
+* peribronşeal (peribronchial)
+* peribronşial (peribronchial)
+* peribronşioler (peribronchiolar)
+* periferal (peripheral)
+* periferal konumlu (peripherally located)
+* periferal lokalizasyon (peripheral location)
+* perifere (to the periphery)
+* periferinde (at the periphery of)
+* perifissürel (perifissural)
+* perihepatik (perihepatic)
+* perikardiyal (pericardial)
+* perisplenik (perisplenik)
+* planlar (planes)
+* plevra/plevral (pleura/pleural)
+* plevral (pleural)
+* posteriorunda (in the posterior)
+* prekardiyal reses (precardial recess)
+* prekarinal (pre-carinal)
+* proksimal (proximal)
+* proksimalinde (proximally)
+* pulmoner (pulmonary)
+* pulmoner arter (pulmonary artery)
+* pulmoner konus (pulmonary conus)
+* pulmoner trunkus (pulmonary trunk)
+* rektum (rectum)
+* renal arter (renal artery)
+* retroareolar bölge (retroareolar region)
+* sagital düzlem (sagittal plane)
+* santral (central)
+* santral pulmoner arter (central pulmonary artery)
+* santralinde (in the central part)
+* sağ (right)
+* sağ akciğer (right lung)
+* sağda (on the right side / in the right side)
+* sağdan girişli (inserted from the right side)
+* segment 7 (segment 7)
+* segment VIII (segment VIII)
+* segmentektomi lojunda (surrounding regions of the segmentectomy)
+* segmenter (segmental)
+* sentrilobüler (centrilobular)
+* sentırlobüler (centrilobular)
+* servikal zincir (cervical chain)
+* seviye 4 (level4)
+* skapula (scapula)
+* SMA (Superior Mesenteric Artery)
+* solda (on the left side / in the left side)
+* sternum (sternum)
+* sternotomi traktı (sternotomy tract)
+* subdiyafragmatik (subdiaphragmatic)
+* subkarinal (subcarinal)
+* subklavian arter (subclavian artery)
+* subplevral (subpleural)
+* subsegmenter (subsegmental)
+* supraklaviküler alan (supraclavicular area)
+* timik (thymic)
+* tiroid (thyroid)
+* tiroid bezi (thyroid gland)
+* torakal (thoracic)
+* torakoabdominal bileşke (thoracoabdominal junction)
+* torasik aorta (thoracic aorta)
+* transaksiyel düzlem (transaxial plane)
+* transdiyafragmatik (transdiaphragmatic)
+* trase (course, tracing)
+* unilateral (unilateral)
+* üst dış kadranda (in the upper outer quadrant)
+* üst iç kadranda (in the upper inner quadrant)
+* üzerine (over)
+* vasküler yapılar (vascular structures)
+* vertebra (vertebra)
+* vokal kord (vocal cord)
+
+These terms identify specific anatomical locations within the body and are crucial for accurately describing findings in medical imaging reports.
+Additional Notes:
+Pay close attention to terms like "her iki" (both), which might seem generic but are essential for indicating the involvement of both sides of a paired organ or structure.
+This list is not exhaustive. Other anatomical terms may be present in the reports and should be marked as ANAT accordingly.
+
+2- Observations(OBS-P or OBS-A): This category encompasses specific findings, characteristics or medical devices observed in the medical report, including their descriptive modifiers. These modifiers provide crucial context about the observations, such as their quantity, prominence, distribution, or specific characteristics. Do not mark them inside an IMP tag. Examples include, but are not limited to:
+Medical Findings:
+* KTEPH, kronik tromboembolik pulmoner hipertansiyon (CTEPH, chronic thromboembolic pulmonary hypertension)
+* NSIP/NSİP/Nonspesifik interstisyel pnömoni (nonspecific interstitial pneumonia)
+* PTE, pulmoner tromboemboli (pulmonary thromboembolism) 
+* amfizem (emphysema)
+* amfizamatöz (emphysematous)
+* ampiyem (empyema)
+* anevrizma (aneurysm)
+* apse (abscess)
+* atelektazi (atelectasis)
+* atelektazi alanları (areas of atelectasis)
+* atelektazik değişiklikler (atelectatic changes)
+* atelektaziler (atelectatic areas)
+* aterosklerotik değişiklikler (atherosclerotic changes)
+* ateroskleroz (atherosclerosis)
+* aterom (atheromatous)
+* aterom plakları (atheromatous plaques)
+* bileşke (junction)
+* bochdalek hernisi (bochdalek hernia)
+* bronkomalazi (bronchomalacia)
+* bronşiolit (bronchiolitis) 
+* bronşit (bronchitis)
+* bül (bulla)
+* bül formasyonu (bulla formation)
+* büllöz lezyonlar (bullous lesions)
+* çap artışı (dilatation)
+* dansite (density)
+* dansite artımları (density increases)
+* dansite artışları (density increases)
+* dansiteler (densities)
+* defekt (defect)
+* değişiklikler (changes)
+* deviyasyon (deviation)
+* dilatasyon (dilatation)
+* diseksiyon (dissection)
+* distorsiyon (distortion)
+* doku adacıkları (tissue islets)
+* doku distorsiyonu (distortion)
+* dolma defekti (filling defect)
+* dolum defektleri (filling defect)
+* efüzyon (effusion)
+* effüzyon (effusion)
+* effüzyonlar (effusions)
+* efüzyon (effusion)
+* ektazi (ectasia)
+* emboli (embolus)
+* embolizm (embolism)
+* enfeksiyon (infection)
+* enfektif (infectious)
+* fantom tümörü (phantom tumor, loculation of a pleural effusion within an interlobar fissure)
+* fibroadenom (fibroadenoma)
+* fibrokistik hastalık (fibrocystic disease)
+* fibrozis (fibrosis)
+* fibrozis alanı (area of fibrosis)
+* fibrozis alanları (areas of fibrosis)
+* fizyolojik effüzyon (physiologic effusion)
+* formasyon (formation)
+* fragmantasyon (fragmentation)
+* glandüler doku (glandular tissue)
+* granülom (granuloma)
+* göllenme (pooling)
+* görünüm (view of, appearance)
+* görünümdedir (appears)
+* hava hapsi (air trapping)
+* hava hapsi alanları (air trapping areas)
+* hematom (hematoma)
+* hemanjiom (hemangioma)
+* hemotoraks (hemothorax)
+* herni (hernia)
+* herniasyon (herniation)
+* hiatal herni (hiatal hernia)
+* hiatus hernisi (hiatal hernia)
+* imaj (image)
+* implant (implant)
+* implantlar (implants)
+* infarkt alanları (areas of infarction)
+* infiltrasyon (infiltration)
+* jinekomasti (gynecomastia)
+* kabalaşma (coarsening)
+* kaçak (leakage)
+* kallus (callus)
+* kalsifikasyon (calcification)
+* kalsifikasyonlar (calcifications)
+* kalınlaşma (thickening)
+* kalıntı (ramnant)
+* kanama (bleeding)
+* kalp yetmezliği (heart failure)
+* kardiyomegali (cardiomegaly , enlarged heart)
+* kardiyotorasik oran (cardiothoracic ratio)
+* kavitasyon (cavitation)
+* kayma (shift)
+* kırık (fracture)
+* kifotik açılanma (kyphotic deformity)
+* kifoz (kyphosis)
+* kistik nekrotik yapı (cystic necrotic structure)
+* kitle (mass)
+* koah bulguları (findings of COPD)
+* koah süreci (COPD process)
+* kollaps (collapsed)
+* kollabs (collapsed)
+* kompresyon atelektazisi (compression atelectasis)
+* konjestif (congestive)
+* konjesyon (congestion)
+* konjesyone (congested)
+* konsolidasyon (consolidation)
+* kontrast dolumu (contrast filling)
+* kümeleşme (clustering)
+* LAP (lymphadenopathy)
+* lenf nodları (lymph nodes)
+* lenf nodlarında (in lymph nodes)
+* lenfadenopati (lymphadenopathy)
+* lenf nodu (lymph node)
+* lenfanjitis (lymphangitis)
+* lenfanjitis karsinomatoza (lymphangitis carcinomatosa)
+* lezyon (lesion)
+* lipom (lipoma)
+* lokülasyon (loculating)
+* makrokalsifikasyon (macrocalcification)
+* mastektomize (mastectomized)
+* mayi (fluid)
+* mayii (fluid)
+* mikrokalsifikasyon (microcalcification)
+* mukus (mucus)
+* mukus tıkacı (mucus plug)
+* neden olan (causing)
+* nodül (nodule)
+* nüks (rekürrence)
+* obstrüksiyon (obstruction )
+* oluşum (formation)
+* oluşumlar (formations)
+* opasite (opacity)
+* orijin (origin)
+* orijinininden (from the origin of the) 
+* orta hattadır (in the midline)
+* parankimal distorsiyon (parenchymal distortion)
+* plağı (plaque)
+* plak (plaque)
+* pnömoni (pneumonia)
+* pnömonik infiltrasyon (pneumonic infiltration)
+* pnömonitis (pneumonitis)
+* pnömotoraks (pneumothorax)
+* primer kompleks (primary complex - Ghon complex)
+* rekürren (recurrent)
+* rekürren kitle (recurrent mass)
+* remnant (remnant)
+* retansiyon (retention)
+* retraksiyon (retraction)
+* retrakte görünüm (appears retracted)
+* rotoskolyoz (scoliosis)
+* sekel değişiklik (scarring changes)
+* sıvı (fluid)
+* sklerozan adenozis (sclerosing adenosis)
+* skolyoz (scoliosis)
+* subklavian arter (subclavian artery)
+* şift (shift, displacement)
+* şilotoraks (chylothorax)
+* tamponad (tamponade)
+* trabeküler patern (trabecular pattern)
+* tromboemboli (thromboembolism)
+* trombüs (thrombus)
+* trombüsler (thrombi)
+* varyasyon (variation)
+* yağ doku (fat tissue)
+* yağlı hilus (fatty hilum)
+* yağ infiltrasyonu (fat infiltration)
+* yağlı doku (fatty tissue)
+* yapı (structure)
+* yapıda (structure)
+* yer değiştirme (displacement)
+* yer işgal eden lezyon (space-occupying lesion)
+* yetmezlik (failure, insufficiency)
+* yumuşak doku (soft tissue)
+Medical devices or substances:
+* cerrahi materyaller (surgical materials)
+* endotrakeal entübasyon tüpü (endotracheal intubation tube)
+* entübasyon kanülü (endotracheal cannula)
+* kontrast madde (contrast agent)
+* meme implantı (breast implant)
+* metalik klipsler(metal clips)
+* nazogastrik sonda (nasogastric tube)
+* sütur materyalleri (suture materials)
+* kateter (central catheter)
+* PACE Maker (PACE Maker)
+* stabilizasyon vidaları (stabilization screws)
+* venöz kateter (central venous catheter)
+* venöz kateter (venous catheter)
+* venöz port (venous port)
+* vida (screw)
+Descriptive Modifiers:
+* %75 üzeri (exceeding 75%)
+* FDG tutan (Fluorodeoxyglucose avid)
+* FDG tutulumu (Fluorodeoxyglucose uptake)
+* 29 mm (specific measurement)
+* aberran (aberrant)
+* aktif (active)
+* akut (acute)
+* ankiste (loculated)
+* alan dışında (outside the area)
+* ametabolik (ametabolic)
+* anevrizmatik (aneurysmal)
+* anormallik (abnormality)
+* anostomoz hattı düzeyinde (at the level of the anastomosis line)
+* artmıştır (increased)
+* asimetri (asymmetry)
+* asimetrik (asymmetric)
+* asiner tarzda (with acinar pattern)
+* atenüasyon (attenuation)
+* atipik (atypical)
+* ağırlıklı (primarily)
+* ağırlıklı olarak (primarily)
+* bazıları (some of them)
+* bazılarında (in some of them)
+* belirgin (prominent)
+* birkaç alanda (in some areas)
+* boyut (size)
+* boyut ve görünümlerinde (in size and appearance)
+* boyutlarda (in sizes)
+* boyutları (dimensions)
+* boyutunda (in size)
+* bulgular dışında (apart from the  findings)
+* buzlu cam dansitesinde (ground-glass density)
+* büyüklüğü/büyüklük (size)
+* büyüğü (the larger)
+* büyük bölümü (predominantly)
+* çapı (diameter)
+* çaplı (in diameter)
+* çekintiye neden olan (causing retraction)
+* çevresinde (around)
+* çok sayıda (many)
+* çoğunluğu (mostly)
+* çoğunun (most of)
+* dağılım gösteren (showing distribution)
+* dağınık (scattered)
+* daha (more)
+* daha küçük (smaller)
+* daha küçük çaplı (smaller in diameter)
+* dejeneratif (degenerative)
+* dek (up to)
+* dens (dense)
+* diffüz (diffuse)
+* düffüz dağılımlı (diffusely distributed)
+* diğer bir (another)
+* dijital (digital)
+* dizilmiş (aligned)
+* doğal (natural)
+* düzensiz sınırlı (irregularly defined)
+* düzensiz konturlu (with irregular contours)
+* düzeyinde (measuring, e.g., height of the pleural effusion)
+* egzantrik yerleşimli (with an eccentric location)
+* ekspiryum görüntülerinde (on expiratory images)
+* ekspiryum imajlarında (on expiratory images)
+* ektatik (ectatic)
+* eliptik şekilli (elliptical-shaped)
+* en belirgini (the most prominent)
+* en büyüğü (the largest one / the largest measuring / the largest one located on the)
+* en büyükleri (the largest ones)
+* en geniş (the widest)
+* en geniş yerinde (at the widest point)
+* en kalın yerinde (at the thickest point)
+* evantre (entrapped)
+* FDG artışı gösteren (with presence of increased FDG uptake)
+* FDG artışı göstermeyen (with absence of increased FDG uptake)
+* fibroglandüler (fibroglandular)
+* fibrotik izlenimli (with fibrotic appearance)
+* fokal (focal)
+* focal pleomorfik (focal pleomorphic)
+* fuziform (fusiform)
+* geniş (large)
+* geniş boyutlu (large-sized)
+* gevşek (loose)
+* gevşek kümeleşen (loosely clustered)
+* gevşek bir şekilde (loosely)
+* glandüler (glandular)
+* görünümü (appearance)
+* grup yapmış (grouped)
+* gruplaşmış (clustered)
+* hacim kaybı (volume loss)
+* hafif (mild, slight)
+* hafif dens (mildly dense)
+* hafif distorsiyona yol açan (causing mild distortion)
+* hemorajik (hemorrhagic)
+* hemorajik (hemorrhagic)
+* heterojen (heterogeneous)
+* heterojen iç yapıda (with a heterogeneous internal structure)
+* hiperplazik (hyperplastic)
+* hipoplazik (hypoplastic)
+* homojen (homogeneous)
+* içerisinde/içinde/içerisindeki (within)
+* ile örtülü (covered by)
+* ile sınırlı (confined to)
+* ileri (advanced)
+* inspiryum görüntülerinde (on inspiratory images)
+* inspiryum imajlarında (on inspiratory images)
+* intakt (intact)
+* kaba (coarse)
+* kadar (up to)
+* kalın (thick)
+* kalsifiye (calcified)
+* kardiyotorasik oran (cardiothoracic ratio)
+* kaybetmiş (loss of)
+* keskin kenarlı (sharp-edged)
+* kısa (short)
+* kısa segment (short segment)
+* kısmen (partially)
+* kısmi (partial)
+* kistik (cystic)
+* konglemere yapıda (conglomerated)
+* kronik (chronic)
+* kümelenmiş (clustered)
+* küme yapmış (clustered)
+* lenfanjitik (lymphangitic)
+* lezyon dışında (apart from the lesion)
+* lezyonlar dışında (apart from the lesions)
+* lineer-subsegment (linear-subsegmental)
+* lobektomizedir (lobectomized)
+* lokülasyon gösteren (showing loculation)
+* loküle (loculated)
+* mantar (fungal)
+* masif (massive)
+* metalik (metallic)
+* metastazlar (metastases)
+* milimetrik (millimetric)
+* milimetrik boyutlu (Millimeter-sized)
+* minimal (minimal)
+* minimal düzeyde (minimal level)
+* mozaik (mosaic)
+* multilober (multilobar)
+* multipl (multiple)
+* multipl sayıda (multiple)
+* nodül dışında (apart from the nodule)
+* nodüller dışında (apart from the nodules)
+* nodüler (nodular)
+* noktasal (point-like)
+* nonspesifik (nonspecific)
+* normal (normal)
+* normal sınırlarda (within normal limits)
+* normaldir (is normal)
+* odak (focus)
+* odaklar (foci)
+* olağan (common, usual)
+* operasyon lojunda (in the surgical site)
+* orta dansitede (medium density)
+* oval şekilli (with an oval shape)
+* ödemli (edematous)
+* parapnömonik (parapneumonic)
+* pasif (passive)
+* patent (unobstructed, open, exhibit patency)
+* patern (pattern)
+* patoloji (pathology, abnormality)
+* patolojik (pathologic)
+* patolojik boyutta olmayan (which are not pathologically enlarged)
+* parankimle örtülü (covered by parenchyma)
+* pleomorfizm gösteren (pleomorphic)
+* pleomorfik (pleomorphic)
+* poligonal (polygonal)
+* postobstrüktif (postobstructive)
+* poststenotik (poststenotic)
+* punktat (punctate)
+* punktat-tozsu (punctate-dusty)
+* reaksiyonel (reactive)
+* reaktif (reactive)
+* retiküler: retucular
+* round (round)
+* sakküler (saccular)
+* satellid (satellite)
+* satellit (satellite)
+* satellite (satellite)
+* segmentektomizedir (segmentectomized)
+* sekel değişiklikler (sequelae changes)
+* sekel fibrotik değişiklikler (residual fibrotic changes)
+* sekel form (scarred form)
+* serbest (free)
+* seyir (course)
+* sınırları (borders)
+* sıvama tarzında (spread-like)
+* sınırları net seçilemeyen (with indistinct borders)
+* silik sınırlı (with ill-defined borders)
+* sklerotik (sclerotic)
+* sola deviye (deviated to the left)
+* sola yer değiştirme (leftward displacement)
+* solid (solid)
+* solid dansitede (with solid density)
+* sonlanmaktadır (terminates)
+* sonlanan (terminating)
+* spesifik (specific)
+* spiküler (spiculated)
+* spondiloz (spondylosis)
+* subsolid form (subsolid form)
+* subsolid dansitede (with subsolid density)
+* tabanlı (based)
+* tabi (natural)
+* tabii (natural)
+* tama yakın (almost completely)
+* tamamen (completely)
+* tamamı uniform özellikte (all are of uniform nature)
+* tarz (pattern)
+* tek hat üstüne (arranged in a single line)
+* tomurcuklanmış ağaç paterninde (budding tree pattern)
+* tortioz (tortuous)
+* total (totally)
+* tozsu (dusty)
+* uniform (uniform)
+* uzanan (extending/)
+* uzanım gösteren (showing extension)
+* uzanımı bulunan (with extension)
+* uzanımı seçilen (observed with extension)
+* uzanımları olan (with extensions)
+* viral (viral)
+* volümünde azalma (decrease in volume)
+* yamasal (patchy ground)
+* yer işgal eden (space-occupying)
+* yer yer (in places, in some areas, partially, occasionally)
+* yerleşimli (located)
+* yoğun içerikli (dense content)
+* yoğunlaşan (concentrated, particularly)
+* yuvarlak (round)
+* yuvarlak konfigürasyonda (with a rounded configuration) 
+Medical Findings with Descriptive Modifiers:
+* aktif infiltrasyon (active infiltration)
+* akut patoloji (acute pathology)
+* daha belirgin (more prominent)
+* dejeneratif değişiklikler (degenerative changes)
+* diffüz kardiyomegali (diffuse cardiomegaly)
+* lenfanjitik infiltrasyon (lymphangitic infiltration)
+* nodüler kalınlaşma (nodular thickening)
+* nodüler lezyon (nodular lesion)
+* nonspesifik nodüller (nonspecific nodules)
+* pasif atelektazi (passive atelectasis)
+* round atelektazi (round atelectasis)
+* satellid nodül (satellite nodule)
+* serbest sıvı (free fluid)
+
+Numerical Measurements: When annotating medical reports, pay close attention to numerical measurements and sizes associated with medical findings. These measurements are crucial for diagnosis and tracking the progression or regression of conditions. Always mark them as "observation-present" using the <span class="OBS-P">...</span> tag, except for dates. This includes a range of measurement formats:
+* Millimeters (mm): e.g., "3 mm", "10x8 mm", "10 mm"
+* Centimeters (cm): e.g., "5.5x4.5 cm","1 cm"
+* Volume (ml): e.g., "0.166 ml"
+* Amounts: e.g., "iki adet" (two)
+* SUVmax : e.g., "SUVmax:8,3" 
+* HU (Hounsfield units): e.g., "HU=17" 
+* Percent : e.g., "%75" (75%)
+
+Dates: Do not mark dates as observations, regardless of their format (e.g., MM.DD.YYYY, DD.MM.YYYY, YYYY.MM.DD, MM/DD/YYYY, DD/MM/YYYY, YYYY/MM/DD, or YYYY). Dates are often followed by 'tarihinde' or 'tarihli' (meaning 'dated') and provide contextual information. However, the dates themselves are not clinical observations.
+
+Include descriptive modifiers: If a measurement has descriptive modifiers (e.g., "minimal" (minimal), "hafif" (mild)), mark both the measurement and the modifier as "observation-present." Always mark both the medical finding and its descriptive modifier as "observation-present" using the <span class="OBS-P">...</span> tag. This ensures that the report accurately reflects the clinical observations in their entirety, providing a comprehensive picture for medical professionals.
+
+By explicitly emphasizing the importance of numerical measurements and providing clear examples, this revised prompt aims to reduce the likelihood of overlooking them during annotation.
+Include words pertain to measurements and sizes such as: "çapında" (in diameter), "çapta" (in diameter), "çapından", "çapına", "çaplı" (with a diameter of), "boyutları" (dimensions), "boyutunda" (with a size of), "boyutlarda" (sized), "boyutlu" (with a size of), "hacmi" (volume of), "kalınlığı" (the thickness of), "kalınlığında" (with a thickness of)
+
+3- Observation-uncertain (OBS-U): Denotes an uncertain observation, where the condition or characteristic is not definitively present or absent. This includes individual words and phrases that convey uncertainty. Examples include, but are not limited to:
+* IVKM enjeksiyonu yapılmadığı için (as intravenous contrast agent injection was not performed)
+* Bronşit? (Bronchitis?)
+* Enfeksiyon süreci ve mukus tıkacı sonucunda gelişmiş olabilir (It may have developed as a result of the infection process and mucus plug)
+* enfeksiyon sürecine sekonder gelişmiş olabilir (it may have developed secondary to the infection process)
+* görüntü kalitesi nedeniyle kesin tanı konulamadı (definitive diagnosis could not be made due to image quality)
+* ile uyumlu olabilecek (may be consistent with)
+* inceleme kontrastsız olduğu için (as examinations were performed without contrast)
+* inceleme kontrastsız olduğu için optimal değerlendirilememiştir (the evaluation could not be optimal as examinations were performed without contrast)
+* izlenim vermekte (appears)
+* kitle açısından (possibility of a mass)
+* kitle ekartasyonu yapılamayan (cannot be differentiated from a mass)
+* kontrastsız kesitlerde mediasten lenf nodları ve hiler bölgeler detaylı olarak değerlendirilemedi (Mediastinal lymph nodes and hilar regions could not be thoroughly evaluated in non-contrast sections)
+* lezyonun sınırları net olarak belirlenemedi (the borders of the lesion could not be clearly defined)
+* metastaz ekarte edilemez (metastasis cannot be ruled out)
+* metastatik oluştuğu düşünülen (that is considered to be metastatic)
+* net olarak değerlendirilememiştir (could not be clearly evaluated)
+* nodüler lezyon şüphesi (suspicion of a nodular lesion)
+* nodüler lezyon varlığından şüphe edildi (suspicion of the presence of a nodular lesion)
+* olabileceği (may be)
+* oldukları düşünülen (are thought to be)
+* olduğu düşünüldü (thought to be)
+* olduğu düşünülen (is thought to be)
+* optimal değerlendirilememekle birlikte (although it cannot be optimally evaluated)
+* ödem açısından şüpheli görünüm (suspicious appearance for edema)
+* primer kompleks ile uyumlu olabilecek (may be consistent with a primary complex)
+* pulmoner hipertansiyon ile uyumlu olabilir (may be consistent with pulmonary hypertension)
+* uyumlu olabileceği (may be consistent)
+* varlığından şüphe edildi (suspicion of the presence of a)
+* viral pnömonik infiltrasyon açısından anlamlı olabilir (it may be significant in terms of viral pneumonic infiltration)
+Remember:
+"muhtemelen benign oldukları düşünülen" should be tagged as: muhtemelen <span class="IMP">benign</span> <span class="OBS-U">oldukları düşünülen</span>
+4- Impression (IMP): This category includes the overall assessment or risk categorization, encompassing the effects of treatments or procedures. Impressions are critical for understanding the clinical context, including evaluations of the findings' nature, suggestions for further investigation, and comments on changes over time or in response to treatment. This category is broadened to explicitly include:
+
+- Evaluations or descriptions of the condition's nature (IMP). Examples include, but are not limited to:
+* PET BT tetkikinde pozitif tutulum gösteren (showing positive uptake in the PET-CT examination)
+* PET BT tetkikinde tutulum göstermeyen (showing no uptake in the PET-CT examination)
+* azalmış (decreased)
+* azalmıştır (is decreased)
+* azalmış olduğu (was decreased)
+* benign natürde (of a benign nature)
+* benign radyolojik karakterde (with a benign radiological appearance)
+* boyut ve dansitesinde azalma (decrease in size and density)
+* çekim tekniği nedeni ile olduğu düşülmektedir (it is thought that due to the imaging technique used)
+* çepeçevre saran (surrounding from all sites)
+* daraltan (constricting)
+* daralmaya sebep olan (causing narrowing)
+* destrüksiyona yol açan (destructing)
+* destrüksiyona yol açtığı (cause destruction)
+* erezyona uğrattığı (caused erosion)
+* eksize olduğu (excised)
+* erezyona uğrattığı (caused erosion)
+* evre I (stage I)
+* evre T1 (stage T1)
+* evre 1 (stage 1)
+* evre 2 (stage 2)
+* evre 3 (stage 3)
+* evre 4 (stage 4)
+* genelde (generally)
+* genellikle (generally)
+* hemen tamamını kaplayan (covering almost the entire)
+* ile süperpoze (superimposed on)
+* ile karakterize (characterized by)
+* ile uyumlu (consistent with)
+* ile uyumlu bulgular (findings consistent with)
+* infiltre eden (infiltrating)
+* indente ettiği (indents)
+* invaze (invading)
+* invaze eden (invading)
+* invaze edip oblitere eden (invading and obliterating)
+* invaze görünümde (showing invasion)
+* invaze olduğu (invaded)
+* invazyon gösteren (invading)
+* kalsifikasyonların belirginleştiği (calcifications became more pronounced)
+* karsinom (carcinoma)
+* küçüldüğü (shrunk)
+* küçülmüştür (shrunk)
+* malign görünümde (with a malignant appearance)
+* malign karakterli (with malignant characteristics)
+* malign kriterler içeren (containing malignant criteria)
+* malign natürlü (of a malignant nature)
+* malignite lehine (indicative of malignancy)
+* metastatik (metastatic)
+* metastaz (metastasis)
+* oklüde eden (occluding)
+* oblitere eden (obliterating)
+* opere (operated)
+* sağa göre (compared to the right)
+* sarıp invaze eden (wrapping around and invading)
+* sarıp oklüde eden (wrapping around and occluding)
+* sarıp (wrapping around)
+* sola göre (compared to the left)
+* Stanford tip B (Stanford type B)
+* superpoze (superimposed)
+* tutan (involving)
+* tümünde (in all)
+* tümör (tumour) 
+* tümöral invazyon (tumoral invasion)
+* yaş ile uyumlu (consistent with age)
+* yüksek şüpheli (highly suspicious)
+
+-Phrases that describe the cause or reason for a finding (IMP). This category includes phrases that explain why a particular finding is present. These phrases often indicate that the finding is a result of a previous event, such as a surgery, procedure, or underlying condition. Examples: 
+* USG de tariflenen fibroadenom ile uyumludur (Consistent with the fibroadenoma described on ultrasound)
+* ayırıcı tanı (differential diagnosis)
+* bağlı (due to, associated with, secondary to)
+* basılayan (compressing)
+* efüzyona bağlı (due to effusion)
+* biyopsi yapılan alandan kaynaklanan (originating from the area where the biopsy was performed)
+* eski filmleri olmadığı için karşılaştırma yapılamadı (comparison could not be made due to the absence of old films)
+* eski filmleri olmadığı için korelasyon yapılamadı (correlation could not be made due to the absence of old films)
+* eski kot fraktürüne bağlı (due to an old rib fracture)
+* eski tetkikte izlenen drenaj kateteri güncel incelemede izlenmedi (the drainage catheter seen in the previous examination was not observed in the current evaluation)
+* geçirilmiş operasyona bağlı (due to a past surgery)
+* kontrastsız yapılan BT (contrast-free CT)
+* metastaza bağlı (due to metastasis)
+* nedeniyle (due to, because of)
+* nekroza sekonder (consequence of necrosis)
+* operasyona bağlı (due to surgery)
+* opere meme karsinomu (with a history of breast carcinoma surgery)
+* radyoterapiye bağlı (associated with radiotherapy)
+* radyoterapiye sekonder (secondary to radiotherapy)
+* sebep olan (causing)
+* sekonder (secondary to)
+
+- Patient's known history of malignancies, diseases or complaints (IMP), such as:
+* ALL tanısı (diagnosis of acute lymphoblastic leukemia)
+* aile hikayesi olan (with a family history of)
+* akciğer Ca (lung carcinoma)
+* akciğer karsinomu (lung carcinoma)
+* asbestozis (asbestosis)
+* bronşiolitis obliterans (bronchiolitis obliterans)
+* değerlendirilmesine yönelik (for the evaluation of)
+* hemoptizi öyküsü (history of hemoptysis)
+* kalp transplantasyonu nedeni (due to heart transplantation)
+* kendisi opere (has undergone previous surgery)
+* kitle şüphesi (suspicion of a mass)
+* koah (chronic obstructive pulmonary disease - COPD)
+* kronik karaciğer hastalığı (chronic liver disease)
+* küçük hücreli akciğer karsinomu (small cell lung carcinoma)
+* meme karsinomu (breast carcinoma)
+* meme Ca (breast carcinoma)
+* opere meme karsinomu (operated breast carcinoma)
+* öyküsü (history of)
+* parsiyel orototopik karaciğer transplantasyonu (partial orthotopic liver transplantation)
+* patolojik olarak tanısı bulunan malign kitle (a malignant mass with a confirmed pathological diagnosis)
+* pulmoner hipertansiyon (pulmonary hypertension)
+* prostat Ca (prostate cancer)
+* prostat karsinomu (prostate cancer)
+* sarkoidoz (sarcoidosis)
+* skleroderma (scleroderma)
+* sklerodermanın tutulumuna bağlı (associated with scleroderma involvement)
+* SLE (systemic lupus erythematosus)
+* soliter fibröz tümör (solitary fibrous tumor)
+* son dönem akciğer karsinomu (end stage lung carcinoma)
+* takipte skleroderma (followed up due to scleroderma)
+* uterin sarkom (uterine sarcoma)
+* vaskülit (vasculitis)
+* Wegener (Wegener's granulomatosis, granulomatosis with polyangiitis)
+* Wegener granülamatozisi (Wegener granulomatosis, granulomatosis with polyangiitis)
+
+- Recommendations for further investigation (IMP). Examples include, but are not limited to:
+* BT anjiografi ile değerlendirilmesi önerilir (It is recommended to evaluate with CT angiography)
+* PET- BT ile değerlendirilmesi önerilir (evaluation with PET-CT is recommended)
+* US ile değerlendirilmesi önerilir (evaluation with ultrasound is recommended) 
+* değerlendirilmesi önerilir (it is recommended to evaluate)
+* ek incelemesi önerilmektedir (additional examination is recommended)
+* gereklilik halinde histopatolojik korelasyon önerilir (histopathological correlation is recommended if necessary)
+* Klinik ve laborutuar korelasyon önerilir (Clinical and laboratory correlation is recommended)
+* klinik-laboratuvar bulgularla beraber değerlendirilmesi önerilir (it is recommended to evaluate together with clinical and laboratory findings)
+* kontraslı BT veya PET BT bulguları eşliğinde değerlendirilmesi önerilir (It is recommended to evaluate with contrast-enhanced CT or PET-CT findings)
+* kontraslı meme US inceleme önerilir (contrast-enhanced breast ultrasound examination is recommended)
+* nodülün takibi önerilir (follow-up of the nodule is recommended)
+* takibi önerilen (recommended for follow-up)
+* US ile değerlendirmesi ve doku tanısı önerilir (Assessment with ultrasound and tissue diagnosis are recommended)
+* US korelasyonu ve doku tanısı önerilir (Correlation with ultrasound and tissue diagnosis are recommended)
+
+- Direct references to changes over time or treatment effects. This category includes phrases that describe how a finding has changed over time or in response to treatment (IMP). Examples include, but are not limited to:
+* artış göstermiştir (has increased)
+* artış gösterdiği (an increase is observed compared to)
+* belirgin farklılık olmadığı düşünülen (thought to have no significant difference)
+* belirgin farklılık olmadığı düşünüldü (it was considered that there was no significant difference)
+* benzer (similar to)
+* benzer nitelikli (similar in nature)
+* benzer şekilde (similarly)
+* benzer görünümdedir (appears similar to)
+* bıraktığı (left behind)
+* bir önceki tetkikinde (in the previous examination)
+* boyut artışı gösteren (showing an increase in size)
+* boyutlarında hafif azalma (slight decrease in size)
+* boyutlarında hafif azalma bulunan (with slight decrease in size)
+* bu tetkikte (in this examination)
+* büyük oranda regresyon (significant regression)
+* dış merkezli (at another center)
+* dış merkezli tetkikleri ile (with examinations conducted at another center)
+* düzeyindeyken (previously measured)
+* erken aşama (early-stage)
+* eski tetkiki ile karşılaştırıldığında (when compared with the previous examination)
+* eski tetkikte (in the earlier examination)
+* eski tetkikte de izlenen (as seen in the prior examination)
+* eski tetkikinde izlenmeyen (which was not observed in the previous examination)
+* eski tetkikte izlenmeyen (which was not detected in the previous examination)
+* eski tetkikte seçilemeyen (which was not identifiable)
+* eskiye göre (compared to the earlier one)
+* geliştiği (development of)
+* gerileme (regresyon)
+* gerileyen (regressing, decreasing in size)
+* görece (relatively)
+* güncel incelemede (in the current examination)
+* güncel tetkikinde (in the current investigation)
+* hafif boyut artışı izlenen (with mild size increase)
+* hafif progresyon gösteren (showing mild progression)
+* kısmen gerilemiş (partially regressed)
+* kısmen progrese (partially progressed)
+* küçülme (shrinkage)
+* nispeten (relatively)
+* önceki inceleme ile (compared to the previous examination)
+* önceki inceleme ile benzerdir (similar to the previous examination)
+* önceki incelemeye göre bir miktar artış (a slight increase compared to the previous examination)
+* önceki tetkikte izlenmeyen (which was not observed in the previous examination, newly developed)
+* progrese yapıdadır (show progression)
+* progrese (progressed)
+* progrese olduğu (there is progress)
+* progresyon göstermiştir (has progressed)
+* regresyon (regression)
+* rezorbe olan (resorbed)
+* rezorbe olduğu (it was resorbed)
+* sebat etmiştir (persisted)
+* sebat ettiği (persisted)
+* silinmek (wiped out)
+* stabil (stable)
+* stabil yapıdadır (in a stable condition)
+* volümünde azalma (decrease in the volume)
+* yeni gelişmiş (newly developed)
+* yeni metastatik (new metastatic, newly developed metastatic)
+
+Marking an entity as impression or not is not dependent of it's position in the text, whether it is in the conclucion section or not. Entities such as 'lenf nodu' should be marked based on their clinical significance as observations, irrespective of their location in the text, including the conclusion section.
+
+### Specific Instructions
+
+Do not mark up the words as they are not medical entities, regardless of their location in the text:
+* YORUM
+* SONUÇ
+* ÖNERİ
+* IVKM
+
+Do not mark up these terms as they are not medical entities: 
+ayrıca (additionally), bundan başka (other than that), diğer bulgularda (in the other findings), eşlik eden (accompanying), eşlik ettiği (accompanied by), grafiye dahil olan (included in the graph), grafiye kısmen dahil olan (partially included in the graph), izlenebilen kesimlerde (which can be followed), incelemeye dahil (included in the examination), kesitlere dahil kesimde (in the included section), konumlu (located), noniyonik kontrast madde kullanılmıştır (non-ionic contrast agent has been used), tanımlanan (defined), tariflenen (described), tarihli tetkikinden (compared to the examination dated), vasıflı (in nature), vasıfta (in nature), ve (and), veya (or), ya da (or), yaklaşık (approximately), yerleşimli (located), yukarıda tanımlanan (described above)
+
+Text formatting: 
+Do not add or delete special chars such as: ".", ",", ":", ";", "(", ")", "/", "?", "-"
+### Output Format
+Your output format must be an HTML code snippet. Include style definitions for each entity class to visually differentiate them. Do not output as plain text.
+###
+Observations describe findings or characteristics, while anatomy refers to body regions or organs. Always mark observations and anatomical locations as separate entities, even when an observation describes a characteristic of an anatomical feature.  Examples include, but are not limited to:
+* akciğerler konjesyonedir (lungs are congested) -> <span class="ANAT">akciğerler</span> <span class="OBS-P">konjesyonedir</span>
+* aterosklerotik duvar değişiklikleri (atherosclerotic wall changes) -> <span class="OBS-P">aterosklerotik</span> <span class="ANAT">duvar</span> <span class="OBS-P">değişiklikleri</span>
+* intramural hematom (intramural hematoma) -> <span class="ANAT">intramural</span> <span class="OBS-P">hematom</span>
+* konsolidasyon alanları (consolidation areas) -> <span class="OBS-P">konsolidasyon</span> <span class="ANAT">alanları</span>
+* kortikal kalınlaşma (cortical thickening) -> <span class="ANAT">kortikal</span> <span class="OBS-P">kalınlaşma</span>
+* sağ plevral effüzyon (effusion in right pleura) -> <span class="ANAT">sağ plevral</span> <span class="OBS-P">effüzyon</span>
+* sol aksillada metalik klipsler (metal clips in left axilla) -> <span class="ANAT">sol aksillada</span> <span class="OBS-P">metalik klipsler</span>
+* solda plevral mayii (fluid in left pleura) -> <span class="ANAT">solda</span> <span class="ANAT">plevral</span> <span class="OBS-P">mayii</span>
+* sağda 57 mm (57 mm on the right side) -> <span class="ANAT">sağda</span> <span class="OBS-P">57 mm</span>
+* solda 32 mm (32 mm on the left side) -> <span class="ANAT">solda</span> <span class="OBS-P">32 mm</span>
+* nodül komşuluğunda (in the vicinity of nodule) -> <span class="OBS-P">nodül</span> <span class="ANAT">komşuluğunda</span>
+* parapelvik kist (parapelvic cyst) -> <span class="ANAT">parapelvic</span> <span class="OBS-P">cyst</span>
+* peribronşial kalınlaşmalar (peribronchial thickenings) -> <span class="ANAT">peribronşial</span> <span class="OBS-P">kalınlaşmalar</span>
+* plevral mayii (pleural fluid / fluid in the pleura) -> <span class="ANAT">pleural</span> <span class="OBS-P">fluid</span>
+* pulmoner tromboemboli (pulmonary thromboembolism) -> <span class="ANAT">pulmoner</span> <span class="OBS-P">tromboemboli</span>
+* timik remnant (thymic remnant) -> <span class="ANAT">timik</span> <span class="OBS-P">remnant</span>
+* intramusküler lipom (intramuscular lipoma) -> <span class="ANAT">intramusküler</span> <span class="OBS-P">lipom</span>
+### Detailed Entity Categorization Clarification
+Carefully categorize and mark each entity as either 'anatomy', 'observation-present', 'observation-absent', 'observation-uncertain', or 'impression', following the detailed guidelines. It is crucial to distinguish between findings and their clinical implications accurately, especially when a term may describe both an observation and an impression based on its context within the report.
+
+Impressions: Any reference to the nature of a finding (e.g., "Benign natürde") should be marked as impressions. This includes phrases that describe the overall assessment or risk level of a finding.
+
+Observations: Specific findings or characteristics observed (e.g., "aterom plakları", "kalsifiye granulom", "açıktır", "effüzyon", "efüzyon", "kalınlaşma") should be marked as observations, regardless of their nature being benign or otherwise.
+
+When annotating observations in medical reports, it's crucial to include not only the medical findings themselves but also their descriptive modifiers. Descriptive modifiers provide essential context about the observations, such as their quantity, prominence, distribution, or specific characteristics. These modifiers include terms like "çok sayıda" (many), "en belirgini" (the most prominent), "uzanımı seçilen" (selected extension), "yer yer" (in places), among others. They are integral to fully understanding the patient's condition and the extent or significance of the findings.
+
+For example, when you encounter a phrase that describes the quantity or specific attribute of a medical finding, both the finding and its modifier should be tagged as observation. This ensures that the report accurately reflects the clinical observations in their entirety, providing a comprehensive picture for medical professionals. By meticulously including these details in your annotations, you help ensure that the report is as informative and useful as possible for clinical decision-making.
+
+Remember, the goal of annotation is not just to highlight findings but to capture the complete context in which these findings are presented, as this context can significantly affect clinical interpretations and outcomes.
+
+###
+To ensure clarity and consistency in markup:
+Distinguishing Impressions from Observations:
+When annotating medical reports, it's crucial to accurately differentiate between impressions and observations. This distinction is particularly important when a term can describe both an observation and an impression depending on its context within the report.
+Always mark the nature of a finding and its risk assessment as an impression.
+Mark the specific finding or characteristic as an observation.
+When a sentence includes both, clearly differentiate by marking each portion according to its category.
+Examples:
+* belirgin regresyon (significant regression) -> <span class="OBS-P">belirgin </span><span class="IMP">regresyon</span>
+* büyümüş lenf nodları (enlarged lymph nodes) -> <span class="IMP">büyümüş</span> <span class="OBS-P">lenf nodları</span>
+* geçirilmiş operasyona bağlı fizyolojik effüzyon ve sekel değişiklikler (physiological effusion and sequelae changes related to a past surgery) -> <span class="IMP">geçirilmiş operasyona bağlı</span> <span class="OBS-P">fizyolojik effüzyon</span> ve <span class="OBS-P">sekel değişiklikler</span> 
+* stabil görünüm (stable appearance) -> <span class="IMP">stabil</span> <span class="OBS-P">görünüm</span> 
+* tamamen invaze eden (completely invading) -> <span class="OBS-P">tamamen</span> <span class="IMP">invaze eden</span>
+* tamamen tutan (completely involving) -> <span class="OBS-P">tamamen</span> <span class="IMP">tutan</span>
+trombüsler ile uyumlu dolma defekti (filling defect consistent with thrombi) -> <span class="OBS-P">trombüsler</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">dolma defekti</span>
+
+Key point:
+For accurate and consistent entity tagging, always separate the term "metastatik" (metastatic) from the term "lezyonlar" (lesions) and tag them individually in the phrase "metastatik lezyonlar".
+Impression: <span class="IMP">metastatik</span> (metastatic)
+Observation: <span class="OBS-P">lezyonlar</span> (lesions)
+This approach ensures that both the clinical impression (metastatic nature) and the observed finding (lesions) are explicitly captured in the markup, providing a more granular and informative representation of the medical report.
+###
+If an entity is described in the report that fits the definition of an impression, it should be tagged as an impression whether it is found in the body of the report or in the "SONUÇ" (conclusion) section. Do not mark the word 'SONUÇ' as it represents the conclusion section itself. Similarly, observations (present, absent, uncertain) and anatomical references should be identified and tagged based on their characteristics, not their location in the text.
+###
+For accurate and consistent entity tagging, treat the 'SONUÇ' (conclusion) section in the same way as the 'BODY' of the report. This means applying the same entity definitions and tagging guidelines to all sections of the text, regardless of location. Focus on the clinical significance of terms, not their location. 
+###
+In marking entities within medical reports, observe these key rules for handling verbs:
+-When marking absent observations, focus on tagging only the specific terms or phrases that directly describe the missing condition, using the <span class="OBS-A">...</span> tag. Do not include verbs that simply convey the absence itself, such as:
+"mevcut değildir" (does not exist, is not present), "izlenmemektedir" (is not observed, is not seen), "izlenmemiştir" (was not observed, was not seen), "izlenmedi" (was not observed, was not seen), "saptanmadı" (was not detected, was not found), "saptanmamıştır" (was not detected, was not found), "yoktur" (does not exist, is not present), "kaydedilmedi" (was not recorded), "düşünülmedi" (was not considered), or any similar expressions that simply indicate the absence itself. These verbs all convey the absence of something, but they do not specify the specific condition or finding that is absent.
+When marking absent observations in medical reports, it's important to focus on tagging the specific terms or phrases that describe the missing condition, not the verbs that simply indicate the absence. Examples include, but are not limited to:
+<span class="OBS-A">Sınırları seçilebilen kitle lezyonu, kalsifikasyon, yapısal bozulma</span> saptanmamıştır
+<span class="OBS-A">patolojik boyut ve görünümde büyümüş lenf nodu</span> yoktur
+<span class="OBS-A">Kitle</span> ya da <span class="OBS-A">konsolidasyon</span> <span class="OBS-A">alanı</span> izlenmemektedir
+* Terms like "anlamlı farklılık" (significant difference), or "anlamlı fark" (significant difference) describe the missing condition, and should be tagged with <span class="OBS-A">...</span>. They are not impressions and should not be tagged with <span class="IMP">...</span>
+Remember:
+* Terms like "regresyon" (regression) or 'küçülme' (shrinkage) describe changes in existing conditions, not their absence, and should not be tagged with <span class="OBS-A">...</span>. They are impressions and should be tagged with <span class="IMP">...</span>
+
+-When marking present observations, focus on tagging only the specific terms or phrases that directly describe the observed condition, using the <span class="OBS-P">...</span> tag. Do not include verbs that simply state its presence, such as "mevcuttur" (exists, is present), "izlenmektedir" (is observed, is seen), "izlenmiştir" (was observed, was seen), "izlendi" (was observed, was seen - alternative past tense form), "saptandı" (was detected, was found), "saptanmıştır" (was detected, was found - alternative past tense form), "vardır" (exists, is present - alternative form of "mevcuttur"), "dikkati çekmektedir" (is noticeable, attracts attention), "dikkati çekti" (was noticeable, attracted attention - past tense), "dikkati çekmiştir" (was noticeable, attracted attention - alternative past tense form), "kaydedildi" (was recorded), "düşünüldü" (was considered, was thought of), varlığı dikkati çekti (drew attention to its presence), eşlik etmektedir (accompanied by), or any similar expressions indicating presence. Do not include any similar expressions that merely indicate the presence of a condition without specifying what it is.
+Remember:
+* Terms like "ametabolik" (non-avid, ametabolic) describe a characteristic of an observed finding, and should be tagged as OBS-P (observation-present).
+
+-When marking uncertain observations, focus on tagging only the specific terms or phrases that directly describe the uncertain condition, using the <span class="OBS-U">...</span> tag. Do not tag terms that simply state its presence, such as "sınırlı düzeyde kalmıştır" (has been limited), or any similar expressions indicating uncertainity.
+
+This approach ensures clarity by accurately separating the condition or finding from the verb that describes its status.
+
+### Annotation Guidelines
+All reports are written in Turkish language. So do not translate Inputs and Outputs to English Language. All words are as is. Don't delete sentences.
+###
+Correct typographical errors before marking:
+Incorrect: kalınlaşma bulguus izlenmedi.
+Correct: kalınlaşma bulgusu izlenmedi.
+Incorrect: dejeneratif değişşiklikler
+Correct: dejeneratif değişiklikler
+Incorrect: patolojik boyuta lenf nodu
+Correct: patolojik boyutta lenf nodu
+Incorrect: üzem salkımı
+Correct: üzüm salkımı
+Incorrect: cerrahine bağlı
+Correct: cerrahisine bağlı
+Incorrect: timik reminant
+Correct: timik remnant
+Incorrect: sağ hemmitoraks
+Correct: sağ hemitoraks
+Incorrect: değişikler
+Correct: değişiklikler
+Incorrect: sentrilkobüler
+Correct: sentrilobüler
+Incorrect: remnnat
+Correct: remnat
+Incorrect: Milimetirk
+Correct: Milimetrik
+ 
+
+To efficiently correct these targeted typos, follow these steps:
+Review the above typo table: Carefully examine the table provided in the prompt, which lists common typos and their corresponding corrections. Familiarize yourself with these specific errors and their proper forms.
+Scan the report for listed typos: Systematically search the medical report for instances of the typos listed in the table. Pay close attention to words that resemble the incorrect forms, as they might be typos in need of correction.
+Implement corrections: Once you identify a listed typo, replace it with its correct form as indicated in the table.
+Double-check for accuracy: After making corrections, re-read the relevant sections to ensure that the changes have been implemented correctly and that no new errors have been introduced.
+Remember:
+Focus on correcting only the typos listed in the table, as these are the errors that have been specifically identified as potentially impacting entity identification.
+If you encounter a typo that is not listed in the table, you may choose to leave it unchanged or correct it based on your judgment and understanding of the medical terminology.
+###
+Pre-Submission Annotation Quality Checklist:
+Before finalizing your annotations, conduct a detailed review to ensure adherence to the highest standards of accuracy and consistency. Pay special attention to the following refined points:
+
+1- Verify Specific Terms: Ensure comprehensive tagging of all specific terms listed in the guidelines, including clinical conditions, anatomical terms, and descriptive modifiers. These terms are crucial for conveying the full context and significance of clinical observations.
+
+2- Entity Categorization Accuracy: Rigorously double-check the categorization of all entities to match the definitions and examples provided. This includes correct identification and differentiation between "anatomy", "observation-present", "observation-absent", "observation-uncertain", and "impression" entities.
+
+3- Inclusive Modifier Annotation: Specifically, ensure that descriptive modifiers—indicative of quantity, prominence, distribution, or specific characteristics—are not overlooked and are correctly tagged as observations. These modifiers, including terms like "büllöz", "sekel", "fibrotik", "spiküler", "nonspesifik", "lokülasyon", "çok sayıda", "yer yer", and others, provide essential context and should be meticulously included to accurately reflect the clinical observation.
+
+4- Guideline Consistency: Confirm that your annotations align seamlessly with the provided examples and instructions, focusing on accurately representing the medical conditions or findings without tagging the verbs indicating presence or absence.
+
+5- Typographical and Grammatical Precision: Address any textual errors to maintain professionalism and clarity in the annotations.
+
+6- Comprehensive Review for Completeness: Ensure that every relevant entity within the report has been identified, correctly marked, and reviewed for coherence, ensuring full alignment with the guidelines.
+
+7- Modifier Focus: Place additional emphasis on descriptive modifiers as integral components of observations. These modifiers significantly affect the interpretation of findings and should be tagged with the same diligence as primary observations.
+
+8- Continuous Learning and Improvement: After annotation, compare your work against provided examples and seek feedback if possible. Use discrepancies as learning opportunities to refine your understanding and application of the guidelines.
+###
+Enclose Output between:
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<style>
+.ANAT {
+	background-color:Fuchsia
+}
+.OBS-P {
+	background-color:DeepSkyBlue
+}
+.OBS-A {
+	background-color:Yellow
+}
+.OBS-U {
+	background-color:DarkGray 
+}
+.IMP {
+	background-color:#ED2939
+}
+</style>
+    <title>Thoraks BT Report Entity Extractor</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
+<p>
+
+and:
+
+</body>
+</html>
+Include below text before </body> tag:
+</p>
+<br><br><span style="background-color:Fuchsia;">ANATOMY, ANAT </span><br>
+<span style="background-color:DeepSkyBlue;">OBSERVATION_PRESENT, OBS-P </span><br>
+<span style="background-color:Yellow;">OBSERVATION_ABSENT, OBS-A </span><br>
+<span style="background-color:Gray;">OBSERVATION_UNCERTAIN, OBS-U </span><br>
+<span style="background-color:#ED2939;">IMPRESSION, IMP </span>
+###
+To enhance accuracy in future annotations, it's crucial to closely follow the provided examples and definitions within the prompt. Before beginning the markup, review the examples to clarify entity categorization. After completing your markup, compare your work against the examples to ensure consistency and correctness. This iterative process of review and comparison will help prevent misunderstandings and improve the precision of your annotations.
+### Examples
+The following examples illustrate how to mark entities in medical reports. Please note that lines starting with "Teknik:" or "IVKM" should be excluded from the markup.
+Input1:
+Opere meme karsinomu tanısı ile takip edilen hastada sol meme mastektomizedir. Operasyon lojunda ve sol aksillada metalik klipsler gözlendi. Rezidü ya da rekürrens saptanmamıştır.
+
+Trakea ve ana bronşlar normal konfigürasyonda değerlendirilmiştir. Mediastinal ana vasküler yapılar normal kalibrasyonda ve patenttir. Arkus aortada minimal aterom plakları saptandı. Kalp boyutları ve konturları normaldir. Kalp boşlukları tabi değerlendirildi. Sağ hilusta birkaç adet en belirgini 15x8 mm boyutunda ölçülen ayrıca subkarinal mesafede 12x10 mm boyutunda değerlendirilen kalsifiye lenf nodları gözlendi. Primer kompleks ile uyumlu olabilecek sağ akciğerde alt lobta lateral bazal segmentte yerleşimli 5 mm çapında kalsifiye granulom gözlendi. Sağ üst lob posterior segmentte de 2 mm çapında sekel nodül mevcuttur. Sol akciğerde nodül saptanmadı. Kitle ya da konsolidasyon alanı izlenmemektedir.
+
+Torakal kifoz artmıştır. Vertebra korpuslarında dejeneratif değişiklikler izlendi.
+
+SONUÇ:
+
+- Takipte opere meme karsinomu, sol mastektomize, operasyona bağlı metalik klipsler
+- Sağ hiler ve subkarinal kalsifiye lenf nodları
+- Sağ alt lobta kalsifiye granulom
+- Sağ üst lobta milimetrik sekel nodül
+- Vertebra korpuslarında dejeneratif değişiklikler
+
+Output1:
+<span class="IMP">Opere</span> <span class="IMP">meme karsinomu tanısı</span> ile takip edilen hastada <span class="ANAT">sol meme</span> <span class="OBS-P">mastektomizedir</span>. <span class="ANAT">Operasyon lojunda</span> ve <span class="ANAT">sol aksillada</span> <span class="OBS-P">metalik klipsler</span> gözlendi. <span class="OBS-A">Rezidü</span> ya da <span class="OBS-A">rekürrens</span> saptanmamıştır. <br>
+<br>
+<span class="ANAT">Trakea</span> ve <span class="ANAT">ana bronşlar</span> <span class="OBS-P">normal</span> <span class="OBS-P">konfigürasyonda</span> değerlendirilmiştir. <span class="ANAT">Mediastinal</span> <span class="ANAT">ana vasküler yapılar</span> <span class="OBS-P">normal</span> <span class="OBS-P">kalibrasyonda</span> ve <span class="OBS-P">patenttir</span>. <span class="ANAT">Arkus aortada</span> <span class="OBS-P">minimal</span> <span class="OBS-P">aterom plakları</span> saptandı. <span class="ANAT">Kalp</span> <span class="OBS-P">boyutları</span> ve <span class="OBS-P">konturları</span> <span class="OBS-P">normaldir</span>. <span class="ANAT">Kalp</span> <span class="ANAT">boşlukları</span> <span class="OBS-P">tabi</span> değerlendirildi. <span class="ANAT">Sağ hilusta</span> <span class="OBS-P">birkaç adet</span> <span class="OBS-P">en belirgini</span> <span class="OBS-P">15x8 mm</span> <span class="OBS-P">boyutunda</span> ölçülen ayrıca <span class="ANAT">subkarinal mesafede</span> <span class="OBS-P">12x10 mm</span> <span class="OBS-P">boyutunda</span> değerlendirilen <span class="OBS-P">kalsifiye</span> <span class="OBS-P">lenf nodları</span> gözlendi. <span class="OBS-U">Primer kompleks ile uyumlu olabilecek</span> <span class="ANAT">sağ akciğerde</span> <span class="ANAT">alt lobta</span> <span class="ANAT">lateral bazal segmentte</span> yerleşimli <span class="OBS-P">5 mm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">kalsifiye</span> <span class="OBS-P">granulom</span> gözlendi. <span class="ANAT">Sağ üst lob</span> <span class="ANAT">posterior segmentte</span> de <span class="OBS-P">2 mm</span> <span class="OBS-P">çapında</span> <span class="OBS-P">sekel nodül</span> mevcuttur. <span class="ANAT">Sol akciğerde</span> <span class="OBS-A">nodül</span> saptanmadı. <span class="OBS-A">Kitle</span> ya da <span class="OBS-A">konsolidasyon</span> <span class="ANAT">alanı</span> izlenmemektedir.<br>
+<br>
+<span class="ANAT">Torakal</span> <span class="OBS-P">kifoz</span> <span class="OBS-P">artmıştır</span>. <span class="ANAT">Vertebra korpuslarında</span> <span class="OBS-P">dejeneratif değişiklikler</span> izlendi.<br>
+<br>
+SONUÇ:<br>
+<br>
+- <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="IMP">meme karsinomu</span>, <span class="OBS-P">sol mastektomize</span>, <span class="IMP">operasyona bağlı</span> <span class="OBS-P">metalik klipsler</span><br>
+- <span class="ANAT">Sağ hiler</span> ve <span class="ANAT">subkarinal</span> <span class="OBS-P">kalsifiye</span> <span class="OBS-P">lenf nodları</span><br>
+- <span class="ANAT">Sağ alt lobta</span> <span class="OBS-P">kalsifiye</span> <span class="OBS-P">granulom</span><br>
+- <span class="ANAT">Sağ üst lobta</span> <span class="OBS-P">milimetrik</span> <span class="OBS-P">sekel nodül</span><br>
+- <span class="ANAT">Vertebra korpuslarında</span> <span class="OBS-P">dejeneratif değişiklikler</span><br>
+
+Input2:
+Tetkik 2018 tarihli toraks BT ile birlikte değerlendirilmiştir.
+
+Opere meme karsinomu tanısı ile izlenen hastada bilateral aksiller bölgelerde, mediastinal ve hiler patolojik boyutta lenf nodu saptanmadı. Her iki hemitoraksta plevral effüzyon izlenmedi.
+
+Akciğer parankim alanlarında aktif infiltrasyon saptanmadı. Yeni nodül izlenmedi.
+
+Sağ akciğer üst lob posterior segmentte ve alt lob süperior segmentte önceki tetkikte tariflenen nodüllerin boyutlarında farklılık saptanmadı. Bu tetkikte de boyutları sırası ile 6 mm ve 14 mm olarak ölçüldü. Alt lob süperior segmentte izlenen nodül komşuluğunda izlenen plevral kalınlaşmalar stabil olarak değerlendirildi. Toraks duvarını oluşturan kemik yapılarda litik, destrüktif lezyon saptanmadı.
+
+Diğer sistem bulgularında farklılık izlenmedi
+
+SONUÇ:
+
+- Takipte opere meme karsinomu
+- Sağ akciğerde izlenen önceki tetkik ile karşılaştırıldığında boyut farklılığı saptanmayan nonspesifik nodüller, eşlik eden alt lob süperior segmentte stabil plevral kalınlaşma görünümleri
+- Minimal aterom plakları
+- Vertebra korpuslarında hafif dejeneratif değişiklikler
+
+Output2:
+Tetkik 2018 tarihli toraks BT ile birlikte değerlendirilmiştir. <br>
+<br>
+<span class="IMP">Opere</span> <span class="IMP">meme karsinomu tanısı</span> ile izlenen hastada <span class="ANAT">bilateral</span> <span class="ANAT">aksiller bölgelerde</span>, <span class="ANAT">mediastinal</span> ve <span class="ANAT">hiler</span> <span class="OBS-A">patolojik boyutta</span> <span class="OBS-A">lenf nodu</span> saptanmadı. <span class="ANAT">Her iki</span> <span class="ANAT">hemitoraksta</span> <span class="ANAT">plevral</span> <span class="OBS-A">effüzyon</span> izlenmedi. <br>
+<br>
+<span class="ANAT">Akciğer</span> <span class="ANAT">parankim alanlarında</span> <span class="OBS-A">aktif</span> <span class="OBS-A">infiltrasyon</span> saptanmadı. <span class="OBS-A">Yeni nodül</span> izlenmedi. <br>
+<br>
+<span class="ANAT">Sağ akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">posterior segmentte</span> ve <span class="ANAT">alt lob</span> <span class="ANAT">süperior segmentte</span> <span class="IMP">önceki tetkikte tariflenen</span> <span class="OBS-A">nodüllerin</span> <span class="OBS-A">boyutlarında</span> <span class="OBS-A">farklılık</span> saptanmadı. <span class="IMP">Bu tetkikte</span> de <span class="OBS-P">boyutları sırası ile</span> <span class="OBS-P">6 mm</span> ve <span class="OBS-P">14 mm</span> olarak ölçüldü. <span class="ANAT">Alt lob</span> <span class="ANAT">süperior segmentte</span> izlenen <span class="OBS-P">nodül</span> <span class="ANAT">komşuluğunda</span> izlenen <span class="ANAT">plevral</span> <span class="OBS-P">kalınlaşmalar</span> <span class="IMP">stabil</span> olarak değerlendirildi. <span class="ANAT">Toraks duvarını oluşturan kemik yapılarda</span> <span class="OBS-A">litik, destrüktif</span> <span class="OBS-A">lezyon</span> saptanmadı. <br>
+<br>
+Diğer sistem bulgularında farklılık izlenmedi<br>
+<br>
+SONUÇ:<br>
+<br>
+- <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="IMP">meme karsinomu</span> <br>
+- <span class="ANAT">Sağ akciğerde</span> izlenen <span class="IMP">önceki tetkik ile karşılaştırıldığında</span> <span class="IMP">boyut farklılığı saptanmayan</span> <span class="OBS-P">nonspesifik</span> <span class="OBS-P">nodüller</span>, eşlik eden <span class="ANAT">alt lob</span> <span class="ANAT">süperior segmentte</span> <span class="IMP">stabil</span> <span class="ANAT">plevral</span> <span class="OBS-P">kalınlaşma</span> <span class="OBS-P">görünümleri</span> <br>
+- <span class="OBS-P">Minimal</span> <span class="OBS-P">aterom plakları</span> <br>
+- <span class="ANAT">Vertebra korpuslarında</span> <span class="OBS-P">hafif</span> <span class="OBS-P">dejeneratif değişiklikler</span> <br>
+
+Input3:
+Tetkik 2023 tarihli toraks BT ile kıyaslamalı değerlendirilmiştir.
+
+Opere süperior sulkus tümörü tanısı ile takip edilen hastada;
+
+Trakea ve her iki ana bronş açıktır. Sağ akciğer üst lobektomizedir. Operasyon lojunda tomografi kriterleri ile ayırt edilebilen rekürrens düşündürecek yumuşak doku görünümü saptanmamıştır. Operasyon lojunda fizyolojik effüzyon stabil olarak değerlendirilmiştir. Sol hemitoraksta effüzyon ya da kalınlaşma bulgusu izlenmedi. Mediasten ve her iki hilusta patolojik görünümlü lenf nodu saptanmadı. Kemik yapılarda dejeneratif değişiklikler izlenmiş olup litik, destrüktif kitle lezyonu saptanmadı.
+
+Her iki akciğer parankim alanlarının değerlendirilmesinde her iki akciğer parankiminde pnömonik infiltrasyon ya da kitle görünümü saptanmamıştır. Her iki akciğer parankiminde end plate atelektazik değişiklikler ve sekel buzlu cam dansiteleri stabil olarak değerlendirilmiştir. Her iki akciğerde yeni gelişimli spiküle konturlu malignite kriterleri taşıyan nodül izlenmedi. Eski tetkikte de izlenen milimetrik boyutlu birkaç adet nonspesifik nodül stabildir.
+
+Sol akciğer üst lob anterior segmentte plevra tabanlı düzensiz sınırlı 12x6.6 mm (Eski tetkikte 12x8.5 mm) boyutlu düzensiz sınırlı nodüler lezyonun boyutlarında hafif azalma dikkati çekmiştir. Tanımlanan nodülün yakın takibi önerilir
+
+Diğer BT bulgularda anlamlı farklılık izlenmedi.
+
+SONUÇ:
+
+- Takipte opere süperior sulkus tümörü ve sağ akciğer üst lobektomize
+- Sağ hemmitoraksta üst zonda geçirilmiş operasyona bağlı fizyolojik effüzyon ve sekel değişiklikler
+- Sol akciğer üst lob anterior segmentte plevra tabanlı düzensiz sınırlı 12x6.6 mm (Eski tetkikte 12x8.5 mm) boyutlu düzensiz sınırlı nodüler lezyonun boyutlarında hafif azalma dikkati çekmiştir. Tanımlanan nodülün yakın takibi önerilir.
+- Her iki akciğerde milimetrik boyutlu stabil nonspesifik nodüller geçirilmiş by pass cerrahisine bağlı değişiklikler
+- Her iki akciğerde fibroatelektazik değişiklikler
+- Pnömoni saptanmadı
+- Kemik yapılarda dejeneratif değişiklikler
+
+Output3:
+Tetkik 2023 tarihli toraks BT ile kıyaslamalı değerlendirilmiştir. <br>
+<br>
+<span class="IMP">Opere</span> <span class="IMP">süperior sulkus tümörü tanısı</span> ile takip edilen hastada; <br>
+<br>
+<span class="ANAT">Trakea</span> ve <span class="ANAT">her iki ana bronş</span> <span class="OBS-P">açıktır</span>. <span class="ANAT">Sağ akciğer üst</span> <span class="OBS-P">lobektomizedir</span>. <span class="ANAT">Operasyon lojunda</span> tomografi kriterleri ile ayırt edilebilen <span class="OBS-A">rekürrens düşündürecek</span> <span class="OBS-A">yumuşak doku görünümü</span> saptanmamıştır. <span class="ANAT">Operasyon lojunda</span> <span class="OBS-P">fizyolojik effüzyon</span> <span class="IMP">stabil</span> olarak değerlendirilmiştir. <span class="ANAT">Sol hemitoraksta</span> <span class="OBS-A">effüzyon</span> ya da <span class="OBS-A">kalınlaşma</span> bulgusu izlenmedi. <span class="ANAT">Mediasten</span> ve <span class="ANAT">her iki hilusta</span> <span class="OBS-A">patolojik görünümlü</span> <span class="OBS-A">lenf nodu</span> saptanmadı. <span class="ANAT">Kemik yapılarda</span> <span class="OBS-P">dejeneratif değişiklikler</span> izlenmiş olup <span class="OBS-A">litik, destrüktif</span> <span class="OBS-A">kitle lezyonu</span> saptanmadı. <br>
+<br>
+<span class="ANAT">Her iki akciğer</span> <span class="ANAT">parankim alanlarının</span> değerlendirilmesinde <span class="ANAT">her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">parankiminde</span> <span class="OBS-A">pnömonik infiltrasyon</span> ya da <span class="OBS-A">kitle görünümü</span> saptanmamıştır. <span class="ANAT">Her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">parankiminde</span> <span class="ANAT">end plate</span> <span class="OBS-P">atelektazik değişiklikler</span> ve <span class="OBS-P">sekel buzlu cam dansiteleri</span> <span class="IMP">stabil</span> olarak değerlendirilmiştir. <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-A">yeni gelişimli</span> <span class="OBS-A">spiküle konturlu</span> <span class="OBS-A">malignite kriterleri taşıyan</span> <span class="OBS-A">nodül</span> izlenmedi. <span class="IMP">Eski tetkikte de izlenen</span> <span class="OBS-P">milimetrik boyutlu</span> <span class="OBS-P">birkaç adet</span> <span class="OBS-P">nonspesifik</span> <span class="OBS-P">nodül</span> <span class="IMP">stabildir</span>. <br>
+<br>
+<span class="ANAT">Sol akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">anterior segmentte</span> <span class="ANAT">plevra</span> <span class="OBS-P">tabanlı</span> <span class="OBS-P">düzensiz sınırlı</span> <span class="OBS-P">12x6.6 mm</span> (<span class="IMP">Eski tetkikte</span> <span class="OBS-P">12x8.5 mm</span>) <span class="OBS-P">boyutlu</span> <span class="OBS-P">düzensiz sınırlı</span> <span class="OBS-P">nodüler lezyonun</span> <span class="IMP">boyutlarında hafif azalma</span> dikkati çekmiştir. Tanımlanan <span class="IMP">nodülün yakın takibi önerilir</span> <br>
+<br>
+Diğer BT bulgularda anlamlı farklılık izlenmedi. <br>
+<br>
+SONUÇ: <br>
+<br>
+- <span class="IMP">Takipte</span> <span class="IMP">opere</span> <span class="IMP">süperior sulkus tümörü</span> ve <span class="ANAT">sağ akciğer üst</span> <span class="OBS-P">lobektomize</span> <br>
+- <span class="ANAT">Sağ hemmitoraksta</span> <span class="ANAT">üst zonda</span> <span class="IMP">geçirilmiş operasyona bağlı</span> <span class="OBS-P">fizyolojik effüzyon</span> ve <span class="OBS-P">sekel değişiklikler</span> <br>
+- <span class="ANAT">Sol akciğer</span> <span class="ANAT">üst lob</span> <span class="ANAT">anterior segmentte</span> <span class="ANAT">plevra</span> <span class="OBS-P">tabanlı</span> <span class="OBS-P">düzensiz sınırlı</span> <span class="OBS-P">12x6.6 mm</span> (<span class="IMP">Eski tetkikte</span> <span class="OBS-P">12x8.5 mm</span>) <span class="OBS-P">boyutlu</span> <span class="OBS-P">düzensiz sınırlı</span> <span class="OBS-P">nodüler lezyonun</span> <span class="IMP">boyutlarında hafif azalma</span> dikkati çekmiştir. Tanımlanan <span class="IMP">nodülün yakın takibi önerilir</span>. <br>
+- <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-P">milimetrik boyutlu</span> <span class="IMP">stabil</span> <span class="OBS-P">nonspesifik nodüller</span> <span class="IMP">geçirilmiş by pass cerrahisine bağlı</span> <span class="OBS-P">değişiklikler</span> <br>
+- <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-P">fibroatelektazik değişiklikler</span> <br>
+- <span class="OBS-A">Pnömoni</span> saptanmadı <br>
+- <span class="ANAT">Kemik yapılarda</span> <span class="OBS-P">dejeneratif değişiklikler</span> <br>
+
+Input4:
+Tetkik 2023 tarihli Toraks BT ile karşılaştırılarak değerlendirilmiştir.
+
+Trakea ve her iki ana bronş açıktır. Kalp boyutları artmıştır. Sol ventrikül apeks duvarında anevrizmatik dilatasyon ve kalsifiye mural trombüs lehine değerlendirilen milimetrik kalsifikasyonlar dikkati çekmiştir. Mediasten ve sternumda by pass cerrahisine bağlı değişiklikler izlendi. Torakal aorta ve koroner arterlerde aterosklerotik değişiklikler izlendi. Pulmoner trunkus çapı 30 mm ölçülmüş olup normalden hafif geniştir. Mediastende bazıları kalsifiye milimetrik boyutlu lenf nodları izlenmiştir. Her iki hemitoraksta efüzyon ya da kalınlaşma bulgusu izlenmedi.
+
+Kemik yapılarda dejeneratif değişiklikler izlenmiş olup litik, destrüktif kitle lezyonu saptanmadı.
+
+Her iki akciğer parankiminde pnömonik infiltrasyon ya da kitle görünümü saptanmamıştır. Sağ akciğer üst lobda ve lingulada fibrotik sekel değişikliklerde anlamlı farklılık saptanmamıştır.
+
+Sol akciğer süperior lingular segmentte 16x14.5 mm (Eski tetkikte aynı düzeyde 11x9.5 mm) boyutlu, boyut artışı gösteren lobüle konturlu solid dansitede nodül izlenmiş olup tanımlanan nodüle yönelik PET CT ve gereklilik halinde histopatolojik korelasyon önerilir. Tanımlanan nodül dışında milimetrik boyutlu birkaç adet nonspesifik stabil nodül izlenmiştir. Tanımlı diğer bulgularda anlamlı farklılık saptanmadı.
+
+Trakea sol lateral duvarda hastanın eski tetkikinde de izlenen 9x5 mm (Eski tetkikte 8x5 mm) boyutlu polipoid nodüler lezyonda minimal boyut artışı dikkati çekmiştir. Tanımlanan nodüle yönelik bronkoskopik değerlendirme önerilir.
+
+SONUÇ:
+
+- Sol akciğer üst lob lingulada boyut artışı gösteren lobüle konturlu solid dansitede nodül izlenmiş olup tanımlanan nodüle yönelik PET CT ve gereklilik halinde histopatolojik korelasyon önerilir.
+- By pass cerrahisine bağlı değişiklikler
+- Pulmoner trunkusta ektazi
+- Aterosklerotik değişiklikler
+- Sol ventrikül apeksinde kalsifiye anevrizmatik dilatasyon
+- Trakea sol lateral duvarda hastanın eski tetkikinde de izlenen 9x5 mm (Eski tetkikte 8x5 mm) boyutlu polipoid nodüler lezyonda minimal boyut artışı dikkati çekmiştir. Tanımlanan nodüle yönelik bronkoskopik değerlendirme önerilir.
+- Kemik yapılarda dejeneratif değişiklikler
+- Her iki akciğerde fibroatelektazik değişiklikler
+- Pnömoni saptanmadı
+
+Output4:
+Tetkik 2023 tarihli Toraks BT ile karşılaştırılarak değerlendirilmiştir. <br>
+<br>
+<span class="ANAT">Trakea</span> ve <span class="ANAT">her iki ana bronş</span> <span class="OBS-P">açıktır</span>. <span class="ANAT">Kalp</span> <span class="OBS-P">boyutları</span> <span class="OBS-P">artmıştır</span>. <span class="ANAT">Sol ventrikül</span> <span class="ANAT">apeks</span> <span class="ANAT">duvarında</span> <span class="OBS-P">anevrizmatik dilatasyon</span> ve <span class="OBS-U">kalsifiye mural trombüs</span> <span class="OBS-U">lehine değerlendirilen</span> <span class="OBS-P">milimetrik kalsifikasyonlar</span> dikkati çekmiştir. <span class="ANAT">Mediasten</span> ve <span class="ANAT">sternumda</span> <span class="IMP">by pass cerrahisine bağlı</span> <span class="OBS-P">değişiklikler</span> izlendi. <span class="ANAT">Torakal aorta</span> ve <span class="ANAT">koroner arterlerde</span> <span class="OBS-P">aterosklerotik değişiklikler</span> izlendi. <span class="ANAT">Pulmoner trunkus</span> <span class="OBS-P">çapı</span> <span class="OBS-P">30 mm</span> ölçülmüş olup <span class="OBS-P">normalden hafif geniştir</span>. <span class="ANAT">Mediastende</span> <span class="OBS-P">bazıları kalsifiye</span> <span class="OBS-P">milimetrik boyutlu</span> <span class="OBS-P">lenf nodları</span> izlenmiştir. <span class="ANAT">Her iki</span> <span class="ANAT">hemitoraksta</span> <span class="OBS-A">efüzyon</span> ya da <span class="OBS-A">kalınlaşma</span> bulgusu izlenmedi. <br>
+<br>
+<span class="ANAT">Kemik yapılarda</span> <span class="OBS-P">dejeneratif değişiklikler</span> izlenmiş olup <span class="OBS-A">litik, destrüktif</span> <span class="OBS-A">kitle lezyonu</span> saptanmadı. <br>
+<br>
+<span class="ANAT">Her iki</span> <span class="ANAT">akciğer</span> <span class="ANAT">parankiminde</span> <span class="OBS-A">pnömonik infiltrasyon</span> ya da <span class="OBS-A">kitle görünümü</span> saptanmamıştır. <span class="ANAT">Sağ akciğer</span> <span class="ANAT">üst lobda</span> ve <span class="ANAT">lingulada</span> <span class="OBS-P">fibrotik sekel değişikliklerde</span> anlamlı farklılık saptanmamıştır. <br>
+<br>
+<span class="ANAT">Sol akciğer</span> <span class="ANAT">süperior</span> <span class="ANAT">lingular segmentte</span> <span class="OBS-P">16x14.5 mm</span> (<span class="IMP">Eski tetkikte</span> <span class="ANAT">aynı düzeyde</span> <span class="OBS-P">11x9.5 mm</span>) <span class="OBS-P">boyutlu</span>, <span class="IMP">boyut artışı gösteren</span> <span class="OBS-P">lobüle konturlu</span> <span class="OBS-P">solid dansitede</span> <span class="OBS-P">nodül</span> izlenmiş olup tanımlanan nodüle yönelik <span class="IMP">PET CT</span> ve <span class="IMP">gereklilik halinde histopatolojik korelasyon önerilir</span>. Tanımlanan <span class="OBS-P">nodül dışında</span> <span class="OBS-P">milimetrik boyutlu</span> <span class="OBS-P">birkaç adet</span> <span class="OBS-P">nonspesifik</span> <span class="IMP">stabil</span> <span class="OBS-P">nodül</span> izlenmiştir. Tanımlı diğer bulgularda anlamlı farklılık saptanmadı. <br>
+<br>
+<span class="ANAT">Trakea</span> <span class="ANAT">sol lateral</span> <span class="ANAT">duvarda</span> hastanın <span class="IMP">eski tetkikinde de izlenen</span> <span class="OBS-P">9x5 mm</span> (<span class="IMP">Eski tetkikte</span> <span class="OBS-P">8x5 mm</span>) <span class="OBS-P">boyutlu</span> <span class="OBS-P">polipoid</span> <span class="OBS-P">nodüler lezyonda</span> <span class="OBS-P">minimal</span> <span class="IMP">boyut artışı</span> dikkati çekmiştir. Tanımlanan nodüle yönelik <span class="IMP">bronkoskopik değerlendirme önerilir</span>. <br>
+<br>
+SONUÇ: <br>
+<br>
+- <span class="ANAT">Sol akciğer</span> <span class="ANAT">üst lob lingulada</span> <span class="IMP">boyut artışı gösteren</span> <span class="OBS-P">lobüle konturlu</span> <span class="OBS-P">solid dansitede</span> <span class="OBS-P">nodül</span> izlenmiş olup tanımlanan nodüle yönelik <span class="IMP">PET CT</span> ve <span class="IMP">gereklilik halinde histopatolojik korelasyon önerilir</span>. <br>
+- <span class="IMP">By pass cerrahisine bağlı</span> <span class="OBS-P">değişiklikler</span> <br>
+- <span class="ANAT">Pulmoner trunkusta</span> <span class="OBS-P">ektazi</span> <br>
+- <span class="OBS-P">Aterosklerotik değişiklikler</span> <br>
+- <span class="ANAT">Sol ventrikül</span> <span class="ANAT">apeksinde</span> <span class="OBS-P">kalsifiye</span> <span class="OBS-P">anevrizmatik dilatasyon</span> <br>
+- <span class="ANAT">Trakea</span> <span class="ANAT">sol lateral</span> <span class="ANAT">duvarda</span> hastanın <span class="IMP">eski tetkikinde de izlenen</span> <span class="OBS-P">9x5 mm</span> (<span class="IMP">Eski tetkikte</span> <span class="OBS-P">8x5 mm</span>) <span class="OBS-P">boyutlu</span> <span class="OBS-P">polipoid</span> <span class="OBS-P">nodüler lezyonda</span> <span class="OBS-P">minimal</span> <span class="IMP">boyut artışı</span> dikkati çekmiştir. Tanımlanan nodüle yönelik <span class="IMP">bronkoskopik değerlendirme önerilir</span>. <br>
+- <span class="ANAT">Kemik yapılarda</span> <span class="OBS-P">dejeneratif değişiklikler</span> <br>
+- <span class="ANAT">Her iki</span> <span class="ANAT">akciğerde</span> <span class="OBS-P">fibroatelektazik değişiklikler</span> <br>
+- <span class="OBS-A">Pnömoni</span> saptanmadı <br>
+
+Input5:
+IVKM verilmeden aksiyel planda volümetrik 3 mm kalınlığında yüksek rezolüsyonlu kesitler elde olunmuş, 1 mm kalınlığında rekonstrüksiyon imajlar gerçekleştirilmiştir.
+
+İnceleme 2020 tarihli toraks YRBT incelemesi ile karşılaştırılarak değerlendirildi.
+
+Akciğer tutulumu gösteren skleroderma nedeniyle takip edilen hastada trakea ve her iki ana bronş açıktır. Pulmoner arter ana dalları normalden ektatik görünümde izlenmekte olup kardiyomegali ve sağ kalp boşluklarında dilatasyon izlendi. Bu görünüm pulmoner hipertansiyon ile uyumlu olabilir. Klinik korelasyon önerilir. Arkus aorta düzeyinde izlenen koroner arterde seçilen kalsifiye aterom plakları gözlendi. Mediastende 1 cm'den küçük reaktif lenf nodları mevcuttur.
+
+Özefagus kalibrasyonu normal sınırlarda değerlendirildi.
+
+Özefageal tutulum bulgusu saptanmadı. Plevral efüzyon izlenmedi.
+
+Akciğer parankim alanlarında özellikle alt lob bazal segmentlerde sağ orta lob bazalinde solda lingular segmentte gözlenen, ekspiryum görüntülerinde daha net olarak izlenen önceki incelemede gözlendiği gibi sklerodermanın tutulumuna bağlı olağan interstisyel pnömoni paterni alanları periferal subplevral interstisyumda yer yer kalınlaşma eşlik eden buzlu cam görünümleri gözlendi.
+
+Sağ orta lob bazalinde solda lingular segmentteki minimal silindirik bronşektaziler sebat etmektedir.
+
+Sağ akciğer alt lob bazal segmentli nodüllerin hafif belirgin hale geldiği izlenmekte olup en belirgini 5.5 mm olarak ölçülmüştür.
+
+Akciğerlerde ekspiryum imajlarında daha belirgin hava hapsi alanları ve KOAH süreci ile uyumlu bulgular gözlendi.
+
+SONUÇ:
+
+- Takipte skleroderma
+- Akciğerlerde genel olarak değerlendirildiğinde stabil izlenim veren olağan interstisyel pnömoni paterni
+- Stabil izlenimli insterstisyumda kalınlaşma
+- Sağ orta lob ve solda lingulada belirginleşen buzlu cam alanları
+- Sağ akciğer alt lobda birkaç adet hafif progrese izlenimli parankimal nodüller
+- Kardiyomegali ve pulmoner arter dallarında izlenen ektazi
+- Vertebra korpuslarında dejeneratif değişiklikler
+
+Output5:
+IVKM verilmeden aksiyel planda volümetrik 3 mm kalınlığında yüksek rezolüsyonlu kesitler elde olunmuş, 1 mm kalınlığında rekonstrüksiyon imajlar gerçekleştirilmiştir. 
+<br>
+<br>
+İnceleme 2020 tarihli toraks YRBT incelemesi ile karşılaştırılarak değerlendirildi.
+<br>
+<br>
+<span class="ANAT">Akciğer</span> <span class="IMP">tutulumu gösteren</span> <span class="IMP">skleroderma</span> <span class="IMP">nedeniyle</span> <span class="IMP">takip edilen</span> hastada <span class="ANAT">trakea</span> ve <span class="ANAT">her iki ana bronş</span> <span class="OBS-P">açıktır</span>. <span class="ANAT">Pulmoner arter</span> <span class="ANAT">ana dalları</span> <span class="OBS-P">normalden ektatik</span> <span class="OBS-P">görünümde</span> izlenmekte olup <span class="OBS-P">kardiyomegali</span> ve <span class="ANAT">sağ kalp boşluklarında</span> <span class="OBS-P">dilatasyon</span> izlendi. Bu görünüm <span class="OBS-U">pulmoner hipertansiyon</span> <span class="OBS-U">ile uyumlu olabilir</span>. <span class="IMP">Klinik korelasyon önerilir</span>. <span class="ANAT">Arkus aorta</span> <span class="ANAT">düzeyinde</span> izlenen <span class="ANAT">koroner arterde</span> seçilen <span class="OBS-P">kalsifiye</span> <span class="OBS-P">aterom plakları</span> gözlendi. <span class="ANAT">Mediastende</span> <span class="OBS-P">1 cm'den küçük</span> <span class="OBS-P">reaktif</span> <span class="OBS-P">lenf nodları</span> mevcuttur.
+<br>
+<br>
+<span class="ANAT">Özefagus</span> <span class="OBS-P">kalibrasyonu normal</span> sınırlarda değerlendirildi.
+<br>
+<br>
+<span class="ANAT">Özefageal</span> <span class="OBS-A">tutulum bulgusu</span> saptanmadı. <span class="ANAT">Plevral</span> <span class="OBS-A">efüzyon</span> izlenmedi.
+<br>
+<br>
+<span class="ANAT">Akciğer</span> <span class="ANAT">parankim alanlarında</span> özellikle <span class="ANAT">alt lob</span> <span class="ANAT">bazal segmentlerde</span> <span class="ANAT">sağ orta lob</span> <span class="ANAT">bazalinde</span> <span class="ANAT">solda</span> <span class="ANAT">lingular segmentte</span> gözlenen, <span class="OBS-P">ekspiryum görüntülerinde</span> <span class="OBS-P">daha net</span> olarak izlenen <span class="IMP">önceki incelemede gözlendiği gibi</span> <span class="IMP">sklerodermanın tutulumuna bağlı</span> <span class="OBS-P">olağan</span> <span class="OBS-P">interstisyel pnömoni</span> <span class="OBS-P">paterni</span> <span class="ANAT">alanları</span> <span class="ANAT">periferal</span> <span class="ANAT">subplevral</span> <span class="ANAT">interstisyumda</span> <span class="OBS-P">yer yer</span> <span class="OBS-P">kalınlaşma</span> eşlik eden <span class="OBS-P">buzlu cam</span> <span class="OBS-P">görünümleri</span> gözlendi.
+<br>
+<br>
+<span class="ANAT">Sağ orta lob</span> <span class="ANAT">bazalinde</span> <span class="ANAT">solda</span> <span class="ANAT">lingular segmentteki</span> <span class="OBS-P">minimal</span> <span class="OBS-P">silindirik</span> <span class="OBS-P">bronşektaziler</span> <span class="IMP">sebat etmektedir</span>.
+<br>
+<br>
+<span class="ANAT">Sağ akciğer</span> <span class="ANAT">alt lob</span> <span class="ANAT">bazal segmentli</span> <span class="OBS-P">nodüllerin</span> <span class="OBS-P">hafif belirgin</span> hale geldiği izlenmekte olup <span class="OBS-P">en belirgini</span> <span class="OBS-P">5.5 mm</span> olarak ölçülmüştür.
+<br>
+<br>
+<span class="ANAT">Akciğerlerde</span> <span class="OBS-P">ekspiryum imajlarında</span> <span class="OBS-P">daha belirgin</span> <span class="OBS-P">hava hapsi</span> <span class="ANAT">alanları</span> ve <span class="OBS-P">KOAH süreci</span> <span class="IMP">ile uyumlu</span> <span class="OBS-P">bulgular</span> gözlendi.
+<br>
+<br>
+SONUÇ:
+<br>
+<br>
+- <span class="IMP">Takipte</span> <span class="IMP">skleroderma</span>
+<br>
+- <span class="ANAT">Akciğerlerde</span> <span class="IMP">genel olarak değerlendirildiğinde</span> <span class="IMP">stabil</span> <span class="OBS-P">izlenim veren</span> <span class="OBS-P">olağan</span> <span class="OBS-P">interstisyel pnömoni</span> <span class="OBS-P">paterni</span>
+<br>
+- <span class="IMP">Stabil</span> <span class="OBS-P">izlenimli</span> <span class="ANAT">insterstisyumda</span> <span class="OBS-P">kalınlaşma</span>
+<br>
+- <span class="ANAT">Sağ orta lob</span> ve <span class="ANAT">solda</span> <span class="ANAT">lingulada</span> <span class="OBS-P">belirginleşen</span> <span class="OBS-P">buzlu cam</span> <span class="ANAT">alanları</span>
+<br>
+- <span class="ANAT">Sağ akciğer</span> <span class="ANAT">alt lobda</span> <span class="OBS-P">birkaç adet</span> <span class="IMP">hafif progrese</span> <span class="OBS-P">izlenimli</span> <span class="ANAT">parankimal</span> <span class="OBS-P">nodüller</span>
+<br>
+- <span class="OBS-P">Kardiyomegali</span> ve <span class="ANAT">pulmoner arter</span> <span class="ANAT">dallarında</span> izlenen <span class="OBS-P">ektazi</span>
+<br>
+- <span class="ANAT">Vertebra korpuslarında</span> <span class="OBS-P">dejeneratif değişiklikler</span>
+
+###
+here is the tomography report to be tagged:
