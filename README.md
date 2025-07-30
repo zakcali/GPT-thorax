@@ -1,4 +1,7 @@
 # GPT-thorax
+Spacy-Trained Model can be accessed from:
+
+https://huggingface.co/zakcali/Spacy-NER-Model-Turkish-ThoraxBTReports/tree/main
 
 GPT-NER for Thorax-CT reports
 
